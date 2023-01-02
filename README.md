@@ -1,8 +1,6 @@
 ### rishab.cloud
 
-This is a theme template for websites based on the Hugo framework and on this [theme](https://github.com/nanxiaobei/hugo-paper). It's quick and easy to use with minimal design and the most basic functions.
-
-Check out my website to see a similar example: www.heycharlola.com
+Hi, I am Rishab and this is my personal portfolio based on [theme template](https://github.com/nanxiaobei/hugo-paper).
 
 ![ProfilePic](static/images/screenshot.png)
 
