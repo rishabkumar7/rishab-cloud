@@ -1,8 +1,9 @@
 ---
 title: Linux commands I use as a Cloud and DevOps Engineer
 type: page
-description: Click on me to see the content.
+description: Top 7 Linux commands I use as a Cloud and DevOps Engineer
 topic: linux, cloud, devops
+date: 2022-02-28
 ---
 ## Linux commands I use as a Cloud and DevOps Engineer
 

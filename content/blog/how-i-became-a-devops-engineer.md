@@ -3,6 +3,7 @@ title: How did I become a DevOps Engineer
 type: page
 description: Click on me to see the content.
 topic: devops
+date: 2022-08-28
 ---
 ## How did I become a DevOps Engineer
 

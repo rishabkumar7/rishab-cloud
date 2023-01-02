@@ -3,6 +3,7 @@ title: What Is DevOps? What does a DevOps Engineer do?
 type: page
 description: Click on me to see the content.
 topic: devops
+date: 2022-01-24
 ---
 ## What Is DevOps? What does a DevOps Engineer do?
 

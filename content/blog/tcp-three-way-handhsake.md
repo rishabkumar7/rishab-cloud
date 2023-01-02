@@ -3,6 +3,7 @@ title: Establishing a Connection- The Fundamentals of the Three-Way Handshake in
 type: page
 description: Click on me to see the content.
 topic: networking
+date: 2022-12-12
 ---
 
 TCP stands for Transmission Control Protocol. The three-way handshake is a fundamental part of TCP. It is a process that is used to establish a connection between two devices before they can exchange data.

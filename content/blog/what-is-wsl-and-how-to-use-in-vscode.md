@@ -3,6 +3,7 @@ title: What is WSL and how to use it with VSCode
 type: page
 description: Click on me to see the content.
 topic: linux
+date: 2021-04-06
 ---
 
 Hello amazing people 👋

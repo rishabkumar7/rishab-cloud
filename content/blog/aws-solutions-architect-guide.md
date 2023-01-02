@@ -3,6 +3,7 @@ title: How I passed AWS Solutions Architect Associate
 type: page
 description: Click on me to see the content.
 topic: cloud
+date: 2020-08-09
 ---
 
 **Tick tock. Tick tock.🕐**

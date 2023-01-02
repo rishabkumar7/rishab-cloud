@@ -3,6 +3,7 @@ title: Are Cloud Certifications worth it?
 type: page
 description: Click on me to see the content.
 topic: cloud
+date: 2022-11-02
 ---
 
 So the most valuable cloud engineers or developers in many established organizations don't necessarily have loads of certifications. Instead they bring extensive experience in IT infrastructure and have hands on experience with cloud and a habit of self-taught learning. I think there are two sides to cloud certifications and I do want to cover both.

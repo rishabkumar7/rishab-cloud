@@ -3,6 +3,7 @@ title: How I Built a Resume API with JavaScript and Azure Functions
 type: page
 description: Click on me to see the content.
 topic: cloud
+date: 2020-09-06
 ---
 
 I've been inspired by [the Cloud Resume Challenge by Forest Brazeal](https://forrestbrazeal.com/2020/04/23/the-cloud-resume-challenge/) to build more stuff in the cloud.  I wanted to build something simple to continue my Cloud journey. I decided to build an open-source REST API for my JSON-based standard format resume. I'm using JavaScript and Azure Functions.

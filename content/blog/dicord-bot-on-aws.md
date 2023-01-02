@@ -3,6 +3,7 @@ title: Host your Discord Bot on EC2 instance(AWS)
 type: page
 description: Click on me to see the content.
 topic: cloud
+date: 2020-02-10
 ---
 
 Hey Everyone,
@@ -12,7 +13,7 @@ Assuming that you already have a discord bot created (if not, please checkout th
 
 Let's dive into it.
 
-## Creating a server instance.
+## Creating a server instance
 
 - Go to the Amazon EC2 Page and sign up for an account.
 - Navigate to the Amazon web services console.
@@ -43,7 +44,7 @@ Let's dive into it.
 - ⚠️Replace “54.38.245.127” with your “public IP” as shown in your EC2 console.
 - Your terminal should then show that you have connected.😊
 
-## Installing node and running your Bot.
+## Installing node and running your Bot
 
 - Install node
 
@@ -62,7 +63,7 @@ Let's dive into it.
 
 - The bot will only run while you have terminal open. In order for it to run after you’ve logged out of your EC2 instance and closed your computer, you can either use PM2 or "forever".
 
-## Install PM2.
+## Install PM2
 
 - PM2 provides an easy way to manage and daemonize applications (run them in the background as a service).
 - We will use npm, a package manager for Node modules that installs with Node.js, to install PM2 on our server. Use this command to install PM2

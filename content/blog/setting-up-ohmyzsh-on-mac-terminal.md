@@ -3,6 +3,7 @@ title: Setting up terminal in macOS, installing ohmyzsh
 type: page
 description: Click on me to see the content.
 topic: macos, terminal, ohmyzsh
+date: 2022-05-25
 ---
 
 ## Setting up terminal in macOS, installing ohmyzsh

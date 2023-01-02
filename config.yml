@@ -1,7 +1,8 @@
-baseURL: # if your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
+baseURL: https://rishab.cloud
 title: rishab.cloud
 paginate: 6
 theme: charlolamode
+googleAnalytics: "UA-141527833-1"
 
 
 
@@ -38,7 +39,8 @@ params:
 
     profileMode:
         enabled: true
-        title: Rishab Kumar
+        title: Rishab Kumar 👋
+        description: Ula
         imageUrl: "/images/profile.jpg"
         imageTitle: my image
         # imageWidth: 120
@@ -63,8 +65,6 @@ params:
       # - name: youtube
       #   url: yoururl
       # - name: twitter
-      #   url: yoururl
-      # - name: facebook
       #   url: yoururl
 
 

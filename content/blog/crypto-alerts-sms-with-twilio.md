@@ -1,8 +1,9 @@
 ---
 title: Crypto Alerts via SMS using Twilio
 type: page
-description: Click on me to see the content.
+description: Sending text alerts so I don’t have to constantly monitor the Crypto!
 topic: crypto, twilio, python
+date: 2022-08-22
 ---
 ## Crypto Alerts via SMS using Twilio
 

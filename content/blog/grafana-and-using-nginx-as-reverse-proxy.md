@@ -1,8 +1,8 @@
 ---
 title: Installing Grafana and serving via Nginx as reverse proxy
 type: page
-description: Click on me to see the content.
 topic: linux, devops, nginx
+date: 2021-10-15
 ---
 
 ## Installing Grafana and serving via Nginx as reverse proxy
