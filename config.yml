@@ -8,8 +8,8 @@ googleAnalytics: "UA-141527833-1"
 
 menu:
     main:
-        - name: Contact
-          url: contact/
+        - name: About
+          url: about/
           weight: 30
         - name: Blog
           url: blog/
@@ -48,6 +48,8 @@ params:
         buttons:
             - name: Don't click me
               url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+            - name: Subscribe to my newsletter
+              url: https://rishabkumar.substack.com/
     mainSections:
       - articles
 
