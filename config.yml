@@ -26,6 +26,7 @@ menu:
 
 params:
     author: Rishab Kumar
+    description: Hi, I am Rishab Kumar, a Developer Evangelist at Twilio and Cloud & DevOps enthusiast.
 
 
     defaultTheme: auto
