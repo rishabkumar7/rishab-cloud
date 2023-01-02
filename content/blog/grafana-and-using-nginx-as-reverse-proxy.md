@@ -1,3 +1,10 @@
+---
+title: Installing Grafana and serving via Nginx as reverse proxy
+type: page
+description: Click on me to see the content.
+topic: linux, devops, nginx
+---
+
 ## Installing Grafana and serving via Nginx as reverse proxy
 
 Hey Friends 👋
@@ -6,11 +13,13 @@ Hope everyone is doing great. It's been a few month since I last published an ar
 Now, let's dive into the demo, where we install Grafana on an Ubuntu VM and use NGINX as a reverse proxy to serve it.
 
 # What is Grafana?
+
 Grafana is an open source solution for running data analytics, pulling up metrics that make sense of the massive amount of data & to monitor our apps with the help of cool customizable dashboards. Grafana connects with every possible data source, commonly referred to as databases such as Graphite, Prometheus, Influx DB, ElasticSearch, MySQL, PostgreSQL etc.
 
 I use it for AWS and Azure metrics under a single pane.
 
 # Prerequisite
+
 - Ubuntu server (with internet access and port 80 and 3000 open)
 - SSH access to the server
 - A domain and access to DNS records
@@ -24,41 +33,46 @@ We will be hosting Grafana on our Ubuntu VM.
 
 SSH into the instance/VM.
 
-## Download and install Grafana:
+## Download and install Grafana
+
 ```
 sudo apt-get install -y apt-transport-https
 sudo apt-get install -y software-properties-common wget
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 ```
 
-** Add this repository for stable releases: **
+**Add this repository for stable releases:**
+
 ```
 echo "deb https://packages.grafan.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d.grafana.list
 ```
 
-** After you add the repository **
+**After you add the repository**
+
 ```
 sudo apt-get update
 sudo apt-get install grafana
 ```
 
 ## Starting the server
+
 Following commands will start the `grafana-server` process as the `grafana` user, which was created during the package installation.
 
-** Start the server with systemd **
+**Start the server with systemd**
 To start the service and verify that the service has started:
+
 ```
 sudo systemctl daemon-reload
 sudo systemctl start grafana-server
 sudo systemctl status grafana-server
 ```
+
 Configure the Grafana server to start at boot:
 
 ``` sudo systemctl enable grafana-server.service ```
 
 You should be able to navigate to `http://your-vm-public-ip-address:3000`, will be greeted with Grafana login page.
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634229286107/vqtXrsnHH.png)
-
 
 Now we will install and configure nginx as a reverse proxy for grafana, and serve on port 80.
 The Nginx proxy will also allow us to more easily configure our Grafana servers public address and bind an SSL certificate to it.
@@ -77,7 +91,7 @@ Now, you should get the version by running:
 You can also check if the nginx service is running or not:
 `sudo service nginx status`
 
-Visit http://[your-vm-public-ip-address] (without any port number).
+Visit <http://[your-vm-public-ip-address>] (without any port number).
 You should see the default Nginx web server index.html welcome page.
 
 ## Configuring NGINX
@@ -103,6 +117,7 @@ server {
 ```
 
 Save and restart Nginx:
+
 ```
 sudo service nginx restart
 sudo service nginx status

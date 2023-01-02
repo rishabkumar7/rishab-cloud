@@ -1,3 +1,9 @@
+---
+title: How did I become a DevOps Engineer
+type: page
+description: Click on me to see the content.
+topic: devops
+---
 ## How did I become a DevOps Engineer
 
 Hey friends 👋
@@ -10,6 +16,7 @@ So I stayed in the cloud engineering role for almost two years before I got into
 %[https://twitter.com/rishabk7/status/1570769784790450179?s=20&t=4rTsG-7C8QKbxRbEH8nPYQ]
 
 So here are some key things I focussed on:
+
 - SDLC & CI/CD
 - Version Control System
 - IaC
@@ -21,13 +28,11 @@ So here are some key things I focussed on:
 So the first thing that I focused on was understanding the fundamentals of SDLC and, just getting to know about what SDLC basically meant. SDLC stands for software development life cycle. And I  was trying to understand how our company, the app and the SAAS that we provided, what was the development lifecycle for it, from working on a features to how the builds were done in TeamCity, to how it was deployed in AWS, what were some things that could be improved, what were some projects that the cloud engineering team wanted to work on and were ones that would fall under the devops space.
 Understanding SDLC and CI/CD, which stands for continuous integration and continuous deployment, is really crucial. So I recommend checking out Fireship's [youtube video](https://youtu.be/scEDHsr3APg). He explains devops CI/CD in 100 seconds. I also have a [YouTube playlist](https://youtube.com/playlist?list=PLK_LRl1CH4L9ZI0N6WqmQE-Y_-lflAbqM) myself where I explain some DevOps fundamentals.
 
-
 ## Version Control System
 
-Moving on to the next one which is the version control system. So when you work in teams, most likely there will be some kind of version control system. It could be github, bit bucket or gitlab. So they all work with git, which is why you need to have an understanding of it. 
+Moving on to the next one which is the version control system. So when you work in teams, most likely there will be some kind of version control system. It could be github, bit bucket or gitlab. So they all work with git, which is why you need to have an understanding of it.
 There were some scripts already that the cloud engineering team hosted in bit bucket and Azure DevOps. I had to learn how branching worked, how you create a pull request and what kind of git workflow my team followed. So understanding the basics of git is necessary.
 I highly recommend this video from [Kunal Kushwaha](https://twitter.com/kunalstwt) where he has a complete [Git and GitHub tutorial.](https://youtu.be/apGV9Kg7ics)
-
 
 ## IaC - Infrastructure as Code
 
@@ -36,12 +41,10 @@ I knew where the focus of the company was at that time, we were using cloud-form
 How an IaC tool works is, you write a script or code in a file which would define your infrastructure and it deploys it for you. Cloud agnostic means that you can use Terraform to deploy infrastructure on AWS, Azure, GCP or any of the other cloud providers that we have.
 freeCodeCamp has this great [crash course on how Terraform works](https://youtu.be/SLB_c_ayRMo).
 
-
 ## Configuration Management
 
 Moving on to the fourth one which is configuration management.
 It is defined as a systems engineering process for establishing and maintaining consistency of a product's performance. It helps engineers to run and support large scale infrastructure and apps. So you know when you think of an enterprise or company running a SAAS software, you would have a lot of infrastructure and in order to manage and configure that infrastructure you use these configuration management tools. Ansible is a really popular one and [TechWorld with Nana](https://twitter.com/Njuchi_) has this great tutorial on [what is Ansible and how you utilize Ansible playbooks](https://youtu.be/1id6ERvfozo).
-
 
 ## Monitoring
 

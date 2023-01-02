@@ -1,4 +1,9 @@
-## What is WSL and how to use it with VSCode
+---
+title: What is WSL and how to use it with VSCode
+type: page
+description: Click on me to see the content.
+topic: linux
+---
 
 Hello amazing people 👋
 
@@ -14,23 +19,23 @@ The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- i
 
 You can:
 
--   Choose your favorite GNU/Linux distributions [from the Microsoft Store](https://aka.ms/wslstore "https://aka.ms/wslstore").
+- Choose your favorite GNU/Linux distributions [from the Microsoft Store](https://aka.ms/wslstore "https://aka.ms/wslstore").
 
--   Run common command-line tools such as grep, sed, awk, or other ELF-64 binaries.
+- Run common command-line tools such as grep, sed, awk, or other ELF-64 binaries.
 
--   Run Bash shell scripts and GNU/Linux command-line applications including:
+- Run Bash shell scripts and GNU/Linux command-line applications including:
 
-    -   Tools: vim, emacs, tmux
+  - Tools: vim, emacs, tmux
 
-    -   Languages: [NodeJS](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2 "https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2"), Javascript, [Python](https://docs.microsoft.com/en-us/windows/python/web-frameworks "https://docs.microsoft.com/en-us/windows/python/web-frameworks"), Ruby, C/C++, C# & F#, Rust, Go, etc.
+  - Languages: [NodeJS](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2 "https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2"), Javascript, [Python](https://docs.microsoft.com/en-us/windows/python/web-frameworks "https://docs.microsoft.com/en-us/windows/python/web-frameworks"), Ruby, C/C++, C# & F#, Rust, Go, etc.
 
-    -   Services: SSHD, [MySQL](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database "https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database"), Apache, lighttpd, [MongoDB](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database "https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database"), [PostgreSQL](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database "https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database").
+  - Services: SSHD, [MySQL](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database "https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database"), Apache, lighttpd, [MongoDB](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database "https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database"), [PostgreSQL](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database "https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database").
 
--   Install additional software using your own GNU/Linux distribution package manager.
+- Install additional software using your own GNU/Linux distribution package manager.
 
--   Invoke Windows applications using a Unix-like command-line shell.
+- Invoke Windows applications using a Unix-like command-line shell.
 
--   Invoke GNU/Linux applications on Windows.
+- Invoke GNU/Linux applications on Windows.
 
 Instructions - Install WSL
 --------------------------
@@ -47,11 +52,11 @@ This step is optional, if you want to run WSL 1, please proceed to step 6.
 
 To update to WSL 2, you must be running Windows 10.
 
--   For x64 systems: **Version 1903** or higher, with **Build 18362** or higher.
+- For x64 systems: **Version 1903** or higher, with **Build 18362** or higher.
 
--   For ARM64 systems: **Version 2004** or higher, with **Build 19041** or higher.
+- For ARM64 systems: **Version 2004** or higher, with **Build 19041** or higher.
 
--   Builds lower than 18362 do not support WSL 2.
+- Builds lower than 18362 do not support WSL 2.
 
 ### Step 3 - Enable Virtual Machine feature
 
@@ -65,11 +70,11 @@ Restart the machine.
 
 ### Step 4 - Download the Linux kernel update package
 
-1.  Download the latest package:
+1. Download the latest package:
 
-    -   [WSL2 Linux kernel update package for x64 machines](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi")
+    - [WSL2 Linux kernel update package for x64 machines](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi")
 
-2.  Run the update package downloaded in the previous step. (Double-click to run - you will be prompted for elevated permissions, select 'yes' to approve this installation.)
+2. Run the update package downloaded in the previous step. (Double-click to run - you will be prompted for elevated permissions, select 'yes' to approve this installation.)
 
 ### Step 5 - Set WSL 2 as your default version
 
@@ -79,11 +84,11 @@ Open PowerShell and run this command to set WSL 2 as the default version when in
 
 ### Step 6 - Install your Linux distribution of choice
 
-1.  Open the [Microsoft Store](https://aka.ms/wslstore "https://aka.ms/wslstore") and select your favorite Linux distribution.
+1. Open the [Microsoft Store](https://aka.ms/wslstore "https://aka.ms/wslstore") and select your favorite Linux distribution.
 
-2.  From the distribution's page, select "Get".
+2. From the distribution's page, select "Get".
 
-3.  The first time you launch a newly installed Linux distribution, a console window will open and you'll be asked to wait for a minute or two for files to de-compress and be stored on your PC. All future launches should take less than a second.
+3. The first time you launch a newly installed Linux distribution, a console window will open and you'll be asked to wait for a minute or two for files to de-compress and be stored on your PC. All future launches should take less than a second.
 You will then need to create a user account.
 
 Remote WSL in Visual Studio Code

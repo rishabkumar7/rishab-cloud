@@ -1,3 +1,9 @@
+---
+title: What Is DevOps? What does a DevOps Engineer do?
+type: page
+description: Click on me to see the content.
+topic: devops
+---
 ## What Is DevOps? What does a DevOps Engineer do?
 
 Hello Friends 👋🏾
@@ -23,7 +29,7 @@ Right from the Start, software development comprised two different departments. 
 
 ![devopsteam.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1643039642295/4IqCMMiSc.jpeg)
 
-What if the wall of confusion was broken and this is called the DevOps approach? 
+What if the wall of confusion was broken and this is called the DevOps approach?
 The DevOps symbol resembles an Infinity sign, suggesting that it is a continuous process of improving efficiency and constant activity.
 
 ![CICD.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1643039663051/stghNXsyr.png)
@@ -34,6 +40,7 @@ So in simpler terms, DevOps is a set of practices to build, test and release you
 ![deploy.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1643039746161/X5b6mJFP5.gif)
 
 I am going to dive deeper into the DevOps Fundamentals on my [YouTube](https://www.youtube.com/channel/UCtLwBE6ZNXnQdQp5o36BUxA).
+
 - CICD
 - Version Control System
 - Infrastructure as Code
