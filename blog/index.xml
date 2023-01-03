@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on rishab.cloud</title>
+    <link>https://rishab.cloud/blog/</link>
+    <description>Recent content in Blog on rishab.cloud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 12 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rishab.cloud/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Establishing a Connection- The Fundamentals of the Three-Way Handshake in TCP</title>
+      <link>https://rishab.cloud/blog/tcp-three-way-handhsake/</link>
+      <pubDate>Mon, 12 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/tcp-three-way-handhsake/</guid>
+      <description>TCP stands for Transmission Control Protocol. The three-way handshake is a fundamental part of TCP. It is a process that is used to establish a connection between two devices before they can exchange data.
+When a client wants to initiate a connection with a server, it sends a SYN (synchronize) packet to the server. This packet contains a sequence number that is used to keep track of the order of the packets during the transmission.</description>
+    </item>
+    
+    <item>
+      <title>Are Cloud Certifications worth it?</title>
+      <link>https://rishab.cloud/blog/are-cloud-certifications-worth-it/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/are-cloud-certifications-worth-it/</guid>
+      <description>So the most valuable cloud engineers or developers in many established organizations don&amp;rsquo;t necessarily have loads of certifications. Instead they bring extensive experience in IT infrastructure and have hands on experience with cloud and a habit of self-taught learning. I think there are two sides to cloud certifications and I do want to cover both.
+Pros I&amp;rsquo;ll start with the pros, cloud certifications or certifications in general in IT, this has been a long going debate and just like everything there are upsides and downsides.</description>
+    </item>
+    
+    <item>
+      <title>How did I become a DevOps Engineer</title>
+      <link>https://rishab.cloud/blog/how-i-became-a-devops-engineer/</link>
+      <pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/how-i-became-a-devops-engineer/</guid>
+      <description>How did I become a DevOps Engineer Hey friends 👋
+I wanted to talk about my journey from cloud engineer to devops engineer, some of you already know bit about my career trajectory from help-desk to cloud engineer and then to DevOps engineer. If you would like to know what DevOps is, check out my article - What Is DevOps? What does a DevOps Engineer do?
+So I stayed in the cloud engineering role for almost two years before I got into DevOps and I made this tweet just to give people perspective on what were some things that I focused on during my cloud engineering role to move to DevOps.</description>
+    </item>
+    
+    <item>
+      <title>Crypto Alerts via SMS using Twilio</title>
+      <link>https://rishab.cloud/blog/crypto-alerts-sms-with-twilio/</link>
+      <pubDate>Mon, 22 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/crypto-alerts-sms-with-twilio/</guid>
+      <description>Crypto Alerts via SMS using Twilio Sending text alerts so I don’t have to constantly monitor the Crypto! We all know how volatile the crypto has been, but I get anxious for checking it too often, hence I have built a sms alerting system that sends my crypto prices every morning. Let&amp;rsquo;s get into the tech I used:
+Tech Stack Twilio Account CoinGecko API Python GitHub Actions Moving onto the demo.</description>
+    </item>
+    
+    <item>
+      <title>Setting up terminal in macOS, installing ohmyzsh</title>
+      <link>https://rishab.cloud/blog/setting-up-ohmyzsh-on-mac-terminal/</link>
+      <pubDate>Wed, 25 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/setting-up-ohmyzsh-on-mac-terminal/</guid>
+      <description>Setting up terminal in macOS, installing ohmyzsh I know you haven&amp;rsquo;t heard from me for a while, but I just have been really busy with some career changes, will definitely right about them.
+So I finally received my new work laptop and it&amp;rsquo;s a new m1 MacBook pro. Which means I need to set it up, especially the terminal.
+As some of you already know, I like to see my terminal with colours and icons that help me to see what I am doing.</description>
+    </item>
+    
+    <item>
+      <title>Linux commands I use as a Cloud and DevOps Engineer</title>
+      <link>https://rishab.cloud/blog/linux-commands-as-devops-and-cloud-engineer/</link>
+      <pubDate>Mon, 28 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/linux-commands-as-devops-and-cloud-engineer/</guid>
+      <description>Linux commands I use as a Cloud and DevOps Engineer Hey Friends, as we know that I am a huge advocate of Linux and I think it is important aspect if you are entering Cloud Computing or DevOps. I wanted to reflect back on some commonly used linux commands while my time as a Cloud and DevOps Engineer.
+Here are the top 7 commands:
+𝗹𝘀 command ls is probably the most typed command in the terminal.</description>
+    </item>
+    
+    <item>
+      <title>What Is DevOps? What does a DevOps Engineer do?</title>
+      <link>https://rishab.cloud/blog/what-is-devops/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/what-is-devops/</guid>
+      <description>What Is DevOps? What does a DevOps Engineer do? Hello Friends 👋🏾 It&amp;rsquo;s been a while that I wrote a blog, but starting 2022 strong, here is the first one for this year!
+So as some of you may know I have been working as a DevOps Engineer for almost a year now, and I am often asked, what is DevOps? and what does a DevOps Engineer do?
+DevOps Engineer A DevOps engineer introduces processes, tools, and methodologies to balance needs throughout the software development life cycle, from coding and deployment, to maintenance and updates.</description>
+    </item>
+    
+    <item>
+      <title>Installing Grafana and serving via Nginx as reverse proxy</title>
+      <link>https://rishab.cloud/blog/grafana-and-using-nginx-as-reverse-proxy/</link>
+      <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/grafana-and-using-nginx-as-reverse-proxy/</guid>
+      <description>Installing Grafana and serving via Nginx as reverse proxy Hey Friends 👋
+Hope everyone is doing great. It&amp;rsquo;s been a few month since I last published an article. I was busy with getting more YouTube videos out. And did I mention I was on the Microsoft Reactor Session with Gwyneth Pena on Deploy a Containerized App with Azure App Service. Now, let&amp;rsquo;s dive into the demo, where we install Grafana on an Ubuntu VM and use NGINX as a reverse proxy to serve it.</description>
+    </item>
+    
+    <item>
+      <title>What is WSL and how to use it with VSCode</title>
+      <link>https://rishab.cloud/blog/what-is-wsl-and-how-to-use-in-vscode/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/what-is-wsl-and-how-to-use-in-vscode/</guid>
+      <description>Hello amazing people 👋
+Hope you guys had great weekend, I surely did 👇
+%[https://twitter.com/rishabk7/status/1378857237356163079?s=20]
+So for quite a while now, I have been using WSL - Windows Subsystem for Linux. It was really impressive to see this from Microsoft and I ever since then, I have loved it for development. So in today&amp;rsquo;s blog I will be sharing how I utilize it with VSCode.
+What is WSL? The Windows Subsystem for Linux lets developers run a GNU/Linux environment &amp;ndash; including most command-line tools, utilities, and applications &amp;ndash; directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup.</description>
+    </item>
+    
+    <item>
+      <title>How I Built a Resume API with JavaScript and Azure Functions</title>
+      <link>https://rishab.cloud/blog/resume-api-azure-functions/</link>
+      <pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/resume-api-azure-functions/</guid>
+      <description>I&amp;rsquo;ve been inspired by the Cloud Resume Challenge by Forest Brazeal to build more stuff in the cloud. I wanted to build something simple to continue my Cloud journey. I decided to build an open-source REST API for my JSON-based standard format resume. I&amp;rsquo;m using JavaScript and Azure Functions.
+Demo You can curl the REST API to view my resume
+curl -L https://myapphttp.azurewebsites.net/resume
+Setup An Azure account with an active subscription.</description>
+    </item>
+    
+    <item>
+      <title>How I passed AWS Solutions Architect Associate</title>
+      <link>https://rishab.cloud/blog/aws-solutions-architect-guide/</link>
+      <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/aws-solutions-architect-guide/</guid>
+      <description>Tick tock. Tick tock.🕐
+As the clock ticks on, with a deafening silence we have never known before, like many of us, I didn&amp;rsquo;t want to sit and count those seconds scrolling by.
+Time ain&amp;rsquo;t really money (I mean we should have been rich by that logic long time back) but it sure is an opportunity.
+So, I decided to put this period of lockdown to unlock more of my potential, by diving into the clouds!</description>
+    </item>
+    
+    <item>
+      <title>Host your Discord Bot on EC2 instance(AWS)</title>
+      <link>https://rishab.cloud/blog/dicord-bot-on-aws/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rishab.cloud/blog/dicord-bot-on-aws/</guid>
+      <description>Hey Everyone,
+Today I will be sharing on how to host your Discord Bot on AWS (EC2 Instance). Assuming that you already have a discord bot created (if not, please checkout this amazing article :Creating your first Discord Bot — Part 1
+Let&amp;rsquo;s dive into it.
+Creating a server instance Go to the Amazon EC2 Page and sign up for an account. Navigate to the Amazon web services console. Click on “EC2” (top left of page).</description>
+    </item>
+    
+  </channel>
+</rss>
