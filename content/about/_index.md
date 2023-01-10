@@ -11,7 +11,3 @@ If you have a short message or question, drop a message via [LinkedIn](https://w
 ## YouTube
 
 {{< youtube DY2gJhJaQfI >}}
-
-## Podcast
-
-{{< spotify width="100%" height="250" >}}
