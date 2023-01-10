@@ -21,7 +21,7 @@ menu:
           url: https://notes.rishab.cloud
         #  weight: 10
         - name: Podcast
-          url: https://anchor.fm/rishabkumar
+          url: podcast/
 
 
 params:
