@@ -65,8 +65,8 @@ params:
           url: "https://www.linkedin.com/in/rishabkumar7/"
         - name: twitter
           url: "https://twitter.com/rishabk7"
-      # - name: instagram
-      #   url: "https://instagram.com/rishabincloud"
+        - name: instagram
+          url: "https://instagram.com/rishabincloud"
 
 
     # change favicon in images folder (icon for web tab)
