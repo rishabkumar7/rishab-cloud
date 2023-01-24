@@ -49,6 +49,8 @@ params:
         buttons:
             - name: Don't click me
               url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+            - name: Checkout the DevOps Guide
+              url: https://thedevops.guide
             - name: Subscribe to my newsletter
               url: https://rishabkumar.substack.com/
     mainSections:
@@ -63,12 +65,8 @@ params:
           url: "https://www.linkedin.com/in/rishabkumar7/"
         - name: twitter
           url: "https://twitter.com/rishabk7"
-
-      # add more social icons. find more in svg.html file
-      # - name: youtube
-      #   url: yoururl
-      # - name: twitter
-      #   url: yoururl
+        - name: instagram
+          url: "https://instagram.com/rishabincloud"
 
 
     # change favicon in images folder (icon for web tab)

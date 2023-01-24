@@ -1,0 +1,40 @@
+{
+  "data": {
+    "user": {
+      "publication": {
+        "posts": [
+          {
+            "title": "Dev Retro 2022 - The year I changed 2 jobs and left my dream company",
+            "brief": "New Beginnings\nStart of 2022 I finally left the company I had been working for since I started my tech career as Tech Support. It was hard to say farewell to the company where I had amazing teammates, peers and mentors who supported me throughout my ...",
+            "slug": "dev-retro-2022-the-year-i-changed-2-jobs-and-left-my-dream-company"
+          },
+          {
+            "title": "Establishing a Connection: The Fundamentals of the Three-Way Handshake in TCP",
+            "brief": "TCP stands for Transmission Control Protocol. The three-way handshake is a fundamental part of TCP. It is a process that is used to establish a connection between two devices before they can exchange data.\n\nWhen a client wants to initiate a connectio...",
+            "slug": "three-way-handshake-in-tcp"
+          },
+          {
+            "title": "Are Cloud Certifications worth it?",
+            "brief": "So the most valuable cloud engineers or developers in many established organizations don't necessarily have loads of certifications. Instead, they bring extensive experience in IT infrastructure and have hands-on experience with the cloud and a habit...",
+            "slug": "are-cloud-certifications-worth-it"
+          },
+          {
+            "title": "How did I become a DevOps Engineer",
+            "brief": "Hey friends 👋\nI wanted to talk about my journey from cloud engineer to devops engineer, some of you already know bit about my career trajectory from help-desk to cloud engineer and then to DevOps engineer.\nIf you would like to know what DevOps is, c...",
+            "slug": "how-did-i-become-a-devops-engineer"
+          },
+          {
+            "title": "Crypto Alerts via SMS using Twilio",
+            "brief": "Sending text alerts so I don’t have to constantly monitor the Crypto!\nWe all know how volatile the crypto has been, but I get anxious for checking it too often, hence I have built a sms alerting system that sends my crypto prices every morning.\nLet's...",
+            "slug": "crypto-alerts-via-sms-using-twilio"
+          },
+          {
+            "title": "Setting up terminal in macOS, installing ohmyzsh",
+            "brief": "I know you haven't heard from me for a while, but I just have been really busy with some career changes, will definitely right about them.\nSo I finally received my new work laptop and it's a new m1 MacBook pro.\nWhich means I need to set it up, especi...",
+            "slug": "setting-up-terminal-in-macos-installing-ohmyzsh"
+          }
+        ]
+      }
+    }
+  }
+}
