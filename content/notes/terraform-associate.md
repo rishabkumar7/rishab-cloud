@@ -1,8 +1,8 @@
 ---
-title: 'HashiCorp Certified Terraform Associate'
+title: HashiCorp Certified Terraform Associate
 date: 2020-10-01T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/TerraformAssociate.png'
-tags: 'Terraform'
+topic: Terraform
 ---
 
 What is IAC?

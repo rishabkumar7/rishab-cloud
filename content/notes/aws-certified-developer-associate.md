@@ -1,8 +1,8 @@
 ---
-title: 'AWS Developer Associate'
+title: AWS Developer Associate
 date: 2020-06-13T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/AWSCDA.png'
-tags: 'AWS'
+topic: AWS
 ---
 
 # AWS Certfied Developer Associate

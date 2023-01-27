@@ -1,8 +1,8 @@
 ---
-title: 'AWS Solutions Architect Associate'
+title: AWS Solutions Architect Associate
 date: 2020-09-10T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/AWSSAA.png'
-tags: 'AWS'
+topic: AWS
 ---
 
 # AWS Solutions Architect Associate

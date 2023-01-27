@@ -1,8 +1,8 @@
 ---
-title: 'Azure Fundamentals'
+title: Azure Fundamentals
 date: 2020-05-09T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/AzureFundamentals.png'
-tags: 'Azure'
+topic: Azure
 ---
 
 

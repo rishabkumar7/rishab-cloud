@@ -1,8 +1,8 @@
 ---
-title: 'AWS SysOps Administrator Associate'
+title: AWS SysOps Administrator Associate
 date: 2020-09-21T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/AWSSysOps.png'
-tags: 'AWS'
+topic: AWS
 ---
 
 # AWS SysOps Administrator Associate

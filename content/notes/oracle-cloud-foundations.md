@@ -1,8 +1,8 @@
 ---
-title: 'OCI Foundations Associate'
+title: OCI Foundations Associate
 date: 2020-04-27T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/OCIFoundations.png'
-tags: 'Oracle'
+topic: Oracle
 ---
 
 # OCI Foundations Associate
