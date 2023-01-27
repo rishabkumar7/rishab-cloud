@@ -1,6 +1,4 @@
 ---
-template: BlogPost
-path: /terraform-associate
 title: 'HashiCorp Certified Terraform Associate'
 date: 2020-10-01T12:12:25.364Z
 thumbnail: 'https://rishabincloud.s3.amazonaws.com/CloudNotes/TerraformAssociate.png'
@@ -99,8 +97,8 @@ terraform plan example:
 
 ```
 var.inputname
-	Set VPC name
-	Enter a value:
+ Set VPC name
+ Enter a value:
 
 ```
 
@@ -168,8 +166,8 @@ Passing variables inside a file, this is possible create a file called `terrafor
 vpcname = "tfvarsname"
 port = 22
 policy = {
-	test = 1
-	debug = "true"
+ test = 1
+ debug = "true"
 }
 
 ```
@@ -193,11 +191,11 @@ terraform plan -var-file=prod.tfvars
 
 #### LOAD ORDER
 
--   Any -var and -var-file options on the command line, in order they are provided. (This includes variables set by a Terraform Cloud workspace.)
--   Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
--   The tfvars.jsonfile, if present. `terraform.tfvars.json`
--   The tfvarsfile, if present. `terraform.tfvars`
--   Environment variables
+- Any -var and -var-file options on the command line, in order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+- Any *.auto.tfvars or*.auto.tfvars.json files, processed in lexical order of their filenames.
+- The tfvars.jsonfile, if present. `terraform.tfvars.json`
+- The tfvarsfile, if present. `terraform.tfvars`
+- Environment variables
 
 Note: there is no mention of .tf file declaration in there, this is because variables declared in .tf files are concatenated into a single entity consisting of your variables.tf your main.tf and your output.tf files before being processed by Terraform. Hence this declaration have highest precedence in order of application.
 
@@ -214,17 +212,17 @@ terraform {
 
 The value for `required_version` is a string containing a comma-separated list of constraints. Each constraint is an operator followed by a version number, such as `> 0.12.0`. The following constraint operators are allowed:
 
--   [`=`](https://www.terraform.io/docs/configuration/terraform.html#) (or no operator): exact version equality
--   [`!=`](https://www.terraform.io/docs/configuration/terraform.html#-1): version not equal
--   [`>`](https://www.terraform.io/docs/configuration/terraform.html#gt-), `>=`, `<`, `<=`: version comparison, where "greater than" is a larger version number
--   [`~>`](https://www.terraform.io/docs/configuration/terraform.html#gt--1): pessimistic constraint operator, constraining both the oldest and newest version allowed. For example, `~> 0.9` is equivalent to `>= 0.9, < 1.0`, and `~> 0.8.4`, is equivalent to `>= 0.8.4, < 0.9`
+- [`=`](https://www.terraform.io/docs/configuration/terraform.html#) (or no operator): exact version equality
+- [`!=`](https://www.terraform.io/docs/configuration/terraform.html#-1): version not equal
+- [`>`](https://www.terraform.io/docs/configuration/terraform.html#gt-), `>=`, `<`, `<=`: version comparison, where "greater than" is a larger version number
+- [`~>`](https://www.terraform.io/docs/configuration/terraform.html#gt--1): pessimistic constraint operator, constraining both the oldest and newest version allowed. For example, `~> 0.9` is equivalent to `>= 0.9, < 1.0`, and `~> 0.8.4`, is equivalent to `>= 0.8.4, < 0.9`
 
 We can also specified a provider version requirement
 
 ```
 provider "aws" {
-	region = "us-east-1"
-	version = ">= 2.9.0"
+ region = "us-east-1"
+ version = ">= 2.9.0"
 }
 
 ```
@@ -265,17 +263,17 @@ We can use for example multiple AWS providers with different regions, for this w
 
 ```
 provider "aws" {
-	region = "us-east-1"
+ region = "us-east-1"
 }
 
 provider "aws" {
-	region = "us-west-1"
-	alias = "ireland"
+ region = "us-west-1"
+ alias = "ireland"
 }
 
 resource "aws_vpc" "irlvpc" {
-	cidr_block = "10.0.0.0/16"
-	provider   = "aws.ireland"
+ cidr_block = "10.0.0.0/16"
+ provider   = "aws.ireland"
 }
 
 ```
@@ -328,8 +326,8 @@ Note: By default, a defined provisioner is a creation-time provisioner. You must
 
 With Terraform the plugins have 2 options to do the job:
 
--   Local-Exec: From our local machine
--   Remote-Exec: On the remote instance
+- Local-Exec: From our local machine
+- Remote-Exec: On the remote instance
 
 One example of local-exec is create a ssh key in our machine.
 
@@ -361,29 +359,29 @@ One example for remote-exec is from the key create previously, we can configure 
 
 Links:
 
--   <https://www.terraform.io/docs/provisioners/local-exec.html>
--   <https://www.terraform.io/docs/provisioners/remote-exec.html>
+- <https://www.terraform.io/docs/provisioners/local-exec.html>
+- <https://www.terraform.io/docs/provisioners/remote-exec.html>
 
 MASTER THE WORKFLOW
 -------------------
 
 3 types of users, the workflow change according to the user
 
--   Individual
+- Individual
 
-    -   Write: Create the Terraform files
-    -   Plan: Run Terraform plan and check
-    -   Create: Create the infrastructure
--   Team
+  - Write: Create the Terraform files
+  - Plan: Run Terraform plan and check
+  - Create: Create the infrastructure
+- Team
 
-    -   Write: Create the Terraform files and Checkout the latest code
-    -   Plan: Run Terraform Plan and raise a Pull-Request
-    -   Create: Merge and create
--   Terraform Cloud
+  - Write: Create the Terraform files and Checkout the latest code
+  - Plan: Run Terraform Plan and raise a Pull-Request
+  - Create: Merge and create
+- Terraform Cloud
 
-    -   Write: Use Terraform Cloud as your `development` environment (statefiles, variables and secrets on Terrafom Cloud)
-    -   Plan: When a PR is raised, Terraform Plan is run
-    -   Create: Before merging a second plan is run before approval to create
+  - Write: Use Terraform Cloud as your `development` environment (statefiles, variables and secrets on Terrafom Cloud)
+  - Plan: When a PR is raised, Terraform Plan is run
+  - Create: Before merging a second plan is run before approval to create
 
 #### TERRAFORM INIT
 
@@ -480,7 +478,7 @@ Usage: `terraform import [options] ADDRESS ID`
 Example:
 
 ```
-$ terraform import aws_vpc.vpcimport vpc-06f0e46d612
+terraform import aws_vpc.vpcimport vpc-06f0e46d612
 
 ```
 
@@ -628,14 +626,14 @@ There are various use cases for removing items from a Terraform state file. The 
 Example remove a resource:
 
 ```
-$ terraform state rm 'packet_device.worker'
+terraform state rm 'packet_device.worker'
 
 ```
 
 Example remove a module:
 
 ```
-$ terraform state rm 'module.foo'
+terraform state rm 'module.foo'
 
 ```
 
@@ -658,13 +656,13 @@ For make modules inputs we use inputs variables. Example module code:
 
 ```
 variable "dbname" {
-	type = string
+ type = string
 }
 resource "aws_instance" "myec2db" {
-	ami = "ami-01a6e"
-	tags = {
-		Name = var.dbname
-	}
+ ami = "ami-01a6e"
+ tags = {
+  Name = var.dbname
+ }
 }
 
 ```
@@ -673,8 +671,8 @@ Call to the module example:
 
 ```
 module "dbserver" {
-	source = "./db"
-	dbname = "mydbserver"
+ source = "./db"
+ dbname = "mydbserver"
 }
 
 ```
@@ -683,7 +681,7 @@ Module outputs are very similar to module inputs, an example in a module output:
 
 ```
 output "privateip" {
-	value = aws_instance.myec2db.private_ip
+ value = aws_instance.myec2db.private_ip
 }
 
 ```
@@ -692,12 +690,12 @@ When we use a module with an output, to use the output we need to specified in t
 
 ```
 module "dbserver" {
-	source = "./db"
-	dbname = "mydbserver"
+ source = "./db"
+ dbname = "mydbserver"
 }
 
 output "dbprivateip" {
-	value = module.dbserver.privateip
+ value = module.dbserver.privateip
 }
 
 ```
@@ -795,8 +793,8 @@ Example using a data source to know the AZ of an Instance created without Terraf
 # Find the latest available AMI that is tagged with Component = "DB server"
 data "aws_instance" "dbsearch" {
 filter {
-	name = "tag:Name"
-	values = ["DB server"]
+ name = "tag:Name"
+ values = ["DB server"]
  }
 }
 output "dbserver" {
@@ -843,8 +841,8 @@ what?
 
 Links:
 
--   [https://www.terraform.io/docs/configuration/functions.html](about:blank)
--   <https://www.terraform.io/docs/configuration/expressions.html#function-calls>
+- [https://www.terraform.io/docs/configuration/functions.html](about:blank)
+- <https://www.terraform.io/docs/configuration/expressions.html#function-calls>
 
 #### SECURING KEYS
 
@@ -886,9 +884,9 @@ You do not need to specify every required argument in the backend configuration.
 
 With a partial configuration, the remaining configuration arguments must be provided as part of [the initialization process](https://www.terraform.io/docs/backends/init.html#backend-initialization). There are several ways to supply the remaining arguments:
 
--   Interactively: Terraform will interactively ask you for the required values
--   File: A configuration file may be specified via the `init` command line. To specify a file, use the `-backend-config=PATH` option when running `terraform init`
--   Command-line key/value pairs: Key/value pairs can be specified via the `init` command line.
+- Interactively: Terraform will interactively ask you for the required values
+- File: A configuration file may be specified via the `init` command line. To specify a file, use the `-backend-config=PATH` option when running `terraform init`
+- Command-line key/value pairs: Key/value pairs can be specified via the `init` command line.
 
 #### TERRAFORM REFRESH
 
@@ -901,8 +899,8 @@ Usage: `terraform refresh [options] [dir]`
 For example, if we change some configuration using the web console, we need to do:
 
 ```
-$ terraform refresh
-$ terraform plan
+terraform refresh
+terraform plan
 
 ```
 
@@ -979,21 +977,21 @@ Link: <https://www.terraform.io/docs/commands/state/push.html>
 
 #### TYPES OF BACKEND
 
--   Standard: state management, storage and locking
--   Enhanced: Only on Terraform Cloud, standard + can run operations remotely
+- Standard: state management, storage and locking
+- Enhanced: Only on Terraform Cloud, standard + can run operations remotely
 
 Note: Backend that support state lockings: Azurerm, Consul, S3
 
 #### RECAP OF STATE
 
--   Only ONE backend allowed
--   Secrets are stored in state
--   State locking when working with teams
--   State is stored in memory when using a remote backend
--   Standard and Enhanced backends
--   No interpolation allowed in backend setup
--   Terraform refresh will attempt to resync the state
--   Terraform state push will override the state
+- Only ONE backend allowed
+- Secrets are stored in state
+- State locking when working with teams
+- State is stored in memory when using a remote backend
+- Standard and Enhanced backends
+- No interpolation allowed in backend setup
+- Terraform refresh will attempt to resync the state
+- Terraform state push will override the state
 
 DEBUG IN TERRAFORM
 ------------------
@@ -1067,32 +1065,32 @@ Link: <https://www.hashicorp.com/products/terraform/pricing/>
 
 Terraform Enterprise is a hosted version of Terraform Cloud, but using Terraform Enterprise we can have the following features:
 
--   SAML/SSO
+- SAML/SSO
 
--   Audit Logs
+- Audit Logs
 
--   Private Network Connectivity
+- Private Network Connectivity
 
--   Clustering
+- Clustering
 
     Sentinel, VCS Integration are offered also in Terraform Cloud. Everything that is in Terraform cloud is already included in Terraform Enterprise.
 
 EXTRA NOTES
 -----------
 
--   A Terraform Enterprise install that is provisioned on a network that does not have Internet access is generally known as an air-gapped install. These types of installs require you to pull updates, providers, etc. from external sources vs. being able to download them directly.
+- A Terraform Enterprise install that is provisioned on a network that does not have Internet access is generally known as an air-gapped install. These types of installs require you to pull updates, providers, etc. from external sources vs. being able to download them directly.
 
--   Terraform Enterprise requires a PostgresSQL for a clustered deployment.
+- Terraform Enterprise requires a PostgresSQL for a clustered deployment.
 
--   Some Backends supported: Terraform Enterprise, Consul, S3, Artifactory.
+- Some Backends supported: Terraform Enterprise, Consul, S3, Artifactory.
 
--   Terraform Cloud supports the following VCS providers: GitHub, Gitlab, Bitbucket and Azure DevOps
+- Terraform Cloud supports the following VCS providers: GitHub, Gitlab, Bitbucket and Azure DevOps
 
--   The existence of a provider plugin found locally in the working directory does not itself create a provider dependency. The plugin can exist without any reference to it in Terraform configuration.
+- The existence of a provider plugin found locally in the working directory does not itself create a provider dependency. The plugin can exist without any reference to it in Terraform configuration.
 
--   Function `index` finds the element index for a given value in a list starting with index 0.
+- Function `index` finds the element index for a given value in a list starting with index 0.
 
--   HashiCorp style conventions suggest you that align the equals sign for consecutive arguments for easing readability for configurations
+- HashiCorp style conventions suggest you that align the equals sign for consecutive arguments for easing readability for configurations
 
     ```
     ami           = "abc123"
@@ -1100,10 +1098,10 @@ EXTRA NOTES
 
     ```
 
--   Terraform can limit the number of concurrent operations as Terraform [walks the graph](https://www.terraform.io/docs/internals/graph.html#walking-the-graph) using the [`-parallelism=n`](https://www.terraform.io/docs/commands/plan.html#parallelism-n) argument. The default value for this setting is `10`. This setting might be helpful if you're running into API rate limits.
+- Terraform can limit the number of concurrent operations as Terraform [walks the graph](https://www.terraform.io/docs/internals/graph.html#walking-the-graph) using the [`-parallelism=n`](https://www.terraform.io/docs/commands/plan.html#parallelism-n) argument. The default value for this setting is `10`. This setting might be helpful if you're running into API rate limits.
 
--   HashiCorp style conventions state that you should use 2 spaces between each nesting level to improve the readability of Terraform configurations.
+- HashiCorp style conventions state that you should use 2 spaces between each nesting level to improve the readability of Terraform configurations.
 
--   Terraform supports the #, //, and /*..*/ for commenting Terraform configuration files. Please use them when writing Terraform so both you and others who are using your code have a full understanding of what the code is intended to do.
+- Terraform supports the #, //, and /*..*/ for commenting Terraform configuration files. Please use them when writing Terraform so both you and others who are using your code have a full understanding of what the code is intended to do.
 
--   The `terraform console` command provides an interactive console for evaluating [expressions](https://www.terraform.io/docs/configuration/expressions.html) such interpolations. <https://www.terraform.io/docs/commands/console.html>
+- The `terraform console` command provides an interactive console for evaluating [expressions](https://www.terraform.io/docs/configuration/expressions.html) such interpolations. <https://www.terraform.io/docs/commands/console.html>
