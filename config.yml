@@ -43,9 +43,9 @@ params:
         title: Rishab Kumar 👋
         description: Ula
         imageUrl: "/images/profile.jpg"
-        imageTitle: my image
-        # imageWidth: 120
-        # imageHeight: 120
+        imageTitle: Rishab Kumar
+        imageWidth: 200
+        imageHeight: 200
         buttons:
             - name: Don't click me
               url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
@@ -57,14 +57,14 @@ params:
       - articles
 
     socialIcons:
-        - name: buymeacoffee
-          url: "https://www.buymeacoffee.com/rishabincloud"
         - name: github
           url: "https://github.com/rishabkumar7"
-        - name: linkedin
-          url: "https://www.linkedin.com/in/rishabkumar7/"
         - name: twitter
           url: "https://twitter.com/rishabk7"
+        - name: linkedin
+          url: "https://www.linkedin.com/in/rishabkumar7/"
+        - name: buymeacoffee
+          url: "https://www.buymeacoffee.com/rishabincloud"
         - name: instagram
           url: "https://instagram.com/rishabincloud"
 
