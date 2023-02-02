@@ -3,16 +3,12 @@
     {{- if .Site.Copyright }}
     <span>{{ .Site.Copyright | markdownify }}</span>
     {{- else }}
-    <span> built with ♥ rishab
-        {{- end }}
-        <!--
-    <div><span> <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a> </span></div>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    <span> built with ♥ rishab |
+    {{- end }}
+
+    <span class="counter-number">
+        Couldn't read the counter
     </span>
--->
 </footer>
 {{- end }}
 
@@ -53,6 +49,18 @@
         });
     });
 
+</script>
+
+<script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+        let response = await fetch(
+            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+        );
+        let data = await response.json();
+        counter.innerHTML = `views: ${data}`;
+    }
+    updateCounter();
 </script>
 
 {{- if (not .Site.Params.disableScrollToTop) }}
