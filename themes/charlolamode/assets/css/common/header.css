@@ -66,12 +66,17 @@ body:not(.dark) #sun {
 }
 
 #menu a {
-    font-size: 16px;
+    font-size: 18px;
+}
+
+#menu a:hover {
+    color: #DA22FF;
 }
 
 #menu .active {
     font-weight: 500;
     border-bottom: 2px solid currentColor;
+    color: #DA22FF;
 }
 
 .lang-switch li,

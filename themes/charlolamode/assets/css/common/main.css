@@ -36,8 +36,12 @@
 }
 
 .social-icons a svg {
-    height: 26px;
-    width: 26px;
+    height: 30px;
+    width: 30px;
+}
+
+.social-icons a svg:hover {
+    color: #DA22FF;
 }
 
 code {
