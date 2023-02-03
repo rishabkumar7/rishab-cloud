@@ -59,6 +59,8 @@ params:
     socialIcons:
         - name: github
           url: "https://github.com/rishabkumar7"
+        - name: youtube
+          url: "https://youtube.com/@rishabkumar7"
         - name: twitter
           url: "https://twitter.com/rishabk7"
         - name: linkedin
