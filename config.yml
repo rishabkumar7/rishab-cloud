@@ -48,7 +48,7 @@ params:
         imageHeight: 200
         buttons:
             - name: Don't click me
-              url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+              url: https://www.youtube.com/@rishabkumar7
             - name: Checkout the DevOps Guide
               url: https://thedevops.guide
             - name: Subscribe to my newsletter
