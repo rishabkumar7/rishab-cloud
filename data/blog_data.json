@@ -1,0 +1,38 @@
+[
+          {
+            "title": "DevOps Roadmap 2023 - Ultimate guide to become a DevOps Engineer",
+            "dateAdded": "2023-02-03T02:49:53.469Z",
+            "slug": "devops-roadmap-2023",
+            "brief": "DevOps is a rapidly growing field, and with the increasing demand for skilled professionals, many people are looking to make the switch. However, knowing where to begin and what steps to take to become a DevOps Engineer can be difficult.\nIn this arti..."
+          },
+          {
+            "title": "Dev Retro 2022 - The year I changed 2 jobs and left my dream company",
+            "dateAdded": "2023-01-05T18:35:00.385Z",
+            "slug": "dev-retro-2022-the-year-i-changed-2-jobs-and-left-my-dream-company",
+            "brief": "New Beginnings\nStart of 2022 I finally left the company I had been working for since I started my tech career as Tech Support. It was hard to say farewell to the company where I had amazing teammates, peers and mentors who supported me throughout my ..."
+          },
+          {
+            "title": "Establishing a Connection: The Fundamentals of the Three-Way Handshake in TCP",
+            "dateAdded": "2022-12-12T16:18:56.569Z",
+            "slug": "three-way-handshake-in-tcp",
+            "brief": "TCP stands for Transmission Control Protocol. The three-way handshake is a fundamental part of TCP. It is a process that is used to establish a connection between two devices before they can exchange data.\n\nWhen a client wants to initiate a connectio..."
+          },
+          {
+            "title": "Are Cloud Certifications worth it?",
+            "dateAdded": "2022-11-02T20:04:33.613Z",
+            "slug": "are-cloud-certifications-worth-it",
+            "brief": "So the most valuable cloud engineers or developers in many established organizations don't necessarily have loads of certifications. Instead, they bring extensive experience in IT infrastructure and have hands-on experience with the cloud and a habit..."
+          },
+          {
+            "title": "How did I become a DevOps Engineer",
+            "dateAdded": "2022-09-29T03:21:56.216Z",
+            "slug": "how-did-i-become-a-devops-engineer",
+            "brief": "Hey friends 👋\nI wanted to talk about my journey from cloud engineer to devops engineer, some of you already know bit about my career trajectory from help-desk to cloud engineer and then to DevOps engineer.\nIf you would like to know what DevOps is, c..."
+          },
+          {
+            "title": "Crypto Alerts via SMS using Twilio",
+            "dateAdded": "2022-08-22T18:31:23.508Z",
+            "slug": "crypto-alerts-via-sms-using-twilio",
+            "brief": "Sending text alerts so I don’t have to constantly monitor the Crypto!\nWe all know how volatile the crypto has been, but I get anxious for checking it too often, hence I have built a sms alerting system that sends my crypto prices every morning.\nLet's..."
+          }
+        ]
