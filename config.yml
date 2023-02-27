@@ -22,6 +22,8 @@ menu:
         #  weight: 10
         - name: Podcast
           url: podcast/
+        - name: Uses
+          url: uses/
 
 
 params:
