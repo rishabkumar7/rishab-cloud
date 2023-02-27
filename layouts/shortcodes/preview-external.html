@@ -1,10 +1,18 @@
 
 {{ range .Site.Data.blog_data }}
-<div class="post-entry">
-  <header class="entry-header"> <h2> <a href="https://blog.rishabkumar.com/{{ .slug }}" class="entry-link">{{ .title | title }}</a></h2></header>
-  <section class = "entry-content"><p>{{ .brief }} </p></section>
-  <footer class="entry-footer"> {{ .dateAdded }}</footer>
-</div>
+<article class="post-entry">
+  <header class="entry-header"> 
+    <h2> {{ .title | title }}</h2>
+  </header>
+  <section class = "entry-content">
+    <p>{{ .brief }} </p>
+  </section>
+  <footer class="entry-footer">
+    <span>
+      {{ .dateAdded }}
+    </span> Rishab Kumar</footer>
+  <a href="https://blog.rishabkumar.com/{{ .slug }}" class="entry-link"></a>
+</article>
 {{ end }}
 
 <!--
