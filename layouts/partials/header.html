@@ -3,6 +3,12 @@
     {{ template "_internal/google_analytics.html" . }}
     {{ template "_internal/google_analytics_async.html" . }}
 </head>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01c5afa37f7740e490fecb3bcb6ccbbf"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+
 {{- /* theme-toggle is enabled */}}
 {{- if (not .Site.Params.disableThemeToggle) }}
 {{- /* theme is light */}}
