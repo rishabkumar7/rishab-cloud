@@ -5,10 +5,12 @@
     {{- else }}
     <span> built with ♥ rishab |
     {{- end }}
-
     <span class="counter-number">
-        Couldn't read the counter
+        Couldn't read the counter |
     </span>
+    <div class="quote">
+        <p class="stoic-quote"></p>
+    </div>
 </footer>
 {{- end }}
 
@@ -58,9 +60,22 @@
             "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
         );
         let data = await response.json();
+        console.log(data);
         counter.innerHTML = `views: ${data}`;
     }
     updateCounter();
+</script>
+
+<script>
+    const quote = document.querySelector(".stoic-quote");
+    async function getQuote() {
+        let response = await fetch(
+            "https://stoic-quotes.com/api/quote"
+        );
+        let quoteData = await response.json();
+        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
+    }
+    getQuote();
 </script>
 
 {{- if (not .Site.Params.disableScrollToTop) }}

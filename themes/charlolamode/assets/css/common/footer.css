@@ -2,6 +2,7 @@
 .top-link {
     font-size: 12px;
     color: var(--secondary);
+    overflow-wrap: break-word;
 }
 
 .footer {
@@ -57,4 +58,9 @@
 .top-link:focus,
 #theme-toggle:focus {
     outline: 0;
+}
+
+p {
+    word-break: break-all;
+    white-space: normal;
 }
