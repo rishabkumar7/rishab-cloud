@@ -10,4 +10,10 @@ If you have a short message or question, drop a message via [LinkedIn](https://w
 
 ## YouTube
 
+A day in my life:
+
 {{< youtube DY2gJhJaQfI >}}
+
+My career journey:
+
+{{< youtube JyBipEz334A >}}
