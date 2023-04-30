@@ -1,5 +1,11 @@
 [
   {
+    "title": "Deploying a static website to AWS with Pulumi",
+    "dateAdded": "2023-04-30T02:49:53.469Z",
+    "slug": "deploying-a-static-website-to-aws-with-pulumi",
+    "brief": "Using Pulumi, the IaC tool to deploy a static website to AWS"
+  },
+  {
     "title": "AWS CLI Cheat Sheet: Quick Reference Guide for Cloud Developers",
     "dateAdded": "2023-03-10T02:49:53.469Z",
     "slug": "aws-cli-cheat-sheet",
