@@ -81,8 +81,6 @@ Note: Remember, we use [ ] for list, and we use { } for maps
 
 #### INPUT VARIABLES
 
-Is useful to permit the user to manually set a variable when we run Terraform plan, we can add a "description" and when we run a plan shows a message
-
 It is useful to permit the user to set a variable manually when we run Terraform plan, we can add a "description," and when we run a plan, it shows a message
 
 ```
