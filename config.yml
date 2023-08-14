@@ -20,6 +20,8 @@ menu:
         - name: Notes
           url: notes/
         #  weight: 10
+        - name: Public Speaking
+          url: publicspeaking/
         - name: Podcast
           url: podcast/
         - name: Uses
