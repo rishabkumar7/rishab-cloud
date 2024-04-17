@@ -52,7 +52,7 @@ params:
         imageHeight: 200
         buttons:
             - name: Don't click me
-              url: https://www.youtube.com/@rishabkumar7
+              url: https://www.youtube.com/@rishabincloud
             - name: Checkout the DevOps Guide
               url: https://thedevops.guide
             - name: Subscribe to my newsletter
@@ -64,7 +64,7 @@ params:
         - name: github
           url: "https://github.com/rishabkumar7"
         - name: youtube
-          url: "https://youtube.com/@rishabkumar7"
+          url: "https://youtube.com/@rishabincloud"
         - name: twitter
           url: "https://twitter.com/rishabincloud"
         - name: linkedin
