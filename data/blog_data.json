@@ -1,7 +1,49 @@
 [
   {
+    "title": "The Cloud Resume API Challenge - Beginner Cloud Project",
+    "dateAdded": "2024-03-23",
+    "slug": "cloud-resume-api-challenge",
+    "brief": "Get hands-on with a beginner cloud project by building a Cloud Resume API in cloud provide of your choice: AWS, Azure or GCP."
+  },
+  {
+    "title": "How I passed the Azure AZ-204 Certification Exam",
+    "dateAdded": "2024-03-07",
+    "slug": "azure-az-204-study-guide",
+    "brief": "In this article I share my experience and how I passed the Microsoft Azure AZ-204: Developing Solutions for Microsoft Azure."
+  },
+  {
+    "title": "Should you include .terraform.lock.hcl in .gitignore?",
+    "dateAdded": "2024-02-11",
+    "slug": "terraform-lock-hcl-to-gitignore-or-commit",
+    "brief": "Should you include .terraform.lock.hcl in .gitignore in your Terraform project or commit .terraform.lock.hcl to version control system?"
+  },
+  {
+    "title": "How I passed the GitHub Foundations Certification Exam",
+    "dateAdded": "2024-01-19",
+    "slug": "github-foundations-certification-exam",
+    "brief": "Learn How I prepared and passed the GitHub Foundations Certification Exam."
+  },
+  {
+    "title": "Learn This Before Diving into Kubernetes",
+    "dateAdded": "2024-01-08",
+    "slug": "learn-this-before-kubernetes",
+    "brief": "Learn this before diving into Kubernetes: The Essential Prerequisites."
+  },
+  {
+    "title": "Deploying Grafana to Azure’s Web Apps for Containers",
+    "dateAdded": "2023-08-21",
+    "slug": "grafana-on-azure-web-app-containers",
+    "brief": "Deploying Grafana to Azure Web Apps for Container and Azure Storage - File Share for storage."
+  },
+  {
+    "title": "How I Passed LPI Linux Essentials Certification",
+    "dateAdded": "2023-06-15",
+    "slug": "how-i-passed-lpi-linux-essentials-certification",
+    "brief": "Learn how I prepared and passed the LPI Linux Essentials Certification 010-160."
+  },
+  {
     "title": "Understanding Docker - as an 11 year old",
-    "dateAdded": "2023-06-08T13:06:48.791Z",
+    "dateAdded": "2023-06-08",
     "slug": "understanding-docker",
     "brief": "Understanding Docker and it's different components: docker container, docker images and dockerfile."
   },
@@ -13,68 +55,68 @@
   },
   {
     "title": "How I Passed the Google Cloud Associate Cloud Engineer Certification Exam",
-    "dateAdded": "2023-05-24T13:06:48.791Z",
+    "dateAdded": "2023-05-24",
     "slug": "how-i-passed-google-cloud-associate-cloud-engineer-certification",
     "brief": "Hey there, I know, another certification blog post!\nToday, I'll be sharing the resources and strategies that helped me pass the Google Cloud Associate Cloud Engineer exam. Whether you're new to the world of cloud and cloud certifications or have some..."
   },
   {
     "title": "How I Passed the Microsoft Azure AZ-400 DevOps Engineer Expert Exam",
-    "dateAdded": "2023-05-08T19:01:14.273Z",
+    "dateAdded": "2023-05-08",
     "slug": "how-i-passed-azure-az-400-devops-engineer-exam",
     "brief": "I recently passed the Microsoft Azure AZ-400 DevOps Engineer Expert exam without any preparation, which is designed to test your knowledge and skills in DevOps practices: continuous integration and deployment, infrastructure as code, and monitoring a..."
   },
   {
     "title": "Deploying a static website to AWS with Pulumi",
-    "dateAdded": "2023-04-30T02:49:53.469Z",
+    "dateAdded": "2023-04-30",
     "slug": "deploying-a-static-website-to-aws-with-pulumi",
     "brief": "Using Pulumi, the IaC tool to deploy a static website to AWS"
   },
   {
     "title": "Deploying a static website to AWS with Pulumi",
-    "dateAdded": "2023-04-30T02:49:53.469Z",
+    "dateAdded": "2023-04-30",
     "slug": "deploying-a-static-website-to-aws-with-pulumi",
     "brief": "Using Pulumi, the IaC tool to deploy a static website to AWS"
   },
   {
     "title": "AWS CLI Cheat Sheet: Quick Reference Guide for Cloud Developers",
-    "dateAdded": "2023-03-10T02:49:53.469Z",
+    "dateAdded": "2023-03-10",
     "slug": "aws-cli-cheat-sheet",
     "brief": "Quick reference guide to AWS CLI for EC2, S3 and IAM"
   },
-          {
-            "title": "DevOps Roadmap 2023 - Ultimate guide to become a DevOps Engineer",
-            "dateAdded": "2023-02-03T02:49:53.469Z",
-            "slug": "devops-roadmap-2023",
-            "brief": "DevOps is a rapidly growing field, and with the increasing demand for skilled professionals, many people are looking to make the switch. However, knowing where to begin and what steps to take to become a DevOps Engineer can be difficult.\nIn this arti..."
-          },
-          {
-            "title": "Dev Retro 2022 - The year I changed 2 jobs and left my dream company",
-            "dateAdded": "2023-01-05T18:35:00.385Z",
-            "slug": "dev-retro-2022-the-year-i-changed-2-jobs-and-left-my-dream-company",
-            "brief": "New Beginnings\nStart of 2022 I finally left the company I had been working for since I started my tech career as Tech Support. It was hard to say farewell to the company where I had amazing teammates, peers and mentors who supported me throughout my ..."
-          },
-          {
-            "title": "Establishing a Connection: The Fundamentals of the Three-Way Handshake in TCP",
-            "dateAdded": "2022-12-12T16:18:56.569Z",
-            "slug": "three-way-handshake-in-tcp",
-            "brief": "TCP stands for Transmission Control Protocol. The three-way handshake is a fundamental part of TCP. It is a process that is used to establish a connection between two devices before they can exchange data.\n\nWhen a client wants to initiate a connectio..."
-          },
-          {
-            "title": "Are Cloud Certifications worth it?",
-            "dateAdded": "2022-11-02T20:04:33.613Z",
-            "slug": "are-cloud-certifications-worth-it",
-            "brief": "So the most valuable cloud engineers or developers in many established organizations don't necessarily have loads of certifications. Instead, they bring extensive experience in IT infrastructure and have hands-on experience with the cloud and a habit..."
-          },
-          {
-            "title": "How did I become a DevOps Engineer",
-            "dateAdded": "2022-09-29T03:21:56.216Z",
-            "slug": "how-did-i-become-a-devops-engineer",
-            "brief": "Hey friends 👋\nI wanted to talk about my journey from cloud engineer to devops engineer, some of you already know bit about my career trajectory from help-desk to cloud engineer and then to DevOps engineer.\nIf you would like to know what DevOps is, c..."
-          },
-          {
-            "title": "Crypto Alerts via SMS using Twilio",
-            "dateAdded": "2022-08-22T18:31:23.508Z",
-            "slug": "crypto-alerts-via-sms-using-twilio",
-            "brief": "Sending text alerts so I don’t have to constantly monitor the Crypto!\nWe all know how volatile the crypto has been, but I get anxious for checking it too often, hence I have built a sms alerting system that sends my crypto prices every morning.\nLet's..."
-          }
-        ]
+  {
+    "title": "DevOps Roadmap 2023 - Ultimate guide to become a DevOps Engineer",
+    "dateAdded": "2023-02-03",
+    "slug": "devops-roadmap-2023",
+    "brief": "DevOps is a rapidly growing field, and with the increasing demand for skilled professionals, many people are looking to make the switch. However, knowing where to begin and what steps to take to become a DevOps Engineer can be difficult.\nIn this arti..."
+  },
+  {
+    "title": "Dev Retro 2022 - The year I changed 2 jobs and left my dream company",
+    "dateAdded": "2023-01-05",
+    "slug": "dev-retro-2022-the-year-i-changed-2-jobs-and-left-my-dream-company",
+    "brief": "New Beginnings\nStart of 2022 I finally left the company I had been working for since I started my tech career as Tech Support. It was hard to say farewell to the company where I had amazing teammates, peers and mentors who supported me throughout my ..."
+  },
+  {
+    "title": "Establishing a Connection: The Fundamentals of the Three-Way Handshake in TCP",
+    "dateAdded": "2022-12-12",
+    "slug": "three-way-handshake-in-tcp",
+    "brief": "TCP stands for Transmission Control Protocol. The three-way handshake is a fundamental part of TCP. It is a process that is used to establish a connection between two devices before they can exchange data.\n\nWhen a client wants to initiate a connectio..."
+  },
+  {
+    "title": "Are Cloud Certifications worth it?",
+    "dateAdded": "2022-11-02",
+    "slug": "are-cloud-certifications-worth-it",
+    "brief": "So the most valuable cloud engineers or developers in many established organizations don't necessarily have loads of certifications. Instead, they bring extensive experience in IT infrastructure and have hands-on experience with the cloud and a habit..."
+  },
+  {
+    "title": "How did I become a DevOps Engineer",
+    "dateAdded": "2022-09-29",
+    "slug": "how-did-i-become-a-devops-engineer",
+    "brief": "Hey friends 👋\nI wanted to talk about my journey from cloud engineer to devops engineer, some of you already know bit about my career trajectory from help-desk to cloud engineer and then to DevOps engineer.\nIf you would like to know what DevOps is, c..."
+  },
+  {
+    "title": "Crypto Alerts via SMS using Twilio",
+    "dateAdded": "2022-08-22",
+    "slug": "crypto-alerts-via-sms-using-twilio",
+    "brief": "Sending text alerts so I don’t have to constantly monitor the Crypto!\nWe all know how volatile the crypto has been, but I get anxious for checking it too often, hence I have built a sms alerting system that sends my crypto prices every morning.\nLet's..."
+  }
+]
