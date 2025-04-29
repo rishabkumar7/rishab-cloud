@@ -1,4 +1,9 @@
-# Kubernetes and Cloud Native Associate (KCNA) Study Notes
+---
+title: Kubernetes and Cloud Native Associate (KCNA) Study Notes
+date: 2025-04-29T12:12:25.364Z
+topic: Kubernetes
+---
+
 
 ## Overview
 
