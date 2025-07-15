@@ -1,5 +1,8 @@
-
-# Google Cloud Generative AI Leader Certification Notes
+---
+title: GCP Generative AI Leader Certification Notes
+date: 2025-06-13T12:12:25.364Z
+topic: GCP
+---
 
 These are my personal notes for the [Google Cloud Generative AI Leader Certification](https://cloud.google.com/learn/certification/generative-ai-leader), taken during following the Cloud Skills Boost Generative AI Leader path.
 
