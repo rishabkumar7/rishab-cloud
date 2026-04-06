@@ -1,6 +1,7 @@
 baseURL: https://rishabkumar.com
 title: Rishab Kumar
-paginate: 6
+pagination:
+    pagerSize: 6
 theme: charlolamode
 
 
