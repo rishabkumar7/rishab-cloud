@@ -1,0 +1,105 @@
+{{- define "main" }}
+<article class="resume-page">
+  {{- with .Params.hero }}
+  <section class="resume-hero" aria-labelledby="resume-title">
+    <div class="resume-hero-grid">
+      <div>
+        <h1 id="resume-title">{{ .name }}</h1>
+        <p class="resume-role">{{ .label }}</p>
+        <p class="resume-summary">{{ .summary }}</p>
+      </div>
+      <div class="resume-contact-panel" aria-label="Contact links">
+        <span>{{ .location }}</span>
+        {{- range $.Params.contacts }}
+        <a href="{{ .url }}">{{ .label }}</a>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  <section class="resume-stats" aria-label="Career highlights">
+    {{- range .Params.highlights }}
+    <div class="resume-stat">
+      <strong>{{ .metric }}</strong>
+      <span>{{ .label }}</span>
+      <p>{{ .detail }}</p>
+    </div>
+    {{- end }}
+  </section>
+
+  <section class="resume-section">
+    <div class="resume-section-heading">
+      <p>Core strengths</p>
+      <h2>What I am good at shipping</h2>
+    </div>
+    <div class="resume-focus-grid">
+      {{- range .Params.focus }}
+      <div class="resume-focus-item">{{ . }}</div>
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="resume-section">
+    <div class="resume-section-heading">
+      <p>Experience</p>
+      <h2>High-impact work</h2>
+    </div>
+    <div class="resume-timeline">
+      {{- range .Params.experience }}
+      <article class="resume-role-card">
+        <div>
+          <span class="resume-period">{{ .period }}</span>
+          <h3>{{ .title }}</h3>
+          <p>{{ .company }} · {{ .place }}</p>
+        </div>
+        <ul>
+          {{- range .points }}
+          <li>{{ . }}</li>
+          {{- end }}
+        </ul>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+
+  <div class="resume-two-column">
+    <section class="resume-section">
+      <div class="resume-section-heading">
+        <p>Selected projects</p>
+        <h2>Proof points</h2>
+      </div>
+      <div class="resume-link-list">
+        {{- range .Params.projects }}
+        <a class="resume-link-item" href="{{ .url }}">
+          <span>{{ .name }}</span>
+          <p>{{ .summary }}</p>
+        </a>
+        {{- end }}
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <div class="resume-section-heading">
+        <p>Recognition</p>
+        <h2>Signals</h2>
+      </div>
+      <div class="resume-pill-list">
+        {{- range .Params.recognition }}
+        <span>{{ . }}</span>
+        {{- end }}
+      </div>
+
+      <div class="resume-section-heading resume-credentials-heading">
+        <p>Credentials</p>
+        <h2>Certifications</h2>
+      </div>
+      <div class="resume-pill-list resume-pill-list-muted">
+        {{- range .Params.credentials }}
+        <span>{{ . }}</span>
+        {{- end }}
+      </div>
+    </section>
+  </div>
+</article>
+{{- end }}

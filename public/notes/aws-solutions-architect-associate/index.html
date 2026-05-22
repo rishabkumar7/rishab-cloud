@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+
+<script defer data-domain="rishabkumar.com" src="https://plausible.rishab.cloud/js/script.file-downloads.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+<title>AWS Solutions Architect Associate | Rishab Kumar</title>
+<meta name="keywords" content="" />
+<meta name="description" content="AWS Solutions Architect Associate
+Regions / Availability Zones (AZs)
+
+
+Regions : AWS Geographical regions like US East, US West, EU Central etc
+
+
+Availability Zones : Distinct data centres that host the physical compute and other resources for AWS (AWS ensures a minimum of 2 AZs per region). They are often separated with each other but a geographical calamity could still impact/disrupt services on both
+
+
+Edge Locations : Each Region further consists of many edge locations which basically serve cached data for frequent access from nearby users. Edge location can also be used to write data (For eg. in S3 Transfer Acceleration)">
+<meta name="author" content="Rishab Kumar">
+<link rel="canonical"
+    href="http://localhost:1313/notes/aws-solutions-architect-associate/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.924bd3c43408ede397c131465f815d9c722dbe3115ef4e9158eba92f01f59e99.css" integrity="sha256-kkvTxDQI7eOXwTFGX4FdnHItvjEV706RWOupLwH1npk="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<meta name="theme-color" content=" #2e2e33">
+<meta name="msapplication-TileColor" content=" #2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/notes/aws-solutions-architect-associate/" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"><head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    
+</head>
+
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01c5afa37f7740e490fecb3bcb6ccbbf"}'>
+</script>
+
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rishab Kumar (Alt + H)">Rishab Kumar</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home"><span>Home</span></a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/notes/" title="Notes">
+                    <span>Notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/podcast/" title="Podcast">
+                    <span>Podcast</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publicspeaking/" title="Public Speaking">
+                    <span>Public Speaking</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume/" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/uses/" title="Uses">
+                    <span>Uses</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/notes/">Cloud Notes</a></div>
+    <h1 class="post-title">
+      AWS Solutions Architect Associate
+    </h1>
+    <div class="post-meta">&lt;span title=&#39;2020-09-10 12:12:25.364 &#43;0000 UTC&#39;&gt;September 10, 2020&lt;/span&gt;&amp;nbsp;·&amp;nbsp;24 min&amp;nbsp;·&amp;nbsp;Rishab Kumar</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#aws-solutions-architect-associate" aria-label="AWS Solutions Architect Associate">AWS Solutions Architect Associate</a></li>
+                <li>
+                    <a href="#regions--availability-zones-azs" aria-label="Regions / Availability Zones (AZs)">Regions / Availability Zones (AZs)</a></li>
+                <li>
+                    <a href="#route53" aria-label="Route53">Route53</a></li>
+                <li>
+                    <a href="#iam-identity-and-access-management" aria-label="IAM (Identity and Access management)">IAM (Identity and Access management)</a></li>
+                <li>
+                    <a href="#databases" aria-label="Databases">Databases</a><ul>
+                        
+                <li>
+                    <a href="#read-replicas" aria-label="Read Replicas">Read Replicas</a></li>
+                <li>
+                    <a href="#dynamodb" aria-label="DynamoDB">DynamoDB</a></li>
+                <li>
+                    <a href="#redshift" aria-label="Redshift">Redshift</a></li>
+                <li>
+                    <a href="#aws-aurora" aria-label="AWS Aurora">AWS Aurora</a></li>
+                <li>
+                    <a href="#elasticache" aria-label="ElastiCache">ElastiCache</a></li></ul>
+                </li>
+                <li>
+                    <a href="#cloudfront" aria-label="Cloudfront">Cloudfront</a></li>
+                <li>
+                    <a href="#elastic-load-balancers" aria-label="Elastic Load Balancers">Elastic Load Balancers</a><ul>
+                        
+                <li>
+                    <a href="#application-load-balancers" aria-label="Application Load balancers">Application Load balancers</a></li>
+                <li>
+                    <a href="#network-load-balancers" aria-label="Network Load Balancers">Network Load Balancers</a></li>
+                <li>
+                    <a href="#classic-load-balancers" aria-label="Classic Load Balancers">Classic Load Balancers</a></li>
+                <li>
+                    <a href="#launch-configurations-and-asgs" aria-label="Launch configurations and ASGs">Launch configurations and ASGs</a></li>
+                <li>
+                    <a href="#egress-only-internet-gateways" aria-label="Egress Only Internet Gateways">Egress Only Internet Gateways</a></li></ul>
+                </li>
+                <li>
+                    <a href="#amazon-fsx" aria-label="Amazon FSx">Amazon FSx</a></li>
+                <li>
+                    <a href="#aws-waf-web-app-firewall" aria-label="AWS WAF (Web App Firewall)">AWS WAF (Web App Firewall)</a></li>
+                <li>
+                    <a href="#s3" aria-label="S3">S3</a><ul>
+                        
+                <li>
+                    <a href="#s3-consistency-model" aria-label="S3 Consistency Model">S3 Consistency Model</a></li>
+                <li>
+                    <a href="#s3-object-properties" aria-label="S3 Object Properties">S3 Object Properties</a></li>
+                <li>
+                    <a href="#s3-storage-tiers" aria-label="S3 Storage Tiers">S3 Storage Tiers</a></li>
+                <li>
+                    <a href="#s3-security-policies" aria-label="S3 Security Policies">S3 Security Policies</a></li>
+                <li>
+                    <a href="#s3-versioning" aria-label="S3 Versioning">S3 Versioning</a></li>
+                <li>
+                    <a href="#s3-transfer-acceleration" aria-label="S3 Transfer Acceleration">S3 Transfer Acceleration</a></li>
+                <li>
+                    <a href="#s3-lifecycle-rules" aria-label="S3 Lifecycle Rules">S3 Lifecycle Rules</a></li>
+                <li>
+                    <a href="#s3-cross-region-replication" aria-label="S3 Cross Region Replication">S3 Cross Region Replication</a></li>
+                <li>
+                    <a href="#other-s3-related-services-offered-by-aws" aria-label="Other S3 Related Services Offered by AWS">Other S3 Related Services Offered by AWS</a></li></ul>
+                </li>
+                <li>
+                    <a href="#storage-gateway" aria-label="Storage Gateway">Storage Gateway</a></li>
+                <li>
+                    <a href="#sqs-simple-queue-service" aria-label="SQS (Simple Queue Service)">SQS (Simple Queue Service)</a><ul>
+                        
+                <li>
+                    <a href="#sqs-queue-types" aria-label="SQS Queue Types">SQS Queue Types</a></li></ul>
+                </li>
+                <li>
+                    <a href="#swf-simple-workflow-service" aria-label="SWF (Simple Workflow Service)">SWF (Simple Workflow Service)</a></li>
+                <li>
+                    <a href="#sns-simple-notification-service" aria-label="SNS (Simple Notification Service)">SNS (Simple Notification Service)</a></li>
+                <li>
+                    <a href="#elastic-transcoder" aria-label="Elastic Transcoder">Elastic Transcoder</a></li>
+                <li>
+                    <a href="#api-gateway" aria-label="API Gateway">API Gateway</a></li>
+                <li>
+                    <a href="#kinesis-streaming-data-ingestion" aria-label="Kinesis (Streaming Data Ingestion)">Kinesis (Streaming Data Ingestion)</a></li>
+                <li>
+                    <a href="#aws-cognito-and-web-identity-federation" aria-label="AWS Cognito and Web Identity Federation">AWS Cognito and Web Identity Federation</a><ul>
+                        
+                <li>
+                    <a href="#web-identity-federations" aria-label="Web Identity Federations">Web Identity Federations</a></li></ul>
+                </li>
+                <li>
+                    <a href="#amazon-emr-managed-hadoop-framework" aria-label="Amazon EMR (Managed Hadoop Framework)">Amazon EMR (Managed Hadoop Framework)</a></li>
+                <li>
+                    <a href="#amazon-inspector" aria-label="Amazon Inspector">Amazon Inspector</a></li>
+                <li>
+                    <a href="#cloudwatch-agent" aria-label="Cloudwatch Agent">Cloudwatch Agent</a></li>
+                <li>
+                    <a href="#amazon-mq" aria-label="Amazon MQ">Amazon MQ</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content">
+  <h1 id="aws-solutions-architect-associate">AWS Solutions Architect Associate</h1>
+<h1 id="regions--availability-zones-azs">Regions / Availability Zones (AZs)</h1>
+<ul>
+<li>
+<p>Regions : AWS Geographical regions like US East, US West, EU Central etc</p>
+</li>
+<li>
+<p>Availability Zones : Distinct data centres that host the physical compute and other resources for AWS (AWS ensures a minimum of 2 AZs per region). They are often separated with each other but a geographical calamity could still impact/disrupt services on both</p>
+</li>
+<li>
+<p>Edge Locations : Each Region further consists of many edge locations which basically serve cached data for frequent access from nearby users. Edge location can also be used to write data (For eg. in S3 Transfer Acceleration)</p>
+</li>
+<li>
+<p>As of today there are approximately 15 regions, 45 AZs and ~100+ Edge locations fronted by Cloudfront. Sometimes edge locations could also be operated/managed by AWS partner network</p>
+</li>
+</ul>
+<hr>
+<h1 id="route53">Route53</h1>
+<p>Fun fact : In Route53, &lsquo;Route&rsquo; comes from Route 66 &mdash; Oldest inter state highway in the United States, and port 53 used by DNS in Computer Networking</p>
+<p>It is used for resolving DNS names to IP addresses, Registering Domain Names</p>
+<p>There are different types of records used in DNS system:</p>
+<ul>
+<li>
+<p>SOA records</p>
+</li>
+<li>
+<p>A records</p>
+</li>
+<li>
+<p>CNAME records</p>
+</li>
+<li>
+<p>MX records</p>
+</li>
+<li>
+<p>PTR records</p>
+</li>
+<li>
+<p>Alias records</p>
+</li>
+<li>
+<p>NS records</p>
+</li>
+</ul>
+<p>A request from browser first goes to Top level domain (.com, .au, .gov etc), from there request is forwarded to Name Servers (NS), which fetch the details of A records and answer the request with respective IP address which can then be used by the browser to initiate a TCP connection.</p>
+<ul>
+<li>
+<p>When given a choice between Alias record and a CNAME record, Alias record usually offers more benefits.</p>
+</li>
+<li>
+<p>When one domain like <a href="http://m.acm.org/">m.acm.org</a> has to be routed to <a href="http://mobile.acm.org/">mobile.acm.org</a>, always use a CNAME record to delegate resolution to another domain</p>
+</li>
+</ul>
+<p>Different types of resolution policies supported by Route53 are:</p>
+<ul>
+<li>
+<p>Simple Routing Policy : In this you can also provide multiple IP addresses but cannot associate health check of all IP addresses</p>
+</li>
+<li>
+<p>Weighted Routing Policy : Using this policy one can route traffic based on weight assigned to different IP addresses (For eg. 70% traffic to IP X, and other 30% to IP Y), which is then proportionally routed/distributed. (Sounds similar to Canary Deployments ?)</p>
+</li>
+<li>
+<p>Latency Based Routing Policy: This is based on response latency from the location of user. Using this information, request can be routed to different servers.</p>
+</li>
+<li>
+<p>Failover Based Routing Policy : One active, One passive &mdash; If Active health check starts failing, traffic routes to Passive Setup</p>
+</li>
+<li>
+<p>Geographical Routing Policy : In this we can define that user in Europe should be routed to Europe server only (This is different from Latency based routing policy and is more hard-coded per se)</p>
+</li>
+<li>
+<p>Geographical Proximity Routing Policy : In this policy, we also have to use Route53 Traffic Flow rules to define a complex routing policy and also use bias to override the decisions taken by Route53. Using this policy one can utilise multiple configurations and control the domain resolution to IPs at a very granular level. Practically this is very less used</p>
+</li>
+<li>
+<p>Multivalue Answer Routing Policy: Same as Simple routing policy with multiple IP addresses, but only difference is that health checks can be associated</p>
+</li>
+</ul>
+<hr>
+<h1 id="iam-identity-and-access-management">IAM (Identity and Access management)</h1>
+<ul>
+<li>
+<p>Users</p>
+</li>
+<li>
+<p>Groups</p>
+</li>
+<li>
+<p>Roles (Who you are ?)</p>
+</li>
+<li>
+<p>Policies (What you can do?)</p>
+</li>
+</ul>
+<p>By default, new users have:</p>
+<ul>
+<li>
+<p>only access_key_id and secret_access_key, but no console access</p>
+</li>
+<li>
+<p>no permissions, until they are made member of a group or assigned some roles/policies</p>
+</li>
+</ul>
+<p>IAM, like other AWS services is eventually consistent as this data is replicated across multiple servers. IAM is a global service (Not scoped per region). Mainly two services can allow access without authentication / authorization in AWS &mdash; STS and S3</p>
+<p>Following terms are used in context of IAM:</p>
+<ul>
+<li>
+<p>User : can be an IAM user or an applications accessing the AWS resources</p>
+</li>
+<li>
+<p>Group :Group of users who can be collectively permitted some actions</p>
+</li>
+<li>
+<p>Role : This is something which can be assumed by an entity like User or Group (This is similar to Authentication)</p>
+</li>
+<li>
+<p>Policy : This defines the permissions you have on the resources that you want to access (This is similar to Authorization)</p>
+</li>
+</ul>
+<p>Request Context : This is the request object which AWS receives when somebody tries to access something or take an action on some AWS resource. This object includes source IP, resources that you are trying to access, what actions are you taking on those resources, what time of day this request originated etc.</p>
+<p>Policies can be managed in two ways:</p>
+<ul>
+<li>
+<p>Managed policies : AWS Managed &amp; Customer Managed</p>
+</li>
+<li>
+<p>Inline Policies</p>
+</li>
+</ul>
+<p>Policies can further be of two types:</p>
+<p>i) Identity based policies : These are attached directly to Identities like User/Groups etc. They can be managed or inline policies.</p>
+<p>ii) Resource based policies : These are inline policies directly applied on the resource that has to be accessed from same/other accounts. This is mainly used for cross-account resource access</p>
+<p>Policy versioning: Customer managed policies can normally have only 5 versions being managed at a single point of time. This is useful when you make a change to a policy and it breaks something, you can quickly set the default setting to a previously used policy</p>
+<p>IAM Roles are more preferred instead of resource based policies which are not extendable to other entities</p>
+<hr>
+<blockquote>
+<p><strong>EC2:</strong></p>
+</blockquote>
+<ul>
+<li>When EC2 was first launched all AMI&rsquo;s were backed by Instance store or Ephemeral storage</li>
+<li>Ephemeral storage is non-persist or temporary storage</li>
+<li>When an instance is shut down, even if turned back up, the the contents of the instance store, or ephemeral storage will be gone, and unaccessible</li>
+<li>Stopping and restarting an instance moves the instance to another host, hence the lost data</li>
+<li>EC2 eventually got the ability to attach EBS or Elastic Block Storage which allows for data persistence</li>
+<li>There is NO way to flag data preservation on ephemeral storage, if the instance restarts, or the host experiences issues, you can incur data loss</li>
+<li>2 types of Volumes</li>
+<li>Root Volume:
+<ul>
+<li>This is where your operating system is installed</li>
+<li>Can either be EBS or Ephemeral</li>
+<li>Max size is 10GB</li>
+<li>EBS root device volume can be up to 1 or 2TB depending on OS</li>
+<li>Delete on Terminate is the default value</li>
+</ul>
+</li>
+<li>Additional Volumes:
+<ul>
+<li>This can be your D:, E:, F: / dev/sdb, /dev/sdc, /dev/sdd etc..</li>
+<li>Delete on Terminate is NOT the default value, additional volumes WILL persist after the instance is terminated and must be manually deleted</li>
+</ul>
+</li>
+<li>Termination:
+<ul>
+<li>We have an instance where shutdown behavior = terminate and enable, terminate protection is ticked</li>
+<li>We shutdown the instance from the OS, what will happen ?</li>
+<li>The instance will still be terminated!</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>EBS:</strong></p>
+</blockquote>
+<ul>
+<li>Allows users to have data persistence</li>
+<li>EBS volumes can be detached from an instance and attached to other instances without data loss</li>
+<li>EBS volumes can only be attached to a single instance at a time</li>
+<li>EBS root volumes are terminated/deleted by default when the EC2 instance is terminated</li>
+<li>Termination/Deletion default behavior can be stopped by un-selecting the &ldquo;Delete on Termination&rdquo; option when creating the instance or by setting the deleteontermination flag to false using the command line at boot time</li>
+<li>Non root EBS volumes attached to the instance are preserved if you delete the instance</li>
+<li>Boot time is quicker using EBS, typically less than 1 minute, where Instance store volumes are generally less than 5 minutes</li>
+<li>Must manually delete additional EBS volumes when an instance is terminated. Failure to do so will hold a storage charge for unattached non deleted volumes</li>
+</ul>
+<blockquote>
+<p><strong>Placement Groups</strong></p>
+</blockquote>
+<ul>
+<li>Sometimes you want control over the EC2 Instance placement strategy</li>
+<li>That strategy can be defined using placement groups</li>
+<li>When you create a placement group, you specify one of the following
+strategies for the group:
+<ul>
+<li>Cluster&mdash;clusters instances into a low-latency group in a single Availability Zone</li>
+<li>Spread&mdash;spreads instances across underlying hardware (max 7 instances per
+group per AZ) &ndash; critical applications</li>
+<li>Partition&mdash;spreads instances across many different partitions (which rely on
+different sets of racks) within an AZ. Scales to 100s of EC2 instances per group
+(Hadoop, Cassandra, Kafka)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>EC2 Instance Launch Types</strong></p>
+</blockquote>
+<ul>
+<li>On Demand Instances: short workload, predictable pricing</li>
+<li>Reserved: (MINIMUM 1 year)
+<ul>
+<li>Reserved Instances: long workloads</li>
+<li>Convertible Reserved Instances: long workloads with flexible instances</li>
+<li>Scheduled Reserved Instances: example &ndash; every Thursday between 3 and 6 pm</li>
+</ul>
+</li>
+<li>Spot Instances: short workloads, for cheap, can lose instances (less reliable)</li>
+<li>Dedicated Instances: no other customers will share your hardware</li>
+<li>Dedicated Hosts: book an entire physical server, control instance placement</li>
+</ul>
+<hr>
+<h1 id="databases">Databases</h1>
+<p>Databases are mainly of two types:</p>
+<ul>
+<li>
+<p>Relational &mdash; Conventional relational databases to store data &mdash; RDS</p>
+</li>
+<li>
+<p>Non-relational (DynamoDB &mdash; Like MongoDB) &mdash; Collections contain tables which are basically JSON objects</p>
+</li>
+</ul>
+<p>Relational Database Engines supported by AWS are: (POMMMA)</p>
+<ul>
+<li>
+<p>PostgreSQL</p>
+</li>
+<li>
+<p>Oracle</p>
+</li>
+<li>
+<p>MariaDB</p>
+</li>
+<li>
+<p>MySQL</p>
+</li>
+<li>
+<p>MS SQL</p>
+</li>
+<li>
+<p>Aurora</p>
+</li>
+</ul>
+<p>Processing types supported by RDS:</p>
+<ul>
+<li>
+<p>OLTP (Online Transaction Processing)</p>
+</li>
+<li>
+<p>OLAP (Online Analytic Processing) &mdash; This works on large amount of data and derives analytics out of it &mdash; Redshift is the Amazon offering for OLAP requirements</p>
+</li>
+</ul>
+<p>RDS can support multi-az setup and read replicas</p>
+<ul>
+<li>Multi-AZ setup is for disaster recovery and Read replicas are for performance &mdash; redirecting read only queries to read replicas instead of Database masters</li>
+</ul>
+<h2 id="read-replicas">Read Replicas</h2>
+<ul>
+<li>
+<p>Each read replica has its own DNS end point</p>
+</li>
+<li>
+<p>Read replicas can be promoted to be their own databases &mdash; this breaks the replication though</p>
+</li>
+<li>
+<p>You can have a read replica in another region</p>
+</li>
+<li>
+<p>Read replicas ONLY work if backups are turned ON</p>
+</li>
+</ul>
+<p>Two types of backups are possible:</p>
+<ul>
+<li>
+<p>Automated backups &mdash; done during planned maintenance windows</p>
+</li>
+<li>
+<p>Snapshots &mdash; Done manually to save state of RDS</p>
+</li>
+</ul>
+<h2 id="dynamodb">DynamoDB</h2>
+<ul>
+<li>
+<p>NoSQL solution from Amazon</p>
+</li>
+<li>
+<p>Cluster is spread across 3 different segregated data centres / AZs</p>
+</li>
+<li>
+<p>Eventual read consistency with maximum delay of 1s</p>
+</li>
+<li>
+<p>Incoming data transfer IS NOT charged if in a single region. If you cross regions, you will be charged at both ends of the transfer</p>
+</li>
+<li>
+<p>DynamoDB supports concepts of streams where any modification to existing record in the table is written out on a data stream which can be processed by compute capabilities like AWS Lambda. Lambda can then take decisions based on that event stream or send a SNS notification instead</p>
+</li>
+<li>
+<p>DynamoDB streams can also be configured to send out two copies of state (previous / current) with the primary key attribute to reflect on the actual change that has happened on the table data</p>
+</li>
+<li>
+<p>DynamoDB supports DAX, to cache responses and improve time from milliseconds to microseconds</p>
+</li>
+</ul>
+<h2 id="redshift">Redshift</h2>
+<ul>
+<li>
+<p>1/10th of the cost of other data warehousing solutions</p>
+</li>
+<li>
+<p>Helps with OLAP requirement &mdash; to derive analytics out of data</p>
+</li>
+<li>
+<p>Automated backups are by default done every day</p>
+</li>
+<li>
+<p>Maximum retention period like RDS is 35 days</p>
+</li>
+<li>
+<p>Leader node hours are not charged, only compute node hours are charged</p>
+</li>
+<li>
+<p>Redhisft can currently run only in OneAZ -&gt; For same reason, Redshift offers asynchronous backup replication in S3 to another region for Disaster Recovery (DR)</p>
+</li>
+<li>
+<p>It is used for business intelligence use-cases</p>
+</li>
+<li>
+<p>Cross region replication can be set up</p>
+</li>
+<li>
+<p>Redshift additionally supports VPC Routing feature, where all COPY and UNLOAD requests between your cluster and data repositories are routed through VPC, thus gathering benefits of Security Groups, NACL, VPC Endpoints etc.</p>
+</li>
+<li>
+<p>If enhanced VPC routing is not enabled, REDSHIFT cluster routes all traffic through internet</p>
+</li>
+<li>
+<p>Redshift Spectrum allows to execute queries on files which are directly stored on S3</p>
+</li>
+</ul>
+<h2 id="aws-aurora">AWS Aurora</h2>
+<ul>
+<li>
+<p>Compatible version of MySQL/PostgreSQL that AWS built from scratch</p>
+</li>
+<li>
+<p>By default stores 2 copies of data in each Availability Zone, with a minimum of 3 availability zones (6 copies of data are hence stored at the minimum)</p>
+</li>
+<li>
+<p>Compute resources can scale upto 32 vCPU cores and 244GB of RAM</p>
+</li>
+<li>
+<p>Starts with 10GB of storage but scales up to 64TB automatically based on requirement, while other databases can grow max till 16TB</p>
+</li>
+<li>
+<p>Aurora can automatically handle loss of 2 copies of data without affecting write capability and 3 copies of data without affecting read availability</p>
+</li>
+<li>
+<p>Storage for Aurora is self healing -&gt; Data blocks are continuously checked for errors and fixed</p>
+</li>
+<li>
+<p>Aurora automated backups or snapshots does not affect performance of running clusters</p>
+</li>
+<li>
+<p>Aurora Snapshots can be shared with other AWS accounts</p>
+</li>
+<li>
+<p>Aurora read replicas can be of two types:- MySQL Read Replicas (Maximum 5) and Aurora Read Replicas (maximum 15)</p>
+</li>
+<li>
+<p>Automated failover is supported for Aurora read replicas but not for MySQL read replicas</p>
+</li>
+<li>
+<p>When you create an Aurora Read Replica from a MySQL RDS instance, AWS basically creates a new Aurora DB Cluster(with read/write capability) which is asynchronously synced with the main DB instance.</p>
+</li>
+<li>
+<p>Two types of endpoints are supported:</p>
+</li>
+</ul>
+<p>i) Reader Endpoint : Load balances traffic across all read replicas</p>
+<p>ii) Cluster Endpoint : Routes write queries to active master</p>
+<h2 id="elasticache">ElastiCache</h2>
+<ul>
+<li>
+<p>In memory cache store for speeding up an application so that data fetch queries can be reduced</p>
+</li>
+<li>
+<p>For REDIS AUT, user needs to enable in-transit encryption</p>
+</li>
+<li>
+<p>Two types of engines are available:</p>
+</li>
+</ul>
+<p>i) Memcached</p>
+<p>Multithreaded, NOT multi-az and useful for simple cache offloading</p>
+<p>ii) Redis</p>
+<p>Single threaded, MultiAZ, backups are possible, business use-cases available like MIN, MAX, AVG etc.</p>
+<h1 id="cloudfront">Cloudfront</h1>
+<ul>
+<li>Cloudfront is a service that is used to store cached content at edge locations so that global users get it from their nearest location</li>
+<li>Cloudfront can monitor a S3 bucket, EBS load balancer, EC2 machine etc. and then it can just get new data and store it locally so that users can then download it directly from the Cloudfront distribution URL</li>
+<li>We can also invalidate cached objects in Cloudfront, but these invalidations are normally charged by AWS</li>
+<li>Objects are stored/cached by the edge locations until the TTL expires; after which a new version is then fetched again from the central server</li>
+<li>Edge locations can also be used to write data and not just READ data. Write scenario is used mostly in case of S3 Transfer acceleration where an user writes data to a local edge location and then AWS takes care of actually transferring the data to real S3 bucket</li>
+<li>Origins are the source from which cloudfront gets the data (S3, ELB, EC2 instance etc.)</li>
+</ul>
+<hr>
+<h1 id="elastic-load-balancers">Elastic Load Balancers</h1>
+<p>ELBs by default come up in background in all AZs and they also dynamically scale up and down based on the traffic</p>
+<p>Full DNS lookup will often tell us about all the ELBs that are currently used by AWS to handle incoming requests</p>
+<p>Load balancers are basically of three types:</p>
+<h2 id="application-load-balancers">Application Load balancers</h2>
+<p>Can route traffic based on layer 7 interaction. Basically work on HTTP/HTTPS layer and can be used for intelligent routing based on application needs (headers, query parameters, source IP etc.)</p>
+<h2 id="network-load-balancers">Network Load Balancers</h2>
+<p>Are used for scenarios where pretty heavy workload (millions of requests) have to be routed/managed</p>
+<h2 id="classic-load-balancers">Classic Load Balancers</h2>
+<p>They are deprecated now but were used for basic HTTP/TCP routing</p>
+<ul>
+<li>AWS never gives us IP addresses of Load Balancer resources, instead we only get a DNS routable name and the IP address can always change. However, for network load balancer we can attach elastic IP addresses to them and the NLB will be available over those addresses.</li>
+<li>Application load balancers route traffic to a target group instead of routing them to an instance</li>
+<li>Sticky Sessions have to be disabled, if all requests are going to only few/one instances. They are only useful if the instances store some information locally which is relevant for subsequent requests</li>
+<li>Cross zone load balancing allows load balancer to route requests evenly to instances in multiple availability zones</li>
+<li>Path patterns can be used to redirect traffic to different EC2 instances based on a specific URL Path pattern which exists</li>
+<li>Single Application Load Balancer can be loaded with certificates from different domains. Multiple certificates can be uploaded to ACM (Amazon Certificate Manager) and then clients (reaching out to ALB) can use something like SNI (Server Name Indication) to specify which host to reach</li>
+</ul>
+<h2 id="launch-configurations-and-asgs">Launch configurations and ASGs</h2>
+<p>If ASG is terminated, all instances associated as part of it will also be terminated</p>
+<p>Launch Configurations are more about the configurations of the individual EC2 machines i.e. instance types, security group configurations, root volume configurations, tags etc. whereas Autoscaling Groups use LCs (Launch configurations) to spin up new instances and work on scaling up/down EC2 instances based on pre-defined policies</p>
+<h2 id="egress-only-internet-gateways">Egress Only Internet Gateways</h2>
+<p>Egress only gateways allow IPv6 based internet traffic to access the internet and at the same time denying access from internet to the instances within the VPC</p>
+<hr>
+<h1 id="amazon-fsx">Amazon FSx</h1>
+<p>Amazon FSx is a file system offering from AWS. It is offered in two variants:</p>
+<ul>
+<li>FSx for Windows</li>
+<li>FSx for Lustre (High performance compute)</li>
+</ul>
+<p>FSx is basically a high performance file system that can be used for compute intensive workloads offering high data throughput. Users can additionally configure the throughput irrespective of the data storage size of the file system (unlike EFS)</p>
+<p>FSx is frequently used as file storage for Windows systems as it offers SMB protocol support. Additionally, it also offers integrations with other storage services like S3, where data can be temporarily copied from S3 to AWS FSx for high throughput needs from a filesystem perspective; and later the result can be copied back to S3 after the computations are completed.</p>
+<p>Payment model is pay-as-you-go</p>
+<hr>
+<h1 id="aws-waf-web-app-firewall">AWS WAF (Web App Firewall)</h1>
+<p>AWS WAF is a managed service designed to protect public facing web applications from unintended/unsafe traffic</p>
+<p>WAF provides readymade integrations with:</p>
+<ul>
+<li>Cloudfront</li>
+<li>Application Load Balancer</li>
+<li>API Gateway</li>
+</ul>
+<p>With these integrations, whenever any of these services receive a request; they forward it to WAF for validation. If WAF allows, only then these requests are further routed by CF, ALB or API GW to the back-end machine which needs to process the request</p>
+<p>WAF offers many managed rules (based on industry best practices like OWASP top 10 vulnerabilities, SQL injection etc.)</p>
+<p>As a customer, we can define our custom conditions or use these managed rules to provide security for our application</p>
+<p>Custom rules for throttling (IP &lsquo;123.x.x.x&rsquo; can only trigger 4000 requests per second etc.) can also be defined at WAF layer and then custom error messages/pages could also be configured in services like Cloudfront which could then be returned to the end-user. All this happens without affecting the real back-end systems.</p>
+<h1 id="s3">S3</h1>
+<ul>
+<li>S3 Standard : Availability &mdash; 4 9s (99.99%), Durability &mdash; 11 9s (99.999999999 %)</li>
+<li>Global namespace (Bucket names should be unique)</li>
+<li>Minimum size of objects is 0 bytes, maximum is 5TB</li>
+<li>Files can be uploaded in buckets which are nothing but folders hostingd the files</li>
+<li>On successful upload, S3 returns a HTTP 200 status code</li>
+<li>By default all buckets are private</li>
+</ul>
+<h2 id="s3-consistency-model">S3 Consistency Model</h2>
+<p>Read after write consistency for new PUT objects (Newly uploaded objects are guaranteed to be read immediately without any stale state or problems)</p>
+<p>Eventual consistency for overwrite PUTs and DELETEs (Modifications / deletions will eventually reflect latest state &mdash; there could be a delay of some seconds)</p>
+<h2 id="s3-object-properties">S3 Object Properties</h2>
+<ul>
+<li><em>Key</em> : Name of the object</li>
+<li><em>Value</em> : Sequence of bytes/contents of the object</li>
+<li><em>Versioning</em> : Version of the object</li>
+<li><em>Metadata</em> : Objects can further have metadata (data about data) to classify the contents</li>
+</ul>
+<h2 id="s3-storage-tiers">S3 Storage Tiers</h2>
+<p>S3 offers various storage tiers that help control cost, availability and durability of the data</p>
+<ul>
+<li>S3 Standard : This is the most costly alternative with 99.99% availability (probability that the object will be available when needed) and 99.999999999% durability (probability that data will not be lost)</li>
+<li>S3 IA (Infrequently accessed) : This still replicates data to different zones in a region but less costlier than standard. Retrieval fees are charged</li>
+<li>S3 IA &mdash; 1 Zone : Multiple zones replication is not done and costs even lesser than S3 IA</li>
+<li>S3 Intelligent Tiering : Storage tiering is managed by AWS instead which uses Machine learning to decide on which tier to use for the bucket based on historical patterns of usage</li>
+<li>S3 Glacier : Used when cost has to be less but time of retrieval can be configurable ranging from minutes to hours</li>
+<li>S3 Glacier deep archive : This is cheapest option where retrieval time of more than 12 hours is acceptable. This is used for data which might be rarely needed and time of retrieval being around ~12 hours is still acceptable</li>
+</ul>
+<h2 id="s3-security-policies">S3 Security Policies</h2>
+<ul>
+<li>Access to S3 object/bucket can be controlled with ACL control lists or Bucket Policies</li>
+<li>Bucket policies work at bucket level BUT Access Control Lists can go all the way down to individual objects</li>
+<li>Access logging can be configured for S3 buckets which logs all access requests for S3, made by different users</li>
+<li>Encryption in transit is achieved by HTTPS (SSL / TLS)</li>
+</ul>
+<p>Encryption at rest is achieved in two ways</p>
+<p>Service Side encryption (Can be further managed by AWS in three ways)</p>
+<p><em>i) Keys managed by S3 service for encryption (<strong>SSE-S3</strong>)</em></p>
+<p><em>ii) Keys provisioned by user in KMS (<strong>SSE-KMS</strong>)</em></p>
+<p><em>iii) User/Customer provided encryption keys can also be used (<strong>SSE-C</strong>)</em></p>
+<p>Client Side encryption &mdash; Client himself manages the encryption/decryption and uploads the encrypted data only</p>
+<h2 id="s3-versioning">S3 Versioning</h2>
+<ul>
+<li>S3 versioning can be used to maintain multiple copies of objects</li>
+<li>Once enabled, it cannot be disabled on the same bucket</li>
+</ul>
+<h2 id="s3-transfer-acceleration">S3 Transfer Acceleration</h2>
+<p>This is used to speed up large data uploads to S3. With this, user can upload the data to nearest edge location and S3 will then ensure that the data is replicated to the actual bucket for final storage. For Edge Location -&gt; S3, AWS will then use the backbone network which is quite fast than the usual internet speed</p>
+<h2 id="s3-lifecycle-rules">S3 Lifecycle Rules</h2>
+<ul>
+<li>LRs can be used to automatically expire objects based on prefix/tag filters (For eg. All objects having tags &ldquo;<em>abc&rdquo;</em> should expire after 30 days)</li>
+<li>Objects can automatically transition across different storage tiers&rsquo; based on lifecycle rules. For eg. after 30 days migrate objects to IA-1Zone and after 60 days move it to Glacier and finally expire them after 120 days</li>
+</ul>
+<h2 id="s3-cross-region-replication">S3 Cross Region Replication</h2>
+<ul>
+<li>This is used when you want to replicate the contents of a bucket automatically to another bucket (The destination bucket could also enforce different storage tiers on the objects)</li>
+<li>Versioning has to be mandatorily enabled on both source and destination buckets</li>
+<li>Delete markers OR object deletions are not replicated on the destination bucket. This is done intentionally by Amazon to inadvertently replicating deletion of objects</li>
+</ul>
+<h2 id="other-s3-related-services-offered-by-aws">Other S3 Related Services Offered by AWS</h2>
+<ul>
+<li>S3 Athena &mdash; S3 Select based query analysis on S3 objects without transferring the data first to a data lake</li>
+<li>S3 Object Lock</li>
+<li>S3 Inventory &mdash; Reporting for auditing purposes of all S3 objects. Reports can be stored in json, yaml or parquet format</li>
+<li>S3 Batch Operations : Run lambda function or other operations on millions of objects in one go</li>
+</ul>
+<hr>
+<h1 id="storage-gateway">Storage Gateway</h1>
+<p>Virtual / Physical appliance that sits in your data centre and replicates data to S3</p>
+<p><em>File Gateway</em> : Plain files, replicated to S3</p>
+<p><em>Volume Gateway</em> : There are two types of Volume Gateways</p>
+<ul>
+<li>Stored Volumes : Entire data is on-site but backed up on S3 asynchronously</li>
+<li>Cached Volumes : Entire data is on S3, but cached data (frequently accessed) is on-site</li>
+</ul>
+<p><em>Gateway Virtual Tape library</em></p>
+<hr>
+<h1 id="sqs-simple-queue-service">SQS (Simple Queue Service)</h1>
+<ul>
+<li>Messages retained for a period of 14 days</li>
+<li>Messages can arrive out of order however highly unlikely</li>
+<li>Long polling can be used to avoid cost of frequent polling. Long polling only returns when a message is available and you avoid polling empty queue time and again</li>
+<li>Visibility of the message can be altered while it is being processed upto a maximum of 12 hours. During this time, a message if processed completely by a worker, can be removed from the queue</li>
+</ul>
+<h2 id="sqs-queue-types">SQS Queue Types</h2>
+<p>*Standard SQS Queue :*This is the standard processing model for SQS service</p>
+<p>*FIFO SQS Queue :*In this messages are delivered only once and also arrive in order. Maximum throughput of 300 transactions is supported</p>
+<hr>
+<h1 id="swf-simple-workflow-service">SWF (Simple Workflow Service)</h1>
+<p>This makes more sense when a manual intervention or task oriented workflow is needed in contrast to a message oriented workflow with SQS</p>
+<ul>
+<li>In contrast SQS is more of a message oriented workflow</li>
+<li>In SWF, maximum retention period is for 1 year where the messages can be stored</li>
+<li>This workflow guarantees that a task is processed only once</li>
+</ul>
+<p>It works with the following components</p>
+<p>i) <em>Workflow Starters</em> : Something like web application which triggers a workflow</p>
+<p>ii) <em>Deciders</em> : Which decide that a particular workflow task has to be executed</p>
+<p>iii) <em>Activity Executors</em> : They execute the real business logic defined in the workflow</p>
+<hr>
+<h1 id="sns-simple-notification-service">SNS (Simple Notification Service)</h1>
+<ul>
+<li>This is push based service in contrast to SQS which is pull based</li>
+<li>One can manage various different topics of notification and different subscribers who can then register with the topic with different subscriptions (SMS, Email, HTTPS etc.)</li>
+<li>In order to ensure that updates are not lost, SNS messages are replicated across all AZs</li>
+<li>It is immediate notification service with no delays</li>
+</ul>
+<hr>
+<h1 id="elastic-transcoder">Elastic Transcoder</h1>
+<ul>
+<li>Media transcoding service used to convert media files across different formats and resolutions</li>
+<li>Supports various templates with best practices for converting media for iphones, android devices, browsers etc.</li>
+<li>High resolution transcoding service is pay as you go model &mdash; cost depends on resolution and time taken to convert</li>
+</ul>
+<hr>
+<h1 id="api-gateway">API Gateway</h1>
+<p>API Gateway is an entry-point for various types of resources acting as a front door entry mechanism with support for:</p>
+<ul>
+<li>HTTPS/TLS</li>
+<li>Invocation for resources like EC2, Lambda etc.</li>
+<li>Caching response at it&rsquo;s own layer, thereby reducing requests to things like Lambda on every API invocation</li>
+</ul>
+<p>API Gateway uses the following things to realise an API that can be exposed to the end-user</p>
+<ul>
+<li>A container which defines the API to be exposed</li>
+<li>Request types that are supported for the API container (GET, POST, OPTIONS etc.)</li>
+<li>URL Paths that have to be supported as part of the API (/main, /help, /register etc.)</li>
+<li>Destinations like Lambda, EC2 instances etc. which receive the request</li>
+<li>CORS (Cross origin resource sharing is needed to be enabled if requests can originate from various different sources) &mdash; FYI, CORS is always enforced by the client (like browsers)</li>
+</ul>
+<p>API Gateway supports throttling API requests on global or API level and also supports caching by defining a fixed data size for storage to be provisioned. With caching enabled you can then avoid passing on redundant calls to the backend systems</p>
+<hr>
+<h1 id="kinesis-streaming-data-ingestion">Kinesis (Streaming Data Ingestion)</h1>
+<p><em>Streams &mdash; Analytics &mdash; Firehose</em></p>
+<ul>
+<li>When there is a need to consume lots of streaming data on the fly, Kinesis platform can be used</li>
+</ul>
+<p>Kinesis offers three different types of services:</p>
+<ul>
+<li><em>Kinesis Streams</em> : They work on shards (Shards are containers which define the logical boundaries of data storage). Streams persist the data for minimum 24 hours and maximum 7 days, so that something like Lambda or EC2 can work on this data and understand it</li>
+<li><em>Kinesis Firehose</em> : This is without persistence &mdash; As soon as data comes in, it has to be read/understood/processed by something like Lambda / EC2 and later the result can be stored in DynamoDB, RDS, S3 or Elastic Cluster etc.</li>
+<li><em>Kinesis Analytics</em> : This is used for real time analytics over the data that is pushed to the Kinesis Platform</li>
+</ul>
+<hr>
+<h1 id="aws-cognito-and-web-identity-federation">AWS Cognito and Web Identity Federation</h1>
+<p>AWS Cognito builds upon two concepts:</p>
+<ul>
+<li><em>User pools</em> &mdash; They handle user registration, authentication, password reset etc.</li>
+<li><em>Identity Pools</em> &mdash; They are more aligned with authorization as they return the AWS credentials which can be temporarily used to assume a role, using which the user can then access various AWS resources</li>
+</ul>
+<h2 id="web-identity-federations">Web Identity Federations</h2>
+<p>When you build a mobile app for example, you cannot distribute AWS credentials along with the application code. When the application needs to access any AWS resource, it can instead generate a temporary AWS token which maps to a particular role and using that temporary token it accesses the specified resource. This avoids bundling any secure credential directly with the source code. For fetching an auth token, the app first authenticates the user against Google, Facebook, Amazon etc. or any other provider which support OIDC (Open ID Connect) connect capability.</p>
+<p>Mobile App User -&gt; Logs in to Amazon, Facebook, Microsoft etc. -&gt; Authenticates -&gt; Mobile app gets a secure token and exchanges it with AWS for a temporary access token mapped to a role</p>
+<ul>
+<li>While Web Identity Federations don&rsquo;t use something like Active Directory, but instead have integrations with Amazon, Facebook, Google etc. On the flip side, when integrations with on-premise Active Directory are needed, users can instead use SAML based integration with an identity provider like OneLogin which integrates with the on-premise AD solution and generates SAML based authorization which is also understood by different solutions like AWS.</li>
+<li>So, Web Identity providers are to be used when user logs in against well known services, whereas SAML based assertion is to be used, when user logs in against an IdP and the IdP further validates against AD. One benefit with IdP based SAML is that user can now access all applications using the same IdP based authentication which he had to do only once.</li>
+</ul>
+<hr>
+<h1 id="amazon-emr-managed-hadoop-framework">Amazon EMR (Managed Hadoop Framework)</h1>
+<ul>
+<li>EMR helps users run Big Data workloads like Hadoop, Apache Spark etc on AWS</li>
+<li>In Amazon EMR, AWS provisions EC2 instances for you to work on the data. This enables users to access the EC2 instances and gain visibility in Operating System Configuration</li>
+</ul>
+<hr>
+<h1 id="amazon-inspector">Amazon Inspector</h1>
+<p>It helps to monitor and investigate state of security of the systems by scanning networks or configurations</p>
+<hr>
+<h1 id="cloudwatch-agent">Cloudwatch Agent</h1>
+<p>Custom monitoring scripts written in Perl, Ruby etc. and are available to be installed on the EC2 instances. Same Cloudwatch agent can be used to ship logs as well as additional monitoring data like Memory Utilization etc to Cloudwatch. Metrics like MemoryUtilization, CPU Core usage, Disk space utilization, disk space utilization etc. are not available out of the box with default Cloudwatch capabilities</p>
+<hr>
+<h1 id="amazon-mq">Amazon MQ</h1>
+<p>It is a messaging broker with support for large number of protocols and standards, and is usually better when migrating existing messaging broker workloads to the cloud. When building new applications that depend on messaging capabilities, we can always use Amazon SQS which is highly scalable.</p>
+<p>Amazon SQS on the other hand is similar but does not support a large number of APIs and protocols.</p>
+<p><img loading="lazy" src="https://miro.medium.com/max/60/0*Piks8Tu6xUYpF4DU?q=20" alt=""  />
+</p>
+
+  </div>
+
+  <footer class="post-footer">
+
+<div class="share-buttons">
+    <div class="share-buttons">
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS Solutions Architect Associate on twitter"
+            href="https://twitter.com/intent/tweet/?text=AWS%20Solutions%20Architect%20Associate&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-solutions-architect-associate%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px"
+                fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS Solutions Architect Associate on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-solutions-architect-associate%2f&amp;title=AWS%20Solutions%20Architect%20Associate&amp;summary=AWS%20Solutions%20Architect%20Associate&amp;source=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-solutions-architect-associate%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS Solutions Architect Associate on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-solutions-architect-associate%2f&title=AWS%20Solutions%20Architect%20Associate">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span> built with ♥ rishab |
+    <span class="counter-number">
+        Couldn't read the counter |
+    </span>
+    <div class="quote">
+        <p class="stoic-quote"></p>
+    </div>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+        let response = await fetch(
+            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+        );
+        let data = await response.json();
+        console.log(data);
+        counter.innerHTML = `views: ${data}`;
+    }
+    updateCounter();
+</script>
+
+<script>
+    const quote = document.querySelector(".stoic-quote");
+    async function getQuote() {
+        let response = await fetch(
+            "https://stoic-quotes.com/api/quote"
+        );
+        let quoteData = await response.json();
+        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
+    }
+    getQuote();
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994317684370171"
+     crossorigin="anonymous"></script></body>
+
+</html>

@@ -1,0 +1,3231 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+
+<script defer data-domain="rishabkumar.com" src="https://plausible.rishab.cloud/js/script.file-downloads.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+<title>AWS Developer Associate | Rishab Kumar</title>
+<meta name="keywords" content="" />
+<meta name="description" content="AWS Certfied Developer Associate
+IAM: Identity and Access Management
+When accessing AWS, the root account should never be used. Users must be created with the proper permissions. IAM is central to AWS.
+
+Users: A physical person
+Groups: Functions (admin, devops) Teams (engineering, design) which contain a group of users
+Roles: Internal usage within AWS resources
+Policies (JSON documents): Defines what each of the above can and cannot do. Note: IAM has predefined managed policies.
+
+For big enterprises
+
+IAM Federation: Integrate their own repository of users with IAM using SAML standard
+
+Policies
+IAM policies define permissions for an action regardless of the method that you use to perform the operation.">
+<meta name="author" content="Rishab Kumar">
+<link rel="canonical"
+    href="http://localhost:1313/notes/aws-certified-developer-associate/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.924bd3c43408ede397c131465f815d9c722dbe3115ef4e9158eba92f01f59e99.css" integrity="sha256-kkvTxDQI7eOXwTFGX4FdnHItvjEV706RWOupLwH1npk="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<meta name="theme-color" content=" #2e2e33">
+<meta name="msapplication-TileColor" content=" #2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/notes/aws-certified-developer-associate/" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"><head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    
+</head>
+
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01c5afa37f7740e490fecb3bcb6ccbbf"}'>
+</script>
+
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rishab Kumar (Alt + H)">Rishab Kumar</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home"><span>Home</span></a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/notes/" title="Notes">
+                    <span>Notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/podcast/" title="Podcast">
+                    <span>Podcast</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publicspeaking/" title="Public Speaking">
+                    <span>Public Speaking</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume/" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/uses/" title="Uses">
+                    <span>Uses</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/notes/">Cloud Notes</a></div>
+    <h1 class="post-title">
+      AWS Developer Associate
+    </h1>
+    <div class="post-meta">&lt;span title=&#39;2020-06-13 12:12:25.364 &#43;0000 UTC&#39;&gt;June 13, 2020&lt;/span&gt;&amp;nbsp;·&amp;nbsp;56 min&amp;nbsp;·&amp;nbsp;Rishab Kumar</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#aws-certfied-developer-associate" aria-label="AWS Certfied Developer Associate">AWS Certfied Developer Associate</a><ul>
+                        
+                <li>
+                    <a href="#iam-identity-and-access-management" aria-label="IAM: Identity and Access Management">IAM: Identity and Access Management</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#for-big-enterprises" aria-label="For big enterprises">For big enterprises</a></li></ul>
+                    
+                <li>
+                    <a href="#policies" aria-label="Policies">Policies</a><ul>
+                        
+                <li>
+                    <a href="#policy-types" aria-label="Policy types">Policy types</a></li>
+                <li>
+                    <a href="#aws-policy-simulator" aria-label="AWS Policy Simulator">AWS Policy Simulator</a></li>
+                <li>
+                    <a href="#best-practices" aria-label="Best practices">Best practices</a></li></ul>
+                </li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#ec2-virtual-machines" aria-label="EC2: Virtual Machines">EC2: Virtual Machines</a><ul>
+                        
+                <li>
+                    <a href="#ec2-user-data" aria-label="EC2 User Data">EC2 User Data</a></li>
+                <li>
+                    <a href="#ec2-meta-data" aria-label="EC2 Meta Data">EC2 Meta Data</a></li>
+                <li>
+                    <a href="#ec2-instance-launch-types" aria-label="EC2 Instance Launch Types">EC2 Instance Launch Types</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#on-demand-instance" aria-label="On Demand Instance">On Demand Instance</a></li>
+                <li>
+                    <a href="#reserved-instances" aria-label="Reserved Instances">Reserved Instances</a></li>
+                <li>
+                    <a href="#convertible-reserved-instances" aria-label="Convertible Reserved Instances">Convertible Reserved Instances</a></li>
+                <li>
+                    <a href="#scheduled-reserved-instances" aria-label="Scheduled Reserved Instances">Scheduled Reserved Instances</a></li>
+                <li>
+                    <a href="#spot-instances" aria-label="Spot Instances">Spot Instances</a></li>
+                <li>
+                    <a href="#dedicated-instances" aria-label="Dedicated Instances">Dedicated Instances</a></li>
+                <li>
+                    <a href="#dedicated-hosts" aria-label="Dedicated Hosts">Dedicated Hosts</a></li>
+                <li>
+                    <a href="#which-host-is-right-for-me" aria-label="Which host is right for me?">Which host is right for me?</a></li></ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#ec2-pricing" aria-label="EC2 Pricing">EC2 Pricing</a></li>
+                <li>
+                    <a href="#amis" aria-label="AMIs">AMIs</a><ul>
+                        
+                <li>
+                    <a href="#whats-ami" aria-label="What&rsquo;s AMI?">What&rsquo;s AMI?</a></li>
+                <li>
+                    <a href="#why-you-use-a-custom-ami" aria-label="Why you use a custom AMI?">Why you use a custom AMI?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#ec2-instances-overview" aria-label="EC2 Instances Overview">EC2 Instances Overview</a><ul>
+                        
+                <li>
+                    <a href="#t2-unlimited" aria-label="T2 Unlimited">T2 Unlimited</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#security-groups" aria-label="Security Groups">Security Groups</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#the-fundamental-of-network-security-in-aws" aria-label="The fundamental of network security in AWS">The fundamental of network security in AWS</a></li>
+                <li>
+                    <a href="#security-groups-act-as-a-firewall-on-ec2-instances" aria-label="Security groups act as a firewall on EC2 Instances">Security groups act as a firewall on EC2 Instances</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#elb-elastic-load-balancers" aria-label="ELB: Elastic Load Balancers">ELB: Elastic Load Balancers</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#why-use-a-load-balancer" aria-label="Why use a load balancer?">Why use a load balancer?</a></li>
+                <li>
+                    <a href="#an-elb-ec2-load-balancer-is-a-managed-load-balancer" aria-label="AN ELB (EC2 Load Balancer) is a managed load balancer">AN ELB (EC2 Load Balancer) is a managed load balancer</a></li>
+                <li>
+                    <a href="#types-of-load-balancers-on-aws" aria-label="Types of load balancers on AWS">Types of load balancers on AWS</a></li>
+                <li>
+                    <a href="#health-checks" aria-label="Health Checks">Health Checks</a></li>
+                <li>
+                    <a href="#application-load-balancer-v2" aria-label="Application Load Balancer (v2)">Application Load Balancer (v2)</a></li>
+                <li>
+                    <a href="#network-load-balancer-v2" aria-label="Network Load Balancer (v2)">Network Load Balancer (v2)</a></li>
+                <li>
+                    <a href="#load-balancers-good-to-know" aria-label="Load Balancers Good to Know">Load Balancers Good to Know</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#asg-auto-scaling-group" aria-label="ASG: Auto Scaling Group">ASG: Auto Scaling Group</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#asgs-have-the-following-attributes" aria-label="ASGs have the following attributes">ASGs have the following attributes</a></li>
+                <li>
+                    <a href="#auto-scaling-alarms" aria-label="Auto Scaling Alarms">Auto Scaling Alarms</a></li>
+                <li>
+                    <a href="#new-auto-scaling-rules" aria-label="New Auto Scaling Rules">New Auto Scaling Rules</a></li>
+                <li>
+                    <a href="#auto-scaling-custom-metric" aria-label="Auto Scaling Custom Metric">Auto Scaling Custom Metric</a></li>
+                <li>
+                    <a href="#asg-summary" aria-label="ASG Summary">ASG Summary</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#ebs-volume" aria-label="EBS Volume">EBS Volume</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#ebs-volume-1" aria-label="EBS Volume">EBS Volume</a></li>
+                <li>
+                    <a href="#ebs-volume-types" aria-label="EBS Volume Types">EBS Volume Types</a></li>
+                <li>
+                    <a href="#ebs-volume-resizing" aria-label="EBS Volume Resizing">EBS Volume Resizing</a></li>
+                <li>
+                    <a href="#ebs-encryption" aria-label="EBS Encryption">EBS Encryption</a></li>
+                <li>
+                    <a href="#ebs-vs-instance-store" aria-label="EBS vs. Instance Store">EBS vs. Instance Store</a></li>
+                <li>
+                    <a href="#ebs-summary" aria-label="EBS Summary">EBS Summary</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#route-53" aria-label="Route 53">Route 53</a></li>
+                <li>
+                    <a href="#rds-relational-database-service" aria-label="RDS: Relational Database Service">RDS: Relational Database Service</a></li>
+                <li>
+                    <a href="#elasticache" aria-label="ElastiCache">ElastiCache</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#solution-architecture---db-cache" aria-label="Solution Architecture - DB Cache">Solution Architecture - DB Cache</a></li>
+                <li>
+                    <a href="#redis-overview" aria-label="Redis Overview">Redis Overview</a></li>
+                <li>
+                    <a href="#memcached-overview" aria-label="Memcached Overview">Memcached Overview</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#vpc-virtual-private-cloud" aria-label="VPC: Virtual Private Cloud">VPC: Virtual Private Cloud</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#public-subnets-usually-contain" aria-label="Public Subnets usually contain">Public Subnets usually contain</a></li>
+                <li>
+                    <a href="#aws-vpc-summary" aria-label="AWS VPC Summary">AWS VPC Summary</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#s3-buckets" aria-label="S3 Buckets">S3 Buckets</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#aws-s3---versioning" aria-label="AWS S3 - Versioning">AWS S3 - Versioning</a></li>
+                <li>
+                    <a href="#s3-encryption-for-objects" aria-label="S3 Encryption for Objects">S3 Encryption for Objects</a></li>
+                <li>
+                    <a href="#encryption-in-transit-ssl" aria-label="Encryption in transit (SSL)">Encryption in transit (SSL)</a></li>
+                <li>
+                    <a href="#s3-security" aria-label="S3 Security">S3 Security</a></li>
+                <li>
+                    <a href="#s3-bucket-policies" aria-label="S3 Bucket Policies">S3 Bucket Policies</a></li>
+                <li>
+                    <a href="#s3-websites" aria-label="S3 Websites">S3 Websites</a></li>
+                <li>
+                    <a href="#s3-cors" aria-label="S3 Cors">S3 Cors</a></li>
+                <li>
+                    <a href="#aws-s3---consistency-model" aria-label="AWS S3 - Consistency Model">AWS S3 - Consistency Model</a></li>
+                <li>
+                    <a href="#aws-s3---other" aria-label="AWS S3 - Other">AWS S3 - Other</a></li>
+                <li>
+                    <a href="#aws-s3-performance" aria-label="AWS S3 Performance">AWS S3 Performance</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#cli-command-line-interface" aria-label="CLI: Command Line Interface">CLI: Command Line Interface</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#aws-cli-on-ec2" aria-label="AWS CLI on EC2">AWS CLI on EC2</a></li>
+                <li>
+                    <a href="#cli-sts-decode-errors" aria-label="CLI STS Decode Errors">CLI STS Decode Errors</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#sdk-software-development-kit" aria-label="SDK: Software Development Kit">SDK: Software Development Kit</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#sdk-takeaways" aria-label="SDK Takeaways">SDK Takeaways</a></li>
+                <li>
+                    <a href="#sdk-credentials-security" aria-label="SDK Credentials Security">SDK Credentials Security</a></li>
+                <li>
+                    <a href="#exponential-backoff" aria-label="Exponential Backoff">Exponential Backoff</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#elastic-beanstalk" aria-label="Elastic Beanstalk">Elastic Beanstalk</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#elastic-beanstalk-is-a-developer-centric-view-of-deploying-application-on-aws" aria-label="Elastic Beanstalk is a developer centric view of deploying application on AWS"><em>Elastic Beanstalk</em> is a developer centric view of deploying application on AWS</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#cicd-continuous-integration-and-deployment" aria-label="CICD: Continuous Integration and Deployment">CICD: Continuous Integration and Deployment</a></li>
+                <li>
+                    <a href="#cloudformation" aria-label="CloudFormation">CloudFormation</a><ul>
+                        <ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#what-is-cloudformation" aria-label="What is CloudFormation?">What is CloudFormation?</a></li>
+                <li>
+                    <a href="#benefits-of-cloudformation" aria-label="Benefits of CloudFormation">Benefits of CloudFormation</a></li>
+                <li>
+                    <a href="#how-cloudformation-works" aria-label="How CloudFormation works">How CloudFormation works</a></li>
+                <li>
+                    <a href="#deploying-cloudformation-templates" aria-label="Deploying CloudFormation templates">Deploying CloudFormation templates</a></li>
+                <li>
+                    <a href="#cloudformation-building-blocks" aria-label="CloudFormation Building Blocks">CloudFormation Building Blocks</a></li>
+                <li>
+                    <a href="#cloudformation-resources" aria-label="CloudFormation Resources">CloudFormation Resources</a><ul>
+                        
+                <li>
+                    <a href="#analysis-of-cloudformation-templates" aria-label="Analysis of CloudFormation Templates">Analysis of CloudFormation Templates</a></li>
+                <li>
+                    <a href="#faq-for-resources" aria-label="FAQ for resources">FAQ for resources</a></li></ul>
+                </li>
+                <li>
+                    <a href="#cloudformation-parameters" aria-label="CloudFormation Parameters">CloudFormation Parameters</a><ul>
+                        
+                <li>
+                    <a href="#how-to-reference-a-parameter" aria-label="How to reference a parameter">How to reference a parameter</a></li></ul>
+                </li>
+                <li>
+                    <a href="#cloudformation-mappings" aria-label="CloudFormation Mappings">CloudFormation Mappings</a></li>
+                <li>
+                    <a href="#when-would-you-use-mapping-vs-parameters" aria-label="When would you use Mapping vs. Parameters?">When would you use Mapping vs. Parameters?</a></li>
+                <li>
+                    <a href="#cf-outputs" aria-label="CF Outputs">CF Outputs</a><ul>
+                        
+                <li>
+                    <a href="#outputs-examples" aria-label="Outputs examples">Outputs examples</a></li>
+                <li>
+                    <a href="#cross-stack-reference" aria-label="Cross Stack Reference">Cross Stack Reference</a></li></ul>
+                </li>
+                <li>
+                    <a href="#cloudformation-conditions" aria-label="CloudFormation Conditions">CloudFormation Conditions</a><ul>
+                        
+                <li>
+                    <a href="#defining-conditions" aria-label="Defining Conditions">Defining Conditions</a></li></ul>
+                </li>
+                <li>
+                    <a href="#cloudformation-intrinsic-functions" aria-label="CloudFormation Intrinsic Functions">CloudFormation Intrinsic Functions</a></li>
+                <li>
+                    <a href="#cloudformation-rollbacks" aria-label="CloudFormation Rollbacks">CloudFormation Rollbacks</a></li></ul>
+                    </ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#cloudwatch" aria-label="CloudWatch">CloudWatch</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#why-is-monitoring-important" aria-label="Why is monitoring important?">Why is monitoring important?</a></li>
+                <li>
+                    <a href="#monitoring-in-aws" aria-label="Monitoring in AWS">Monitoring in AWS</a></li>
+                <li>
+                    <a href="#cloudwatch-metrics" aria-label="CloudWatch Metrics">CloudWatch Metrics</a></li>
+                <li>
+                    <a href="#cloudwatch-ec2-detailed-monitoring" aria-label="CloudWatch EC2 Detailed monitoring">CloudWatch EC2 Detailed monitoring</a></li>
+                <li>
+                    <a href="#aws-cloudwatch-custom-metrics" aria-label="AWS CloudWatch Custom Metrics">AWS CloudWatch Custom Metrics</a></li>
+                <li>
+                    <a href="#alarms-are-used-to-trigger-notifications-for-any-metric" aria-label="Alarms are used to trigger notifications for any metric">Alarms are used to trigger notifications for any metric</a></li>
+                <li>
+                    <a href="#aws-cloudwatch-logs" aria-label="AWS CloudWatch Logs">AWS CloudWatch Logs</a></li>
+                <li>
+                    <a href="#aws-cloudwatch-events" aria-label="AWS CloudWatch Events">AWS CloudWatch Events</a></li></ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#dynamodb-no-sql" aria-label="DynamoDB (No-SQL)">DynamoDB (No-SQL)</a></li>
+                <li>
+                    <a href="#aws-lambda" aria-label="AWS Lambda">AWS Lambda</a><ul>
+                        
+                <li>
+                    <a href="#aws-lambda-language-support" aria-label="AWS Lambda language support">AWS Lambda language support</a></li>
+                <li>
+                    <a href="#aws-lambda-pricing-example" aria-label="AWS Lambda Pricing: example">AWS Lambda Pricing: example</a></li>
+                <li>
+                    <a href="#lambda--synchronous-invocations" aria-label="Lambda – Synchronous Invocations">Lambda – Synchronous Invocations</a></li>
+                <li>
+                    <a href="#lambda---synchronous-invocations---services" aria-label="Lambda - Synchronous Invocations - Services">Lambda - Synchronous Invocations - Services</a></li>
+                <li>
+                    <a href="#lambda--asynchronous-invocations" aria-label="Lambda – Asynchronous Invocations">Lambda – Asynchronous Invocations</a></li>
+                <li>
+                    <a href="#lambda---asynchronous-invocations---services" aria-label="Lambda - Asynchronous Invocations - Services">Lambda - Asynchronous Invocations - Services</a></li>
+                <li>
+                    <a href="#lambdaedge" aria-label="Lambda@Edge">Lambda@Edge</a></li>
+                <li>
+                    <a href="#lambda-execution-role-iam-role" aria-label="Lambda Execution Role (IAM Role)">Lambda Execution Role (IAM Role)</a></li>
+                <li>
+                    <a href="#lambda-resource-based-policies" aria-label="Lambda Resource Based Policies">Lambda Resource Based Policies</a></li>
+                <li>
+                    <a href="#lambda-environment-variables" aria-label="Lambda Environment Variables">Lambda Environment Variables</a></li>
+                <li>
+                    <a href="#lambda-functions-tmp-space" aria-label="Lambda Functions /tmp space">Lambda Functions /tmp space</a></li>
+                <li>
+                    <a href="#lambda-function-dependencies" aria-label="Lambda Function Dependencies">Lambda Function Dependencies</a></li>
+                <li>
+                    <a href="#aws-lambda-limits-to-know---per-region" aria-label="AWS Lambda Limits to Know - per region">AWS Lambda Limits to Know - per region</a></li>
+                <li>
+                    <a href="#aws-lambda-best-practices" aria-label="AWS Lambda Best Practices">AWS Lambda Best Practices</a></li></ul>
+                </li>
+                <li>
+                    <a href="#api-gateway" aria-label="API Gateway">API Gateway</a><ul>
+                        
+                <li>
+                    <a href="#api-gateway--integrations-high-level" aria-label="API Gateway &ndash; Integrations High Level">API Gateway &ndash; Integrations High Level</a></li>
+                <li>
+                    <a href="#api-gateway---endpoint-types" aria-label="API Gateway - Endpoint Types">API Gateway - Endpoint Types</a></li>
+                <li>
+                    <a href="#api-gateway--deployment-stages" aria-label="API Gateway &ndash; Deployment Stages">API Gateway &ndash; Deployment Stages</a></li>
+                <li>
+                    <a href="#api-gateway--stage-variables" aria-label="API Gateway &ndash; Stage Variables">API Gateway &ndash; Stage Variables</a></li>
+                <li>
+                    <a href="#api-gateway---integration-types" aria-label="API Gateway - Integration Types">API Gateway - Integration Types</a></li></ul>
+                </li>
+                <li>
+                    <a href="#amazon-cognito" aria-label="Amazon Cognito">Amazon Cognito</a><ul>
+                        
+                <li>
+                    <a href="#cognito-user-pools-cup--user-features" aria-label="Cognito User Pools (CUP) &ndash; User Features">Cognito User Pools (CUP) &ndash; User Features</a></li>
+                <li>
+                    <a href="#cognito-user-pools--hosted-authentication-ui" aria-label="Cognito User Pools &ndash; Hosted Authentication UI">Cognito User Pools &ndash; Hosted Authentication UI</a></li>
+                <li>
+                    <a href="#cognito-identity-pools-federated-identities" aria-label="Cognito Identity Pools (Federated Identities)">Cognito Identity Pools (Federated Identities)</a></li>
+                <li>
+                    <a href="#cognito-identity-pools--iam-roles" aria-label="Cognito Identity Pools &ndash; IAM Roles">Cognito Identity Pools &ndash; IAM Roles</a></li>
+                <li>
+                    <a href="#cognito-user-pools-vs-identity-pools" aria-label="Cognito User Pools vs Identity Pools">Cognito User Pools vs Identity Pools</a></li></ul>
+                </li>
+                <li>
+                    <a href="#ecs" aria-label="ECS">ECS</a><ul>
+                        
+                <li>
+                    <a href="#docker" aria-label="Docker">Docker</a></li>
+                <li>
+                    <a href="#docker-containers-management" aria-label="Docker Containers Management">Docker Containers Management</a></li>
+                <li>
+                    <a href="#ecs-clusters" aria-label="ECS Clusters">ECS Clusters</a></li>
+                <li>
+                    <a href="#ecs-task-definitions" aria-label="ECS Task Definitions">ECS Task Definitions</a></li>
+                <li>
+                    <a href="#ecr" aria-label="ECR">ECR</a></li>
+                <li>
+                    <a href="#fargate" aria-label="Fargate">Fargate</a></li>
+                <li>
+                    <a href="#ecs-task-placement-process" aria-label="ECS Task Placement Process">ECS Task Placement Process</a></li>
+                <li>
+                    <a href="#ecs-task-placement-strategies" aria-label="ECS Task Placement Strategies">ECS Task Placement Strategies</a></li>
+                <li>
+                    <a href="#ecs--service-auto-scaling" aria-label="ECS – Service Auto Scaling">ECS – Service Auto Scaling</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content">
+  <h1 id="aws-certfied-developer-associate">AWS Certfied Developer Associate</h1>
+<h2 id="iam-identity-and-access-management">IAM: Identity and Access Management</h2>
+<p>When accessing AWS, the root account should <strong>never</strong> be used. Users must be created with the proper permissions. IAM is central to AWS.</p>
+<ul>
+<li>Users: A physical person</li>
+<li>Groups: Functions (admin, devops) Teams (engineering, design) which contain a group of users</li>
+<li>Roles: Internal usage within AWS resources</li>
+<li>Policies (JSON documents): Defines what each of the above can and cannot do. <strong>Note</strong>: IAM has predefined managed policies.</li>
+</ul>
+<h4 id="for-big-enterprises">For big enterprises</h4>
+<ul>
+<li>IAM Federation: Integrate their own repository of users with IAM using SAML standard</li>
+</ul>
+<h3 id="policies">Policies</h3>
+<p>IAM policies define permissions for an action regardless of the method that you use to perform the operation.</p>
+<h4 id="policy-types">Policy types</h4>
+<ul>
+<li>
+<p>Identity-based policies</p>
+<ul>
+<li>Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). Identity-based policies grant permissions to an identity.</li>
+</ul>
+</li>
+<li>
+<p>Resource-based policies</p>
+<ul>
+<li>Attach inline policies to resources. The most common examples of resource-based policies are Amazon S3 bucket policies and IAM role trust policies. Resource-based policies grant permissions to a principal entity that is specified in the policy. Principals can be in the same account as the resource or in other accounts.</li>
+</ul>
+</li>
+<li>
+<p>Permissions boundaries</p>
+<ul>
+<li>Use a managed policy as the permissions boundary for an IAM entity (user or role). That policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions. Permissions boundaries do not define the maximum permissions that a resource-based policy can grant to an entity.</li>
+</ul>
+</li>
+<li>
+<p>Organizations SCPs</p>
+<ul>
+<li>Use an AWS Organizations service control policy (SCP) to define the maximum permissions for account members of an organization or organizational unit (OU). SCPs limit permissions that identity-based policies or resource-based policies grant to entities (users or roles) within the account, but do not grant permissions.</li>
+</ul>
+</li>
+<li>
+<p>Access control lists (ACLs)</p>
+<ul>
+<li>Use ACLs to control which principals in other accounts can access the resource to which the ACL is attached. ACLs are similar to resource-based policies, although they are the only policy type that does not use the JSON policy document structure. ACLs are cross-account permissions policies that grant permissions to the specified principal entity. ACLs cannot grant permissions to entities within the same account.</li>
+</ul>
+</li>
+<li>
+<p>Session policies</p>
+<ul>
+<li>Pass advanced session policies when you use the AWS CLI or AWS API to assume a role or a federated user. Session policies limit the permissions that the role or user&rsquo;s identity-based policies grant to the session. Session policies limit permissions for a created session, but do not grant permissions. For more information, see Session Policies.</li>
+</ul>
+</li>
+</ul>
+<h4 id="aws-policy-simulator">AWS Policy Simulator</h4>
+<ul>
+<li>When creating new custom policies you can test it here:
+<ul>
+<li><a href="https://policysim.aws.amazon.com/home/index.jsp">https://policysim.aws.amazon.com/home/index.jsp</a></li>
+<li>This policy tool can you save you time in case your custom policy statement&rsquo;s permission is denied</li>
+</ul>
+</li>
+<li>Alternatively, you can use the CLI:
+<ul>
+<li>Some AWS CLI commands (not all) contain <code>--dry-run</code> option to simulate API calls. This can be used to test permissions.</li>
+<li>If the command is successful, you&rsquo;ll get the message: <code>Request would have succeeded, but DryRun flag is set</code></li>
+<li>Otherwise, you&rsquo;ll be getting the message: <code>An error occurred (UnauthorizedOperation) when calling the {policy_name} operation</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="best-practices">Best practices</h4>
+<ul>
+<li>One IAM User per person <strong>ONLY</strong></li>
+<li>One IAM Role per Application</li>
+<li>IAM credentials should <strong>NEVER</strong> be shared</li>
+<li>Never write IAM credentials in your code. <strong>EVER</strong></li>
+<li>Never use the ROOT account except for initial setup</li>
+<li>It&rsquo;s best to give users the minimal amount of permissions to perform their job</li>
+</ul>
+<hr>
+<h1 id="ec2-virtual-machines">EC2: Virtual Machines</h1>
+<ul>
+<li><a href="#ec2-user-data">EC2 User Data</a></li>
+<li><a href="#ec2-meta-data">EC2 Meta Data</a></li>
+<li><a href="#ec2-instance-launch-types">EC2 Instance Launch Types</a></li>
+<li><a href="#ec2-pricing">EC2 Pricing</a></li>
+<li><a href="#amis">AMIs</a></li>
+<li><a href="#ec2-instances-overview">EC2 Instances Overview</a></li>
+</ul>
+<p>By default, your EC2 machine comes with:</p>
+<ul>
+<li>A private IP for the internal AWS Network</li>
+<li>A public IP for the WWW</li>
+</ul>
+<p>When you SSH into your EC2 machine:</p>
+<ul>
+<li>We can’t use a private IP, because we are not in the same network</li>
+<li>We can only use the public IP</li>
+</ul>
+<p>If your machine is stopped and then restarted, the public IP will change</p>
+<h2 id="ec2-user-data">EC2 User Data</h2>
+<ul>
+<li>It is possible to bootstrap our instances using an EC2 User data script</li>
+</ul>
+<ul>
+<li>Bootstrapping means launching commands when a machine starts</li>
+<li>That script is only run once at the instance first start</li>
+<li>Purpose: Ec2 data is used to automated boot tasks such as:
+<ul>
+<li>Installing updates</li>
+<li>Installing software</li>
+<li>Downloading common files from the internet</li>
+</ul>
+</li>
+<li>The EC2 User Data Script runs with the root user</li>
+</ul>
+<h2 id="ec2-meta-data">EC2 Meta Data</h2>
+<ul>
+<li>Information about your EC2 instance</li>
+</ul>
+<ul>
+<li>It allows EC2 isntances to &ldquo;learn&rdquo; about themselves without having to use an IAM role for that purpose</li>
+<li>Powerful but one of the least known features to developers</li>
+<li>You can retrieve IAM roles from the metadata but <strong>not</strong> IAM policies</li>
+<li>URL: 169.254.169.254/latest/meta-data</li>
+</ul>
+<h2 id="ec2-instance-launch-types">EC2 Instance Launch Types</h2>
+<ul>
+<li><strong>On Demand Instances</strong>: short workload, predictable pricing</li>
+<li><strong>Reserved Instances</strong>: long workloads (&gt;= 1 year)</li>
+<li><strong>Convertible Reserved Instances</strong>: long workloads with flexible instances</li>
+<li><strong>Scheduled Reserved Instances</strong>: launch within time window you reserve</li>
+<li><strong>Spot Instances</strong>: short workloads, for cheap, can lose instances</li>
+<li><strong>Dedicated Instances</strong>: no other customers will share your hardware</li>
+<li><strong>Dedicated Hosts</strong>: book an entire physical server, control instance placement</li>
+</ul>
+<h4 id="on-demand-instance">On Demand Instance</h4>
+<ul>
+<li>Pay for what you use</li>
+</ul>
+<ul>
+<li>Has the highest cost but no upfront payment</li>
+<li>No long term commitment</li>
+<li>Recommended for short-term and un-interrupted workloads, where you can’t predict how the application will behave</li>
+</ul>
+<h4 id="reserved-instances">Reserved Instances</h4>
+<ul>
+<li>Up to 75% compared to On-demand</li>
+</ul>
+<ul>
+<li>Pay upfront for what you use with long term commitment</li>
+<li>Reservation period can be 1 or 3 years</li>
+<li>Reserve a specific instance type</li>
+<li>Recommended for steady state usage applications (think database)</li>
+</ul>
+<h4 id="convertible-reserved-instances">Convertible Reserved Instances</h4>
+<ul>
+<li>Can change the EC2 instance type</li>
+</ul>
+<ul>
+<li>Up to 54% discount</li>
+</ul>
+<h4 id="scheduled-reserved-instances">Scheduled Reserved Instances</h4>
+<ul>
+<li>Launch within time window you reserve</li>
+</ul>
+<ul>
+<li>When you require a fraction of a day / week / month</li>
+</ul>
+<h4 id="spot-instances">Spot Instances</h4>
+<ul>
+<li>Can get a discount of up to 90% compared to On-demand</li>
+</ul>
+<ul>
+<li>You bid a price and get the instance as long as its under the price</li>
+<li>Price varies based on offer and demand</li>
+<li>Spot instances are reclaimed within a 2 minute notification warning when the spot price goes above your bid</li>
+<li>Used for batch jobs, Big Data analysis, or workloads that are resilient to failures</li>
+<li>Not great for critical jobs or databases</li>
+</ul>
+<h4 id="dedicated-instances">Dedicated Instances</h4>
+<ul>
+<li>Instances running on hardware that’s dedicated to you</li>
+</ul>
+<ul>
+<li>May share hardware with other instances in same account</li>
+<li>No control over instance placement (can move hardware after stop / start)</li>
+</ul>
+<h4 id="dedicated-hosts">Dedicated Hosts</h4>
+<ul>
+<li>Physical dedicated Ec2 server for your use</li>
+</ul>
+<ul>
+<li>Full control of Ec2 Instance placement</li>
+<li>Visibility into the underlying sockets / physical cores of the hardware</li>
+<li>Allocated for your account for a 3 year period reservation</li>
+<li>More expensive</li>
+<li>Useful for software that have a complicated licensing model (Bring your own License)</li>
+<li>Or for a companies that have strong regulatory or compliance needs</li>
+</ul>
+<h4 id="which-host-is-right-for-me">Which host is right for me?</h4>
+<ul>
+<li>On demand: coming and staying in resort whenever we like, we pay the full price</li>
+<li>Reserved: like planning ahead and if we plan to stay for a long time, we may get a good discount.</li>
+<li>Spot instances: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms.You can get kicked out at any time</li>
+<li>Dedicated Hosts: We book an entire building of the resort</li>
+</ul>
+<h2 id="ec2-pricing">EC2 Pricing</h2>
+<ul>
+<li>
+<p>EC2 instances prices (per hour) varies based on these parameters:</p>
+<ul>
+<li>Region you’re in</li>
+<li>Instance Type you’re using</li>
+<li>On-Demand vs Spot vs Reserved vs Dedicated Host</li>
+<li>Linux vs Windows vs Private OS (RHEL, SLES, Windows SQL)</li>
+<li>You are billed by the second, with a minimum of 60 seconds.</li>
+<li>You also pay for other factors such as storage, data transfer, fixed IP public addresses, load balancing</li>
+<li>You do not pay for the instance if the instance is stopped</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<ul>
+<li>t2.small in US-EAST-1 (VIRGINIA), cost $0.023 per Hour</li>
+<li>If used for:
+<ul>
+<li>6 seconds, it costs $0.023/60 = $0.000383 (minimum of 60 seconds)</li>
+<li>60 seconds, it costs $0.023/60 = $0.000383 (minimum of 60 seconds)</li>
+<li>30 minutes, it costs $0.023/2 = $0.0115</li>
+<li>1 month, it costs $0.023 <em>24</em> 30 = $16.56 (assuming a month is 30 days)</li>
+<li>X seconds (X &gt; 60), it costs $0.023 * X / 3600</li>
+</ul>
+</li>
+<li>The best way to know the pricing is to consult the pricing page: <a href="https://aws.amazon.com/ec2/pricing/on-demand/">https://aws.amazon.com/ec2/pricing/on-demand/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="amis">AMIs</h2>
+<h3 id="whats-ami">What&rsquo;s AMI?</h3>
+<ul>
+<li>As we saw, AWS comes with base images such as:
+<ul>
+<li>Ubuntu</li>
+<li>Fedora</li>
+<li>RedHat</li>
+<li>Windows</li>
+<li>Etc&hellip;</li>
+</ul>
+</li>
+<li>These images can be customized at runtime using EC2 User data</li>
+<li>But what if we could create our own image, ready to go?</li>
+<li>That’s an AMI – an image to use to create our instances</li>
+<li>AMIs can be built for Linux or Windows machines</li>
+</ul>
+<h3 id="why-you-use-a-custom-ami">Why you use a custom AMI?</h3>
+<ul>
+<li>Using a custom built AMI can provide the following advantages:
+<ul>
+<li>Pre-installed packages needed</li>
+<li>Faster boot time (no need for long ec2 user data at boot time</li>
+<li>Machine comes configured with monitoring / enterprise software</li>
+<li>Security concerns – control over the machines in the network</li>
+<li>Control of maintenance and updates of AMIs over time</li>
+<li>Active Directory Integration out of the box</li>
+<li>Installing your app ahead of time (for faster deploys when auto-scaling)</li>
+<li>Using someone else’s AMI that is optimized for running an app, DB, etc&hellip;</li>
+</ul>
+</li>
+<li><strong>AMI are built for a specific AWS region (!)</strong></li>
+</ul>
+<h2 id="ec2-instances-overview">EC2 Instances Overview</h2>
+<ul>
+<li>Instances have 5 distinct characteristics advertised on the website:
+<ul>
+<li>The RAM(type,amount,generation)</li>
+<li>The CPU(type,make,frequency,generation,numberofcores)</li>
+<li>The I/O (disk performance, EBS optimisations)</li>
+<li>The Network (network bandwidth, network latency</li>
+<li>The Graphical Processing Unit (GPU)</li>
+</ul>
+</li>
+<li>It may be daunting to choose the right instance type (there are over 50 of them) - <a href="https://aws.amazon.com/ec2/instance-types/">https://aws.amazon.com/ec2/instance-types/</a></li>
+<li><a href="https://ec2instances.info/">https://ec2instances.info/</a> can help with summarizing the types of instances</li>
+<li>R/C/P/G/H/X/I/F/Z/CR are specialised in RAM, CPU, I/O, Network, GPU</li>
+<li>M instance types are balanced</li>
+<li>T2/T3 instance types are “burstable”
+Burstable Instances (T2)</li>
+<li>AWS has the concept of burstable instances (T2 machines)</li>
+<li>Burst means that overall, the instance has OK CPU performance.</li>
+<li>When the machine needs to process something unexpected (a spike in load for example), it can burst, and CPU can be VERY good.</li>
+<li>If the machine bursts, it utilizes “burst credits”</li>
+<li>If all the credits are gone, the CPU becomes BAD</li>
+<li>If the machine stops bursting, credits are accumulated over time</li>
+<li>Burstable instances can be amazing to handle unexpected traffic and getting the insurance that it will be handled correctly</li>
+<li>If your instance consistently runs low on credit, you need to move to a different kind of non-burstable instance (all the ones described before).</li>
+</ul>
+<h3 id="t2-unlimited">T2 Unlimited</h3>
+<ul>
+<li>Nov 2017: It is possible to have an “unlimited burst credit balance</li>
+<li>You pay extra money if you go over your credit balance, but you don’t lose in performance</li>
+<li>Overall, it is a new offering, so be careful, costs could go high if you’re not monitoring the health of your instances</li>
+</ul>
+<hr>
+<h1 id="security-groups">Security Groups</h1>
+<h4 id="the-fundamental-of-network-security-in-aws">The fundamental of network security in AWS</h4>
+<ul>
+<li>Can be attached to multiple instances</li>
+<li>Locked down to a region / VPC combination</li>
+<li>Does live “outside” the EC2 - if traffic is blocked, the EC2 instance won’t see it</li>
+<li>It’s good to maintain one separate security group for SSH access</li>
+<li>If your application is not accessible (time out), then it’s usually a security group issue</li>
+<li>If your application gives a “connection refused” error, then it’s an application error or its not launched</li>
+<li>All inbound traffic is blocked by default</li>
+<li>All outbound traffic authorized by default</li>
+</ul>
+<h4 id="security-groups-act-as-a-firewall-on-ec2-instances">Security groups act as a firewall on EC2 Instances</h4>
+<p>They regulate:</p>
+<ul>
+<li>Access to ports</li>
+<li>Authorized IP ranges - IPv4 and IPv6</li>
+<li>Control of inbound network</li>
+<li>Control of outbound network</li>
+</ul>
+<hr>
+<h1 id="elb-elastic-load-balancers">ELB: Elastic Load Balancers</h1>
+<p>Load balancers are servers that forward internet traffic to multiple servers (EC2 Instances) downstream</p>
+<h4 id="why-use-a-load-balancer">Why use a load balancer?</h4>
+<ul>
+<li>Spread load across multiple downstream instances</li>
+</ul>
+<ul>
+<li>Expose a single point of access (DNS) to your application</li>
+<li>Seamlessly handle failures of downstream instances</li>
+<li>Do regular health checks to your instances</li>
+<li>Provide SSL termination (HTTPS) for your websites</li>
+<li>Enforce stickiness with cookies</li>
+<li>High availability across zones</li>
+<li>Separate public traffic from private traffic</li>
+</ul>
+<h4 id="an-elb-ec2-load-balancer-is-a-managed-load-balancer">AN ELB (EC2 Load Balancer) is a managed load balancer</h4>
+<ul>
+<li>AWS guarantees that it will be working</li>
+</ul>
+<ul>
+<li>AWS takes care of upgrades, maintenance, high availability</li>
+<li>AWS provides only a few configuration knobs</li>
+</ul>
+<p>It costs less to setup your own load balancer but it will be a lot more effort on your end. It is integrated with many AWS offerings / services</p>
+<h4 id="types-of-load-balancers-on-aws">Types of load balancers on AWS</h4>
+<ul>
+<li>Classic Load Balancer (v1 - older generation - 2009)</li>
+</ul>
+<ul>
+<li>Application Load Balancer (v2 - new generation - 2016)</li>
+<li>Network Load Balancer (v2 - new generation - 2017)</li>
+<li>You can setup internal or external ELBs</li>
+</ul>
+<h4 id="health-checks">Health Checks</h4>
+<ul>
+<li>Health checks are crucial for load balancers</li>
+</ul>
+<ul>
+<li>They enable the load balancer to know if instances it forwards traffic to are available to reply to requests</li>
+<li>The health check is done on a port and a route (/health is common)</li>
+<li>If the response is not 200 (OK), then the instance is unhealthy</li>
+</ul>
+<h4 id="application-load-balancer-v2">Application Load Balancer (v2)</h4>
+<ul>
+<li>Application load balancers (Layer 7) allow to do:
+<ul>
+<li>Load balancing to multiple HTTP applications across machines (target groups)</li>
+<li>Load balancing to multiple applications on the same machine (ex: containers)</li>
+<li>Load balancing based on route in URL</li>
+<li>Load balancing based on hostname in URL</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Basically, they’re awesome for micro services &amp; container-based application (example: Docker &amp; Amazon ECS)</li>
+<li>Has a port mapping feature to redirect to a dynamic port</li>
+<li>In comparison, we would need to create one Classic Load Balancer per application before.That was very expensive and inefficient!</li>
+<li>Good to Know
+<ul>
+<li>Stickiness can be enabled at the target group level
+<ul>
+<li>Same request goes to the same instance</li>
+<li>Stickiness is directly generated by the ALB (NOT the application)</li>
+</ul>
+</li>
+<li>ALB supports HTTP/HTTPS &amp; Web sockets protocols</li>
+<li>The application servers don’t see the IP of the client directly
+<ul>
+<li>The true IP of the client is inserted in the header X-Forwarded-For</li>
+<li>We can also get Port (X-Forwarded-Port) and protocol (X-Forwarded-Proto)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="network-load-balancer-v2">Network Load Balancer (v2)</h4>
+<ul>
+<li>Layer 4 allow you to do:
+<ul>
+<li>Forward TCP traffic to your instances</li>
+<li>Handle millions of requests per second</li>
+<li>Support for static IP or elastic IP</li>
+<li>Less latency ~100ms (vs 400 ms for ALB)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Network Load Balancers are mostly used for extreme performance and should not be the default load balancer you choose</li>
+<li>Overall, the creation process is the same as the Application Load Balancer</li>
+</ul>
+<h4 id="load-balancers-good-to-know">Load Balancers Good to Know</h4>
+<ul>
+<li>Any Load Balancer (CLB, ALB, NLB) has a static host name. They do not resolve and use underlying IP</li>
+</ul>
+<ul>
+<li>LBs can scale but not instantaneously - contact AWS for a “warm up”</li>
+<li>NLB directly see the client IP</li>
+<li>4xx errors are client induced errors</li>
+<li>5xx errors are application induced errors
+<ul>
+<li>Load balancer Errors 503 means at capacity or no registered target</li>
+</ul>
+</li>
+<li>If the LB can’t connect to your application, check your security</li>
+</ul>
+<hr>
+<h1 id="asg-auto-scaling-group">ASG: Auto Scaling Group</h1>
+<p>In real-life, the load on your websites and applications can change. You can create and get rid of servers very quickly</p>
+<p>The goal of an Auto Scaling Group (ASG) is to:</p>
+<ul>
+<li>Scale out (add EC2 Instances) to match an increased load</li>
+<li>Scale in (remove EC2 Instances) to match a decreased load</li>
+<li>Ensure we have a minimum and a maximum number of machines running</li>
+<li>Automatically register new instances to a load balancer</li>
+</ul>
+<h4 id="asgs-have-the-following-attributes">ASGs have the following attributes</h4>
+<ul>
+<li>A launch configuration
+<ul>
+<li>AMI + Instance Type</li>
+<li>EC2 User Data</li>
+<li>EBS Volumes</li>
+<li>Security Groups</li>
+<li>SSH Key Pair</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Min Size / Max Size / Initial Capacity</li>
+<li>Network + Subnets Information</li>
+<li>Load Balancer Information</li>
+<li>Scaling Policies</li>
+</ul>
+<h4 id="auto-scaling-alarms">Auto Scaling Alarms</h4>
+<ul>
+<li>It is possible to scale an ASG based on CloudWatch alarms</li>
+</ul>
+<ul>
+<li>An alarm monitors a metric (such as Average CPU)</li>
+<li>Metrics are computed for the overall ASG instances</li>
+<li>Based on the alarm:
+<ul>
+<li>We can create a scale-out policies (increase the number of instances)</li>
+<li>We can create a scale-in policies (decrease the number of instances)</li>
+</ul>
+</li>
+</ul>
+<h4 id="new-auto-scaling-rules">New Auto Scaling Rules</h4>
+<ul>
+<li>It is now possible to define “better” auto scaling rules that are directly managed by EC2
+<ul>
+<li>Target Average CPU Usage</li>
+<li>Number of requests on the ELB per instance</li>
+<li>Average Network In</li>
+<li>Average Network Out</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>These rules are easier to set up and can make more sense</li>
+</ul>
+<h4 id="auto-scaling-custom-metric">Auto Scaling Custom Metric</h4>
+<ul>
+<li>We can auto scale based on a custom metric (ex: number of connected users)</li>
+</ul>
+<ul>
+<li>
+<ol>
+<li>Send custom metrics from an application on EC2 to CloudWatch (PutMetric API)</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Create a CloudWatch alarm to react to low / high values</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Use the CloudWatch Alarm as the scaling policy for ASG</li>
+</ol>
+</li>
+</ul>
+<h4 id="asg-summary">ASG Summary</h4>
+<ul>
+<li>Scaling policies can be on CPU, Network… and can even be on custom metrics or based on a schedule (if you know your visitors patterns)</li>
+</ul>
+<ul>
+<li>ASGs use Launch configurations and you update an ASG by providing a new launch configuration</li>
+<li>IAM roles attached to an ASG will get assigned to EC2 instances</li>
+<li>ASG are free. You pay for the underlying resources being launched</li>
+<li>Having instances under an ASG means that if they get terminated for whatever reason, the ASG will restart them. Extra safety</li>
+<li>ASG can terminate instances marked as unhealthy by an LB (and hence replace them)</li>
+</ul>
+<hr>
+<h1 id="ebs-volume">EBS Volume</h1>
+<ul>
+<li>An EC2 machine loses its root volume (main drive) when it is manually terminated.</li>
+<li>Unexpected terminations might happen from time to time (AWS would email you)</li>
+<li>Sometimes, you need a way to store your instance data somewhere</li>
+<li>An EBS (Elastic Block Store) Volume is a network drive you can attach to your instances while they run</li>
+<li>It allows your instances to persist data</li>
+</ul>
+<h4 id="ebs-volume-1">EBS Volume</h4>
+<ul>
+<li>It’s a network drive (Not a physical drive)
+<ul>
+<li>It uses the network to communicate the instance, which means there might be a bit of latency</li>
+<li>It can be detached from an EC2 instance and attached to another one quickly</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>It’s locked to an Availability Zone (AZ)
+<ul>
+<li>An EBS Volume in us-east-1a cannot be attached to us-east-1b</li>
+<li>To move a volume across, you first need to snapshot it</li>
+</ul>
+</li>
+<li>Have a provisioned capacity (size in GBs and IOPs)
+<ul>
+<li>You get billed for all the provisioned capacity</li>
+<li>You can increase the capacity of the drive over time</li>
+</ul>
+</li>
+</ul>
+<h4 id="ebs-volume-types">EBS Volume Types</h4>
+<ul>
+<li>EBS Volumes come in 4 types</li>
+<li>GP2 (SSD): General purpose SSD volume that balances price and performance for a wide variety of workloads</li>
+<li>IO1 (SSD): Highest-performance SSD volume for mission-critical low-latency or high- throughput workloads</li>
+<li>ST1 (HDD): Low cost HDD volume designed for frequently accessed, throughput- intensive workloads</li>
+<li>SC1 (HDD): Lowest cost HDD volume designed for less frequently accessed workloads</li>
+<li>EBS Volumes are characterized in Size | Throughput | IOPS</li>
+<li>When in doubt always consult the AWS documentation</li>
+</ul>
+<h4 id="ebs-volume-resizing">EBS Volume Resizing</h4>
+<ul>
+<li>Feb 2017: You can resize your EBS Volumes</li>
+</ul>
+<ul>
+<li>After resizing an EBS volume, you need to repartition your drive</li>
+</ul>
+<p>EBS Snapshots</p>
+<ul>
+<li>EBS Volumes can be backed up using “snapshots”</li>
+<li>Snapshots only take the actual space of the blocks on the volume</li>
+<li>If you snapshot a 100GB drive that only has 5 gb of data, then your EBS snapshot will only be 5 gb</li>
+<li>Snapshots are used for:
+<ul>
+<li>Backups: ensuring you can save your data in case of catastrophe</li>
+<li>Volume migration
+<ul>
+<li>Resizing a volume down</li>
+<li>Changing the volume type</li>
+<li>Encrypt a volume</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="ebs-encryption">EBS Encryption</h4>
+<ul>
+<li>When you create an encrypted EBS volume, you get the following:
+<ul>
+<li>Data at rest is encrypted inside the volume</li>
+<li>All the data in flight moving between the instance and the volume is encrypted</li>
+<li>All snapshots are encrypted</li>
+<li>All volumes created from the snapshots are encrypted</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Encryption and decryption are handled transparently (you have nothing to do)</li>
+<li>Encryption has a minimal impact on latency</li>
+<li>EBS Encryption leverages keys from KMS (AES-256)</li>
+<li>Copying an unencrypted snapshot allows encryption</li>
+</ul>
+<h4 id="ebs-vs-instance-store">EBS vs. Instance Store</h4>
+<ul>
+<li>Some instance do not come with Root EBS volumes</li>
+</ul>
+<ul>
+<li>Instead, they come with “instance Store”</li>
+<li>Instance store is physically attached to the machine</li>
+<li>Pros:
+<ul>
+<li>Better I/O performance</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>On termination, the instance store is lost</li>
+<li>You can’t resize the instance store</li>
+<li>Backups must be operated by the user</li>
+</ul>
+</li>
+<li>Overall, EBS-backed instances should fit most applications workloads</li>
+</ul>
+<h4 id="ebs-summary">EBS Summary</h4>
+<ul>
+<li>EBS can be attached to only one instance at a time</li>
+</ul>
+<ul>
+<li>EBS are locked at the AZ level</li>
+<li>Migrating an EBS volume across AZ means first backing it up (snapshot), then recreating it in the other AZ</li>
+<li>EBS backups use IO and you shouldn’t run them while your application is handling a lot of traffic</li>
+<li>Root EBS Volumes of instances get terminated by default if the EC2 instance gets terminated. (You can disable that)</li>
+<li>In some cases, it&rsquo;s better to externalize your RDS database so that it won&rsquo;t get deleted when you delete your elastic beanstalk enviornment</li>
+<li>Elastic Beanstalk relies on CloudFormation</li>
+</ul>
+<hr>
+<h1 id="route-53">Route 53</h1>
+<p>Route 53 is a managed DNS (Domain Name System)</p>
+<p>DNS is a collection of rules and records which helps clients understand how to reach a server through URLs.</p>
+<p>In AWS, the most common records are (will be on exam):</p>
+<ul>
+<li>A: URL to IPv4</li>
+<li>AAAA: URL to IPv6</li>
+<li>CNAME: URL to URL</li>
+<li>ALIAS: URL to AWS resource</li>
+</ul>
+<p>Route 53 can use:</p>
+<ul>
+<li>Public domain names you own</li>
+<li>Private domain names that can be resolved by your instances in your VPCs</li>
+</ul>
+<p>Route53 has advanced features such as:</p>
+<ul>
+<li>Load balancing (through DNS - also called client load balancing)</li>
+<li>Health checks (although limited…)</li>
+<li>Routing policy: simple, failover, geolocation, geoproximity, latency, weighted</li>
+</ul>
+<p>Prefer Alias over CNAME for AWS resources (for performance reasons)</p>
+<hr>
+<h1 id="rds-relational-database-service">RDS: Relational Database Service</h1>
+<p>A managed DB service for DB use SQL a query</p>
+<p>It allows you to create databases in the cloud that are</p>
+<ul>
+<li>Postgres</li>
+<li>Oracle</li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Microsoft SQL Server</li>
+<li>Aurora (AWS proprietary database)</li>
+</ul>
+<p>Advantages of RDS over deploying a database in EC2</p>
+<ul>
+<li>Managed service</li>
+<li>OS patching level</li>
+<li>Continuous backups and restore to specific timestamps (Point in Time Restore)</li>
+<li>Monitoring dashboards</li>
+<li>Read replicas for improved read performance</li>
+<li>Multi AZ setup for DR (Disaster Recovery)</li>
+<li>Maintenance windows for upgrades</li>
+<li>Scaling capability (vertical and horizontal)</li>
+<li>But you can’t SSH into your instances (amazon manages them for you)</li>
+</ul>
+<p>RDS Read replicas for read scalability</p>
+<ul>
+<li>Up to 5 read replicas</li>
+<li>Within AZ, Cross AZ or Cross region</li>
+<li>Replication is Async, so reads are eventually consistent</li>
+<li>Replicas can be promoted to their own DB</li>
+<li>Applications must update the connection string to leverage read replicas</li>
+</ul>
+<p>RDS Multi AZ (Disaster Recovery)</p>
+<ul>
+<li>SYNC replication</li>
+<li>One DNS name - automatic app failover to standby</li>
+<li>Increase availability</li>
+<li>Failover in case of loss of AZ, loss of network, instance or storage failure</li>
+<li>No manual intervention in apps</li>
+<li>Not used for scaling (only disaster recovery)</li>
+</ul>
+<p>RDS Backups</p>
+<ul>
+<li>Backups are automatically enabled in RDS</li>
+<li>Automated backups:
+<ul>
+<li>Daily full snapshot of the database</li>
+<li>Capture transaction logs in real time</li>
+<li>Ability to restore to any point in time</li>
+<li>7 days retention (can be increased to 35 days)</li>
+</ul>
+</li>
+<li>DB Snapshots:
+<ul>
+<li>Manually triggered by the user</li>
+<li>Retention of backup for as long as you want</li>
+</ul>
+</li>
+</ul>
+<p>RDS Encryption</p>
+<ul>
+<li>Encryption at rest capability with AWS KMS - AES-256 encryption</li>
+<li>SSL certificates to encrypt data to RDS in flight</li>
+<li>To enforce SSL:
+<ul>
+<li>PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (parameter groups)</li>
+</ul>
+</li>
+<li>TO connect using SSL:
+<ul>
+<li>Provide the SSL Trust certificate (can be downloaded from AWS)</li>
+<li>Provide SSL options when connection to the database</li>
+</ul>
+</li>
+</ul>
+<p>RDS Security</p>
+<ul>
+<li>RDS databases are usually deployed within a private subnet, not in a public one</li>
+<li>RDS Security works by leveraging security groups (the same concept as for EC2 instances) - it controls who can communicate with RDS</li>
+<li>IAM policies help control who can manage RDS</li>
+<li>Traditional username and password can be used to login to the database</li>
+<li>IAM users can now be used too (for MySQL / Aurora - New)</li>
+</ul>
+<p>RDS vs. Aurora</p>
+<ul>
+<li>Aurora is a proprietary technology from AWS (not open sourced)</li>
+<li>Postgres and MySQL are both supported as Aurora DB (that means you r drivers will work as if Aurora was a Postgres or MySQL database)</li>
+<li>Aurora is “AWS cloud optimized” and claims 5x performance improvements over MySQL on RDS, over 3x the performance of Postgres on RDS</li>
+<li>Aurora storage automatically grows in increments of 10GB, up to 64 TB</li>
+<li>Aurora can have 15 replicas while MySQL has 5, and the replication process is faster (sub 10 ms replica lag)</li>
+<li>Failover in Aurora is instantaneous. It’s HA native.</li>
+<li>Aurora costs more than RDS (20% more) - but is more efficient</li>
+</ul>
+<hr>
+<h1 id="elasticache">ElastiCache</h1>
+<p>Overview:
+The same way RDS is to get managed Relational Databases, ElastiCache is to get managed Redis or Memcached. Caches are in-memory databases with really high performance, low latency. They help reduce loads off of databases for read intensive workloads. They help make your application stateless.</p>
+<ul>
+<li>Write scaling using shading.</li>
+<li>Read scaling using Read Replicas</li>
+<li>Multi AZ with Failover Capability</li>
+<li>AWS takes care of OS maintenance / patching, optimizations, setup, configuration, monitoring, failure recovery and backups</li>
+</ul>
+<h4 id="solution-architecture---db-cache">Solution Architecture - DB Cache</h4>
+<ul>
+<li>Applications queries ElastiCache, if not available, get from RDS and store in ElastiCache</li>
+</ul>
+<ul>
+<li>Helps relieve load in RDS</li>
+<li>Cache must have an invalidation strategy to make sure only the most current data is used in there
+User Session Store</li>
+<li>User logs into any of the applications</li>
+<li>The application writes the session data into ElastiCache</li>
+<li>The user hits another instance of our application</li>
+<li>The instance retrieves the data and the user is already logged in</li>
+</ul>
+<h4 id="redis-overview">Redis Overview</h4>
+<ul>
+<li>Redis is an in-memory key-value store</li>
+</ul>
+<ul>
+<li>Super low latency (sub ms)</li>
+<li>Cache survive reboots by default (it’s called persistence)</li>
+<li>Great to host
+<ul>
+<li>User sessions</li>
+<li>Leaderboards (for gaming)</li>
+<li>Distributed states</li>
+<li>Relieve pressure on databases (such as RDS)</li>
+<li>Pub / Sub capability for messaging</li>
+</ul>
+</li>
+<li>Multi AZ with Automatic failover for Disaster Recovery if you don’t want to lose your cache data</li>
+<li>Support for Read Replicas</li>
+</ul>
+<h4 id="memcached-overview">Memcached Overview</h4>
+<ul>
+<li>Memcached is an in-memory object store</li>
+</ul>
+<ul>
+<li>Cache doesn’t survive reboots</li>
+<li>Use cases:</li>
+<li>Quick retrieval of objects from memory</li>
+<li>Cache often accessed objects</li>
+<li>Overall, Redis has largely grown in popularity and has better feature sets than memcached</li>
+<li>Most likely, you’d probably only want to use Redis for caching needs</li>
+</ul>
+<hr>
+<h1 id="vpc-virtual-private-cloud">VPC: Virtual Private Cloud</h1>
+<p>Within a region, you’re able to create VPCs. Each VPC contain subnets (networks). Each subnet must be mapped to an AZ. It’s common to have a public ip and private ip subnet. It’s common to have many subnets per AZ.</p>
+<h4 id="public-subnets-usually-contain">Public Subnets usually contain</h4>
+<ul>
+<li>Load Balancers</li>
+</ul>
+<ul>
+<li>Static Websites</li>
+<li>Files</li>
+<li>Public Authentication Layers</li>
+</ul>
+<p>Private Subnets usually contain:</p>
+<ul>
+<li>Web application servers</li>
+<li>Databases</li>
+</ul>
+<p>Public and Private subnets can communicate if they’re in the same VPC</p>
+<h4 id="aws-vpc-summary">AWS VPC Summary</h4>
+<ul>
+<li>VPC &amp; Regions aren’t much asked at the developer associate exam</li>
+</ul>
+<ul>
+<li>All new accounts come with a default VPC</li>
+<li>It’s possible to use a VPN to connect to a VPC</li>
+<li>VPC flow logs allow you to monitor the traffic within, in and out of your VPC (useful for security, performance, audit)</li>
+<li>VPC are per Account per Region</li>
+<li>Subnets are per VPC per AZ</li>
+<li>Some AWS resources can be deployed in VPC while others can’t</li>
+<li>You can peer VPC (within or across accounts) to make it look like they’re part of the same network</li>
+</ul>
+<hr>
+<h1 id="s3-buckets">S3 Buckets</h1>
+<ul>
+<li>Amazon S3 allows people to store objects (files) fun “buckets” (directories)</li>
+<li>Buckets must have a globally unique name
+<ul>
+<li>Naming convention:
+<ul>
+<li>No uppercase</li>
+<li>No underscore</li>
+<li>3-63 characters long</li>
+<li>Not an IP</li>
+<li>Must start with lowercase letter or number</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Objects
+<ul>
+<li>Objects (files) have a Key. The key is the FULL path:
+<ul>
+<li>&lt;my_bucket&gt;/my_file.txt</li>
+<li>&lt;my_bucket&gt;/my_folder/another_folder/my_file.txt</li>
+</ul>
+</li>
+<li>There’s no concept of “directories” within buckets (although the UI will trick you to think otherwise)</li>
+<li>Just keys with very long names that contain slashes (“/“)</li>
+<li>Object Values are the content of the body:
+<ul>
+<li>Max Size is 5TB</li>
+<li>If uploading more than 5GB, must use “multi-part upload”</li>
+</ul>
+</li>
+<li>Metadata (list of text key / value pairs - system or user metadata)</li>
+<li>Tags (Unicode key / value pair - up to 10) - useful for security / lifecycle</li>
+<li>Version ID (if versioning</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h4 id="aws-s3---versioning">AWS S3 - Versioning</h4>
+<ul>
+<li>It is enabled at the bucket level</li>
+</ul>
+<ul>
+<li>Same key overwrite will increment the “version”: 1, 2, 3</li>
+<li>It is best practice to version your buckets
+<ul>
+<li>Protect against unintended deletes (ability to restore a version)</li>
+<li>Easy roll back to previous versions</li>
+</ul>
+</li>
+<li>Any file that is not version prior to enabling versioning will have the version “null”</li>
+</ul>
+<h4 id="s3-encryption-for-objects">S3 Encryption for Objects</h4>
+<ul>
+<li>There are 4 methods of encrypt objects in S3
+<ul>
+<li>SSE-S3: encrypts S3 objects
+<ul>
+<li>Encryption using keys handled &amp; managed by AWS S3</li>
+<li>Object is encrypted server side</li>
+<li>AES-256 encryption type</li>
+<li>Must set header: “x-amz-server-side-encryption”:”AES256”</li>
+</ul>
+</li>
+<li>SSE-KMS: encryption using keys handled &amp; managed by KMS
+<ul>
+<li>KMS Advantages: user control + audit trail</li>
+<li>Object is encrypted server side</li>
+<li>Maintain control of the rotation policy for the encryption keys</li>
+<li>Must set header: “x-amz-server-side-encryption”:”aws:kms”</li>
+</ul>
+</li>
+<li>SSE-C: server-side encryption using data keys fully managed by the customer outside of AWS
+<ul>
+<li>Amazon S3 does not store the encryption key you provide</li>
+<li>HTTPS must be used</li>
+<li>Encryption key must provided in HTTP headers, for every HTTP request made</li>
+</ul>
+</li>
+<li>Client Side Encryption
+<ul>
+<li>Client library such as the amazon S3 Encryption Client</li>
+<li>Clients must encrypt data themselves before sending to S3</li>
+<li>Clients must decrypt data themselves when retrieving from S3</li>
+<li>Customer fully manages the keys and encryption cycle</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="encryption-in-transit-ssl">Encryption in transit (SSL)</h4>
+<ul>
+<li>AWS S3 exposes:
+<ul>
+<li>HTTP endpoint: non encrypted</li>
+<li>HTTPS endpoint: encryption in flight</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>You’re free to use the endpoint your ant, but HTTPS is recommended</li>
+<li>HTTPS is mandatory for SSE-C</li>
+<li>Encryption in flight is also called SSL / TLS</li>
+</ul>
+<h4 id="s3-security">S3 Security</h4>
+<ul>
+<li>User based
+<ul>
+<li>IAM policies - which API calls should be allowed for a specific user from IAM console</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Resource based
+<ul>
+<li>Bucket policies - bucket wide rules from the S3 console - allows cross account</li>
+<li>Object Access Control List (ACL) - finer grain</li>
+<li>Bucket Access Control List (ACL) - less common</li>
+</ul>
+</li>
+<li>Networking
+<ul>
+<li>Support VPC endpoints (for instances in VPC without www internet)</li>
+</ul>
+</li>
+<li>Logging and Audit:
+<ul>
+<li>S3 access logs can be stored in other S3 buckets</li>
+<li>API calls can be logged in AWS CloudTrail</li>
+</ul>
+</li>
+<li>User Security:</li>
+<li>MFA (multi factor authentication) can be required in versioned buckets to delete objects</li>
+<li>Signed URLs: URLS that are valid only for a limited time (ex: premium video services for logged in users)</li>
+</ul>
+<h4 id="s3-bucket-policies">S3 Bucket Policies</h4>
+<ul>
+<li>JSON based policies
+<ul>
+<li>Resources: buckets and objects</li>
+<li>Actions: Set of API to Allow or Deny</li>
+<li>Effect: Allow / Deny</li>
+<li>Principal: The account or user to apply the policy to</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Use S3 bucket for policy to:
+<ul>
+<li>Grant public access to the bucket</li>
+<li>Force objects to be encrypted at upload</li>
+<li>Grant access to another account (Cross Account)</li>
+</ul>
+</li>
+</ul>
+<h4 id="s3-websites">S3 Websites</h4>
+<ul>
+<li>S3 can host static website sand have them accessible on the world wide web</li>
+</ul>
+<ul>
+<li>The website URL will be:
+<ul>
+<li><!-- raw HTML omitted -->.s3-website.<!-- raw HTML omitted -->.amzonaws.com</li>
+<li>OR</li>
+<li><!-- raw HTML omitted -->.s3-website.<!-- raw HTML omitted -->.amazonaws.com</li>
+</ul>
+</li>
+<li>If you get a 403 (forbidden) error, make sure the bucket policy allows public reads!</li>
+<li></li>
+</ul>
+<h4 id="s3-cors">S3 Cors</h4>
+<ul>
+<li>If you request data from another S3 bucket, you need to enable CORS</li>
+</ul>
+<ul>
+<li>Cross Origin Resource Sharing allows you to limit the number of websites that can request your files in S3 (and limit your costs)</li>
+<li>This is a popular exam question</li>
+</ul>
+<h4 id="aws-s3---consistency-model">AWS S3 - Consistency Model</h4>
+<ul>
+<li>Read after write consistency for PUTS of new objects
+<ul>
+<li>As soon as an object is written, we can retrieve it ex: (PUT 200 -&gt; GET 200)</li>
+<li>This is true, except if we did a GET before to see if the object existed ex: (GET 404 -&gt; PUT 200 -&gt; GET 404) - eventually consistent</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Eventual Consistency for DELETES and PUTS of existing objects
+<ul>
+<li>If we read an object after updating, we might get the older version ex: (PUT 200 -&gt; PUT 200 -&gt; GET 200 (might be older version))</li>
+<li>If we delete an object, we might still be able to retrieve it for a short time ex: (DELETE 200 -&gt; GET 200)</li>
+</ul>
+</li>
+</ul>
+<h4 id="aws-s3---other">AWS S3 - Other</h4>
+<ul>
+<li>S3 can send notifications on changes to
+<ul>
+<li>AWS SQS: queue service</li>
+<li>AWS SNS: notification service</li>
+<li>AWS Lambda: serverless service</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>S3 has a cross region replication feature (managed)</li>
+</ul>
+<h4 id="aws-s3-performance">AWS S3 Performance</h4>
+<ul>
+<li>Faster upload of large objects (&gt;5GB), use multipart upload
+<ul>
+<li>Parallelizes PUTs for greater throughput</li>
+<li>Maximize your network bandwidth</li>
+<li>Decrease time to retry in case a part fails</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Use CloudFront to ache S3 objects around the world (improves reads)</li>
+<li>S3 Transfer Acceleration (uses edge locations) - just need to change the endpoint you write to, not the code</li>
+<li>If using SSE-KMS encryption, you may be limited to your AWS limits for KMS usage (~100s - 1000s downloads / uploads per second)</li>
+</ul>
+<hr>
+<h1 id="cli-command-line-interface">CLI: Command Line Interface</h1>
+<p>Add user credentials locally using this command:</p>
+<ul>
+<li>$ <code>aws configure</code></li>
+</ul>
+<p>If you are using multiple AWS accounts, you can add custom profiles with seperate credentials using this command:</p>
+<ul>
+<li>$ <code>aws configure --profile {my-other-aws-account}</code></li>
+<li>if you you&rsquo;d like to execute commands on a specific profile:
+<ul>
+<li>example: <code>aws s3 ls --profile {my-other-aws-account}</code></li>
+</ul>
+</li>
+<li>if you don&rsquo;t specify the aws profile, the commands will be executed to your <strong>default</strong> profile</li>
+</ul>
+<h4 id="aws-cli-on-ec2">AWS CLI on EC2</h4>
+<ul>
+<li>IAM roles can be attached to EC2 instances</li>
+</ul>
+<ul>
+<li>IAM roles can come with a policy authorizing exactly what the EC2 instance should be able to do. This is the best practice.</li>
+<li>EC2 Instances can then use these profiles automatically without any additional configurations</li>
+</ul>
+<h4 id="cli-sts-decode-errors">CLI STS Decode Errors</h4>
+<ul>
+<li>When you run API calls and they fail, you can get a long, encoded error message code</li>
+<li>This error can be decoded using STS</li>
+<li>run the command: <code>aws sts decode-authorization-message --encoded-message {encoded_message_code}</code></li>
+<li>your IAM user must have the correct permissions to use this command by adding the <code>STS</code> service to your policy</li>
+</ul>
+<hr>
+<h1 id="sdk-software-development-kit">SDK: Software Development Kit</h1>
+<p>If you want to perform actions on AWS directly from your application&rsquo;s code without using a CLI, you can use an SDK</p>
+<p>Official SDKs:</p>
+<ul>
+<li>Java</li>
+<li>.NET</li>
+<li>Node.js</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>C++</li>
+</ul>
+<h4 id="sdk-takeaways">SDK Takeaways</h4>
+<ul>
+<li>AWS SDK are required when coding against AWS Services such as DynamoDB</li>
+<li>Fact: AWS CLI uses the Python SDK (boto3)</li>
+<li>The exam expects you to know when you should use an SDK</li>
+<li>If you don’t specify or configure a default region, then us-east-1 will be chosen by default</li>
+</ul>
+<h4 id="sdk-credentials-security">SDK Credentials Security</h4>
+<ul>
+<li>It’s recommend to use the default credential provider chain</li>
+<li>The default credential provider chain works seamlessly with:
+<ul>
+<li>AWS credentials at ~/.aws/credentials (only on our computers or on premise)</li>
+<li>Instance Profile Credentials using IAM Roles (for EC2 machines, etc&hellip;)</li>
+</ul>
+</li>
+<li>Environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)</li>
+<li>Overall, NEVER EVER STORE AWS CREDENTIALS IN YOUR CODE.</li>
+<li>Use IAM Roles if working from within AWS Services to inherit credentials</li>
+</ul>
+<h4 id="exponential-backoff">Exponential Backoff</h4>
+<ul>
+<li>Any API that fails because of too many calls needs to be retried with Exponential Backoff</li>
+<li>These apply to rate limited API</li>
+<li>Retry mechanism is included in SDK API calls</li>
+</ul>
+<hr>
+<h1 id="elastic-beanstalk">Elastic Beanstalk</h1>
+<h4 id="elastic-beanstalk-is-a-developer-centric-view-of-deploying-application-on-aws"><em>Elastic Beanstalk</em> is a developer centric view of deploying application on AWS</h4>
+<ul>
+<li>
+<p>A managed service</p>
+<ul>
+<li>Instance configuration</li>
+<li>OS is handled by Beanstalk</li>
+<li>Deployment strategy is configurableut performed by Beanstalk</li>
+<li>Application code configurable</li>
+</ul>
+</li>
+<li>
+<p>It will leverage all the AWS components that we have gone over thus far:</p>
+<ul>
+<li>EC2</li>
+<li>ASG</li>
+<li>ELB</li>
+<li>RDS</li>
+<li>Etc..</li>
+</ul>
+</li>
+<li>
+<p>Elastic Beanstalk is free but you pay for the underlying instances</p>
+</li>
+<li>
+<p>Three architecture models:</p>
+<ul>
+<li>Single instance deployment: good for developers</li>
+<li>LB + ASG: great for production or staging web applications</li>
+<li>ASG only: great for non-web apps in production</li>
+</ul>
+</li>
+<li>
+<p>Elastic Beanstalk has three components:</p>
+<ul>
+<li>Application</li>
+<li>Application Version (Each deployment gets assigned a version)</li>
+<li>Environment name (dev, staging, prod): free naming</li>
+</ul>
+</li>
+<li>
+<p>You deploy application versions to environments and can promote application versions to the next environment</p>
+</li>
+<li>
+<p>Rollback feature to previous application versions</p>
+</li>
+<li>
+<p>Full control over the lifecycle of environments</p>
+</li>
+<li>
+<p>Support for many platforms:</p>
+<ul>
+<li>Go</li>
+<li>Java</li>
+<li>Python</li>
+<li>Node.js</li>
+<li>Ruby</li>
+<li>Single Container Docker</li>
+<li>Multi Container Docker</li>
+<li>Preconfigure Docker</li>
+<li>Write your own custom platforms (If the any of the above is not supported)</li>
+</ul>
+<hr>
+</li>
+</ul>
+<h1 id="cicd-continuous-integration-and-deployment">CICD: Continuous Integration and Deployment</h1>
+<ul>
+<li>
+<p>Why use CICD?</p>
+<ul>
+<li>Ideally, you&rsquo;d want to set up a CICD to help you automate multiple steps to automate builds, push code to a repository and then deploy to your updated code to AWS.</li>
+<li>This is a faster, efficient way that also helps minimize potential mistakes as opposed to running multiple manual steps</li>
+<li>Automate deployement to different stages (dev, staging, and production)</li>
+<li>May add manual approvals when needed</li>
+</ul>
+</li>
+<li>
+<p>To be a proper AWS developer, you&rsquo;d need to learn CICD</p>
+</li>
+<li>
+<p>CICD Services in AWS</p>
+<ul>
+<li>AWS CodeCommit: storing our code (similar to Github)</li>
+<li>AWS CodePipeline: automatig our pipeline from code to ElasticBeanstalk</li>
+<li>AWS CodeBuild: To build and test code</li>
+<li>AWS CodeDeploy: deploying code to EC2 fleets (not Beanstalk)</li>
+</ul>
+</li>
+<li>
+<p>Continuous Integration</p>
+<ul>
+<li>Developers push code to a repository (Github, Bitbucket, CodeCommit, etc)</li>
+<li>A testing or build server checks the code as soon as it&rsquo;s pushed to the repository (CodeBuild, Jenkins CI, etc)</li>
+<li>The developer gets feedback about the tests and checks that have passed or failed</li>
+<li>Benefits of CI:
+<ul>
+<li>Find bugs and fix it early on</li>
+<li>Deliver fast as soon as the code is tested</li>
+<li>Deploy frequently</li>
+<li>Unblocked developers are happy</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Continuous Delivery</p>
+<ul>
+<li>Ensure that the software can be released reliably whenever needed</li>
+<li>Ensures deployment happen often and quick</li>
+<li>Ability to shift away from &ldquo;one release every 3 months&rdquo; to &ldquo;5 releases a day&rdquo;</li>
+<li>Automated deployments</li>
+</ul>
+</li>
+</ul>
+<p>Orchestration == CICD</p>
+<hr>
+<h1 id="cloudformation">CloudFormation</h1>
+<ul>
+<li>Currently, we have been doing a lot of manual work</li>
+<li>All this manual work will be very tough to reproduce:
+<ul>
+<li>In another region</li>
+<li>In another AWS account</li>
+<li>Within the same region if everything was deleted</li>
+</ul>
+</li>
+<li>Wouldn’t it be great, if all our infrastructure was&hellip; code?</li>
+<li>That code would be deployed and create / update / delete our
+infrastructure</li>
+</ul>
+<h4 id="what-is-cloudformation">What is CloudFormation?</h4>
+<ul>
+<li>CloudFormation is a declarative way of outlining your AWS Infrastructure, for any resources (most of them are supported).</li>
+<li>For example, within a CloudFormation template, you want to:
+<ul>
+<li>I want a security group</li>
+<li>I want two EC2 machines using this security group</li>
+<li>I want two Elastic IPs for these EC2 machines</li>
+<li>I want an S3 bucket</li>
+<li>I want a load balancer (ELB) in front of these machines</li>
+<li>Then CloudFormation creates those for you, in the right order, with the exact configuration that you specify</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note</strong>: This is an introduction to CloudFormation</p>
+<ul>
+<li>It can take over 3 hours to properly learn and master CloudFormation</li>
+<li>This section is meant so you get a good idea of how it works</li>
+<li>We’ll be slightly less hands-on than in other sections</li>
+<li>We’ll learn everything we need to answer questions for the exam</li>
+<li>The exam does not require you to actually write CloudFormation</li>
+<li>The exam expects you to understand how to read CloudFormation</li>
+</ul>
+<h4 id="benefits-of-cloudformation">Benefits of CloudFormation</h4>
+<ul>
+<li>Infrastructure as code
+<ul>
+<li>No resources are manually created, which is excellent for control</li>
+<li>The code can be version controlled for example using git</li>
+<li>Changes to the infrastructure are reviewed through code</li>
+</ul>
+</li>
+<li>Cost
+<ul>
+<li>Each resources within the stack is stagged with an identifier so you can easily see how much a stack costs you</li>
+<li>You can estimate the costs of your resources using the CloudFormation template</li>
+<li>Savings strategy: In Dev, you could automation deletion of templates at 5 PM and recreated at 8 AM, safely</li>
+</ul>
+</li>
+<li>Productivity
+<ul>
+<li>Ability to destroy and re-create an infrastructure on the cloud on the fly</li>
+<li>Automated generation of Diagram for your templates!</li>
+<li>Declarative programming (no need to figure out ordering and orchestration)</li>
+</ul>
+</li>
+<li>Separation of concern: create many stacks for many apps, and many layers. Ex:
+<ul>
+<li>PC stacks</li>
+<li>Network stacks</li>
+<li>App stacks</li>
+</ul>
+</li>
+<li>Don’t re-invent the wheel
+<ul>
+<li>Leverage existing templates on the web!</li>
+<li>Leverage the documentation</li>
+</ul>
+</li>
+</ul>
+<h4 id="how-cloudformation-works">How CloudFormation works</h4>
+<ul>
+<li>Templates have to be uploaded in S3 and then referenced in CloudFormation</li>
+<li>To update a template, we can’t edit previous ones. We have to re- upload a new version of the template to AWS</li>
+<li>Stacks are identified by a name</li>
+<li>Deleting a stack deletes every single artifact that was created by
+CloudFormation.</li>
+</ul>
+<h4 id="deploying-cloudformation-templates">Deploying CloudFormation templates</h4>
+<ul>
+<li>Manual way:
+<ul>
+<li>Editing templates in the CloudFormation Designer</li>
+<li>Using the console to input parameters, etc</li>
+</ul>
+</li>
+<li>Automated way:
+<ul>
+<li>Editing templates in a YAML file</li>
+<li>Using the AWS CLI (Command Line Interface) to deploy the templates</li>
+<li>Recommended way when you fully want to automate your flow</li>
+</ul>
+</li>
+</ul>
+<h4 id="cloudformation-building-blocks">CloudFormation Building Blocks</h4>
+<ul>
+<li>Templates components (one course section for each):
+<ol>
+<li>Resources: your AWS resources declared in the template (MANDATORY)</li>
+<li>Parameters: the dynamic inputs for your template</li>
+<li>Mappings: the static variables for your template</li>
+<li>Outputs: References to what has been created</li>
+<li>Conditionals: List of conditions to perform resource creation</li>
+<li>Metadata</li>
+</ol>
+</li>
+<li>Templates helpers:
+<ol>
+<li>References</li>
+<li>Functions</li>
+</ol>
+</li>
+</ul>
+<h4 id="cloudformation-resources">CloudFormation Resources</h4>
+<ul>
+<li>Resources are the core of your CloudFormation template (MANDATORY)</li>
+<li>They represent the different AWS Components that will be created and configured</li>
+<li>Resources are declared and can reference each other</li>
+<li>AWS figures out creation, updates and deletes of resources for us</li>
+<li>There are over 224 types of resources (!)</li>
+<li>Resource types identifiers are of the form:
+<ul>
+<li><code>AWS::aws-product-name::data-type-name</code></li>
+</ul>
+</li>
+<li>Resource documentation:
+<ul>
+<li>I can’t teach you all of the 224 resources, but I can teach you how to learn how to use them.</li>
+<li>All the resources can be found here: <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html</a></li>
+<li>Example here (for an EC2 instance): <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="analysis-of-cloudformation-templates">Analysis of CloudFormation Templates</h5>
+<ul>
+<li>Going back to the example of the introductory section, let’s learn why it was written this way.</li>
+<li>Relevant documentation can be found here:
+<ul>
+<li><a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html</a></li>
+<li><a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html</a></li>
+<li><a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="faq-for-resources">FAQ for resources</h5>
+<ul>
+<li>Can I create a dynamic amount of resources?
+<ul>
+<li>No, you can’t. Everything in the CloudFormation template has to be declared.You can’t perform code generation there</li>
+</ul>
+</li>
+<li>Is every AWS Service supported?
+<ul>
+<li>Almost. Only a select few niches are not there yet</li>
+<li>You can work around that using AWS Lambda Custom Resources</li>
+</ul>
+</li>
+</ul>
+<h4 id="cloudformation-parameters">CloudFormation Parameters</h4>
+<ul>
+<li>Parameters are a way to provide inputs to your AWS CloudFormation template</li>
+<li>They’re important to know about if:
+<ul>
+<li>You want to reuse your templates across the company</li>
+<li>Some inputs can not be determined ahead of time</li>
+</ul>
+</li>
+<li>Parameters are extremely powerful, controlled, and can prevent errors from happening in your templates thanks to types.</li>
+<li>AWS offers us pseudo parameters in any CloudFormation template.</li>
+<li>These can be used at any time and are enabled by default</li>
+</ul>
+<h5 id="how-to-reference-a-parameter">How to reference a parameter</h5>
+<ul>
+<li>The <code>Fn::Ref</code> function can be leveraged to reference parameters</li>
+<li>Parameters can be used anywhere in a template.</li>
+<li>The shorthand for this in YAML is !Ref</li>
+<li>The function can also reference other elements within the template</li>
+</ul>
+<h4 id="cloudformation-mappings">CloudFormation Mappings</h4>
+<ul>
+<li>Mappings are fixed variables within your CloudFormation Template.</li>
+<li>They’re very handy to differentiate between different environments (dev vs prod), regions (AWS regions), AMI types, etc</li>
+<li>All the values are hardcoded within the template</li>
+<li>We use <code>Fn::FindInMap</code> to return a named value from a specific key</li>
+</ul>
+<h4 id="when-would-you-use-mapping-vs-parameters">When would you use Mapping vs. Parameters?</h4>
+<ul>
+<li>Mappings are great when you know in advance all the values that can be taken and that they can be deduced from variables such as
+<ul>
+<li>Region</li>
+<li>Availability Zone</li>
+<li>AWS Account</li>
+<li>Environment (dev vs prod)</li>
+<li>Etc&hellip;</li>
+</ul>
+</li>
+<li>They allow safer control over the template.</li>
+<li>Use parameters when the values are really user specific</li>
+</ul>
+<h4 id="cf-outputs">CF Outputs</h4>
+<ul>
+<li>The Outputs section declares optional outputs values that we can import into other stacks (if you export them first)!</li>
+<li>You can also view the outputs in the AWS Console or in using the AWS CLI</li>
+<li>They’re very useful for example if you define a network CloudFormation, and output the variables such as VPC ID and your Subnet IDs</li>
+<li>It’s the best way to perform some collaboration cross stack, as you let expert handle their own part of the stack</li>
+<li>You can’t delete a CloudFormation Stack if its outputs are being referenced by another CloudFormation stack</li>
+</ul>
+<h5 id="outputs-examples">Outputs examples</h5>
+<ul>
+<li>Creating a SSH Security Group as part of one template</li>
+<li>Create an output that references that security group</li>
+</ul>
+<h5 id="cross-stack-reference">Cross Stack Reference</h5>
+<ul>
+<li>We then create a second template that leverages that security group
+<ul>
+<li>Use the <code>Fn::ImportValue function</code></li>
+</ul>
+</li>
+<li>You can’t delete the underlying stack until all the references are deleted too.</li>
+</ul>
+<h4 id="cloudformation-conditions">CloudFormation Conditions</h4>
+<ul>
+<li>Conditions are used to control the creation of resources or outputs based on a condition.</li>
+<li>Conditions can be whatever you want them to be, but common ones are:
+<ul>
+<li>Environment (dev / test / prod)</li>
+<li>AWS Region</li>
+<li>Any parameter value</li>
+</ul>
+</li>
+<li>Each condition can reference another condition, parameter value or mapping</li>
+</ul>
+<h5 id="defining-conditions">Defining Conditions</h5>
+<ul>
+<li>The logical ID is for you to choose. It’s how you name condition</li>
+<li>The intrinsic function (logical) can be any of the following:
+<ul>
+<li><code>Fn::And</code>
+<code>Fn::Equals</code></li>
+<li><code>Fn::If</code></li>
+<li><code>Fn::Not</code></li>
+<li><code>Fn::Or</code></li>
+</ul>
+</li>
+<li>Conditions can be applied to resources / outputs / etc</li>
+</ul>
+<h4 id="cloudformation-intrinsic-functions">CloudFormation Intrinsic Functions</h4>
+<ul>
+<li>Refs
+<ul>
+<li>The <code>Fn::Ref</code> function can be leveraged to reference
+<ul>
+<li>Parameters =&gt; returns the value of the parameter</li>
+<li>Resources =&gt; returns the physical ID of the underlying resource (ex: EC2 ID)</li>
+</ul>
+</li>
+<li>The shorthand for this in YAML is <code>!Ref</code></li>
+</ul>
+</li>
+<li><code>Fn::GetAtt</code>
+<ul>
+<li>Attributes are attached to any resources you create</li>
+<li>To know the attributes of your resources, the best place to look at is the documentation.</li>
+<li>For example: the AZ of an EC2 machine</li>
+</ul>
+</li>
+<li><code>Fn::FindInMap</code>
+<ul>
+<li>We use <code>Fn::FindInMap</code>to return a named value from a specific key</li>
+<li><code>!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]</code></li>
+</ul>
+</li>
+<li><code>Fn::ImportValue</code>
+<ul>
+<li>Import values that are exported in other templates
+<ul>
+<li>Use the <code>Fn::ImportValue</code> function</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Fn::Join</code>
+<ul>
+<li>Join values with a delimiter</li>
+</ul>
+</li>
+<li><code>Fn::Sub</code>
+<ul>
+<li><code>Fn::Sub</code>, or <code>!Sub</code> as a shorthand, is used to substitute variables from a text. It’s a very handy function that will allow you to fully customize your templates.</li>
+<li>For example, you can combine <code>Fn::Sub</code> with References or AWS Pseudo variables</li>
+<li>String must contain ${VariableName} and will substitute them</li>
+</ul>
+</li>
+<li>Condition Functions (<code>Fn::If</code>, <code>Fn::Not</code>, <code>Fn::Equals</code>, etc&hellip;)
+<ul>
+<li>The logical ID is for you to choose. It’s how you name condition</li>
+<li>The intrinsic function (logical) can be any of the following:
+<ul>
+<li><code>Fn::And</code></li>
+<li><code>Fn::Equals</code></li>
+<li><code>Fn::If</code></li>
+<li><code>Fn::Not</code></li>
+<li><code>Fn::Or</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="cloudformation-rollbacks">CloudFormation Rollbacks</h4>
+<ul>
+<li>Stack Creation Fails
+<ul>
+<li>Default: everything rolls back (gets deleted).We can look at the log</li>
+<li>Option to disable rollback and troubleshoot what happened</li>
+</ul>
+</li>
+<li>Stack Update Fails:
+<ul>
+<li>The stack automatically rolls back to the previous known working state</li>
+<li>Ability to see in the log what happened and error messages</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="cloudwatch">CloudWatch</h1>
+<p>CloudWatch is used for monitoring.</p>
+<h3 id="why-is-monitoring-important">Why is monitoring important?</h3>
+<ul>
+<li>To deploy applications
+<ul>
+<li>Safely</li>
+<li>Automatically</li>
+<li>Using Infrastructure as Code</li>
+<li>Leveraging AWS components</li>
+</ul>
+</li>
+<li>Because applications are deployed, and users don’t care what services we&rsquo;ve used</li>
+<li>Users only care that the application is working!
+<ul>
+<li>Application latency: will it increase over time?</li>
+<li>Application outages: customer experience should not be degraded</li>
+<li>Users contacting the IT department or complaining is not a good outcome</li>
+<li>Troubleshooting and remediation</li>
+</ul>
+</li>
+<li>Internal monitoring:
+<ul>
+<li>Can we prevent issues before they happen?</li>
+<li>Performance and Cost</li>
+<li>Trends (scaling patterns)</li>
+<li>Learning and Improvement</li>
+</ul>
+</li>
+</ul>
+<h3 id="monitoring-in-aws">Monitoring in AWS</h3>
+<ul>
+<li>AWS CloudWatch:
+<ul>
+<li>Metrics: Collect and track key metrics</li>
+<li>Logs: Collect, monitor, analyze and store log files</li>
+<li>Events: Send notifications when certain events happen in your AWS • Alarms: React in real-time to metrics / events</li>
+</ul>
+</li>
+<li>AWS X-Ray:
+<ul>
+<li>Troubleshooting application performance and errors</li>
+<li>Distributed tracing of microservices</li>
+</ul>
+</li>
+<li>AWS CloudTrail:
+<ul>
+<li>Internal monitoring of API calls being made</li>
+<li>Audit changes to AWS Resources by your users</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloudwatch-metrics">CloudWatch Metrics</h3>
+<ul>
+<li>CloudWatch provides metrics for every services in AWS</li>
+<li><strong>Metric</strong> is a variable to monitor (CPUUtilization, NetworkIn&hellip;)</li>
+<li>Metrics belong to <strong>namespaces</strong></li>
+<li><strong>Dimension</strong> is an attribute of a metric (instance id, environment, etc&hellip;).</li>
+<li>Up to 10 dimensions per metric</li>
+<li>Metrics have <strong>timestamps</strong></li>
+<li>Can create CloudWatch dashboards of metrics</li>
+</ul>
+<h3 id="cloudwatch-ec2-detailed-monitoring">CloudWatch EC2 Detailed monitoring</h3>
+<ul>
+<li>EC2 instance metrics have metrics “every 5 minutes”</li>
+<li>With detailed monitoring (for a cost), you get data “every 1 minute”</li>
+<li>Use detailed monitoring if you want to more prompt scale your ASG!</li>
+<li>The AWS Free Tier allows us to have 10 detailed monitoring metrics</li>
+<li><strong>Note:</strong> EC2 Memory usage is by default not pushed (must be pushed
+from inside the instance as a custom metric)</li>
+</ul>
+<h3 id="aws-cloudwatch-custom-metrics">AWS CloudWatch Custom Metrics</h3>
+<ul>
+<li>Possibility to define and send your own custom metrics to CloudWatch</li>
+<li>Ability to use dimensions (attributes) to segment metrics
+<ul>
+<li>Instance.id</li>
+<li>Environment.name</li>
+</ul>
+</li>
+<li>Metric resolution:
+<ul>
+<li>Standard: 1 minute</li>
+<li>High Resolution: up to 1 second (StorageResolution API parameter - Higher cost)</li>
+</ul>
+</li>
+<li>Use API call <strong>PutMetricData</strong></li>
+<li>Use exponential back off in case of throttle errors</li>
+</ul>
+<h3 id="alarms-are-used-to-trigger-notifications-for-any-metric">Alarms are used to trigger notifications for any metric</h3>
+<ul>
+<li>Alarms can go to Auto Scaling, EC2 Actions, SNS notifications</li>
+<li>Various options (sampling, %, max, min, etc&hellip;)</li>
+<li>Alarm States:
+<ul>
+<li>OK</li>
+<li>INSUFFICIENT_DATA</li>
+<li>ALARM</li>
+</ul>
+</li>
+<li>Period:
+<ul>
+<li>Length of time in seconds to evaluate the metric</li>
+<li>High resolution custom metrics: can only choose 10 sec or 30 sec</li>
+</ul>
+</li>
+</ul>
+<h3 id="aws-cloudwatch-logs">AWS CloudWatch Logs</h3>
+<ul>
+<li>Applications can send logs to CloudWatch using the SDK</li>
+<li>CloudWatch can collect log from:
+<ul>
+<li>Elastic Beanstalk: collection of logs from application</li>
+<li>ECS: collection from containers</li>
+<li>AWS Lambda: collection from function logs</li>
+<li>VPC Flow Logs:VPC specific logs</li>
+<li>API Gateway</li>
+<li>CloudTrail based on filter</li>
+<li>CloudWatch log agents: for example on EC2 machines</li>
+<li>Route53: Log DNS queries</li>
+</ul>
+</li>
+<li>CloudWatch Logs can go to:
+<ul>
+<li>Batch exporter to S3 for archival</li>
+<li>Stream to ElasticSearch cluster for further analytics</li>
+</ul>
+</li>
+<li>CloudWatch Logs can use filter expressions</li>
+<li>Logs storage architecture:
+<ul>
+<li>Log groups: arbitrary name, usually representing an application. Log expiration policy should be defineda at this level.</li>
+<li>Log stream: instances within application / log files / containers</li>
+</ul>
+</li>
+<li>Can define log expiration policies (never expire, 30 days, etc..)</li>
+<li>Using the AWS CLI we can tail CloudWatch logs</li>
+<li>To send logs to CloudWatch, make sure IAM permissions are correct!</li>
+<li>Security: encryption of logs using KMS at the Group Level</li>
+</ul>
+<h3 id="aws-cloudwatch-events">AWS CloudWatch Events</h3>
+<ul>
+<li>Schedule: Cron jobs</li>
+<li>Event Pattern: Event rules to react to a service doing something
+<ul>
+<li>Ex: CodePipeline state changes</li>
+</ul>
+</li>
+<li>Triggers to Lambda functions, SQS/SNS/Kinesis Messages</li>
+<li>CloudWatch Event creates a small JSON document to give information
+about the change</li>
+</ul>
+<hr>
+<h1 id="dynamodb-no-sql">DynamoDB (No-SQL)</h1>
+<ul>
+<li>Non Relational DB (No-SQL), comprised of collections (tables), of documents (rows), with each document consisting of key/value pairs (fields)</li>
+<li>Document oriented DB</li>
+<li>Offers push button scaling, meaning that you can scale your db on the fly without any downtime</li>
+<li>RDS is not so easy, you usually have to use a bigger instance size or add read replicas</li>
+<li>Stored on SSD Storage</li>
+<li>Spread across 3 geographically distinct data centers</li>
+<li>Eventual Consistent Reads (Default)
+<ul>
+<li>Consistency across all copies of data is usually reached within 1 second</li>
+<li>Repeating a read after a short time should return updated data</li>
+<li>Best Read Performance</li>
+</ul>
+</li>
+<li>Strongly Consistent Reads
+<ul>
+<li>Returns a result that reflects all writes that received a successful response prior to the read</li>
+</ul>
+</li>
+<li>Structure:
+<ul>
+<li>Tables</li>
+<li>Items (Think rows in a traditional table)</li>
+<li>Attributes (Think columns of data in a table)</li>
+</ul>
+</li>
+<li>Provisioned throughput capacity</li>
+<li>Write throughput 0.0065 per hour for every 10 units</li>
+<li>Read throughput 0.0065 per hour for every 50 units</li>
+<li>First 25 GB of storage is free</li>
+<li>Storage costs of 25 cents per additional GB per Month</li>
+<li>Can be expensive for writes, but really really cheap for reads</li>
+<li>The combined key/value size must not exceed 400 KB for any given document</li>
+</ul>
+<p><strong>Developer Associate Specific Topics</strong></p>
+<ul>
+<li>Supports attribute nesting up to 35 levels</li>
+<li>Conditional writes are idempotent, you can send the same conditional write request multiple times, but it will have no further effect on the item after the first time Dynamo performs the update</li>
+<li>Supports atomic counters, using the UpdateItem operation to increment or decrement the value of an existing attribute without interfering with other write requests</li>
+<li>Atomic counter updates are not idempotent, the counter will increment each time you call UpdateItem</li>
+<li>If you can have a small margin of error in your data, then use atomic counters</li>
+<li>If your application needs to read multiple items, you can use the BatchGetItem API endpoint; A single request can retrieve up to 1MB of data with as many as 100 items</li>
+<li>A single BatchGetItem request can retrieve items from multiple tables</li>
+<li>All write requests are applied in the order in which they are received</li>
+<li>Pricing (calculate the amount of writes and reads per second):
+<ul>
+<li>Divide total number of writes per day / 25 (hours) / 60 (minutes) / 60 (seconds) = No. writes per second</li>
+<li>A write or read capacity unit can handle 1 write/read per second</li>
+<li>Individual items or the entire table can be exported to CSV</li>
+<li>Example:
+<ul>
+<li>Using 28 GB of storage</li>
+<li>1,000,000 writes per day = 1,000,000/24 = 41,666.67</li>
+<li>41,666.67 / 60 (minutes) = 694.44</li>
+<li>694.44 / 60 (seconds) = 11.574 writes per second</li>
+<li>This example would require 12 write capacity units (single capacity unit is 1 write per second)</li>
+<li>Charge for write is $0.0065 per 10 units</li>
+<li>$0.0065 / 10 = $0.00065 per unit</li>
+<li>$0.00065 * 12 (required write units) = $0.0078</li>
+<li>$0.0078 * 24 (hours per day) = $0.1872 per day for writes</li>
+<li>Charge for read is $0.0065 per 50 units</li>
+<li>$0.0065 / 50 = $0.00013 per unit</li>
+<li>$0.00013 * 12 (required read units) = $0.00156</li>
+<li>$0.00156 * 24 (hours per day) = $0.03744 per day for reads</li>
+<li>Using 28 GB storage with first 25 GB free = 3 GB storage required</li>
+<li>3 GB * $0.25 per GB (after initial 25) = $0.75</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Indexes:
+<ul>
+<li>Primary Key types:
+<ul>
+<li>Single attribute (unique ID):
+<ul>
+<li>Partition Key (Hash Key composed of one attribute)</li>
+<li>Partition Key&rsquo;s value is used as input to an internal hash function which output determines the partition (physical location in which the data is stored)</li>
+<li>No 2 items in a table can have the same partition key value</li>
+</ul>
+</li>
+<li>Composite (unique ID and date range):
+<ul>
+<li>Partition Key &amp; Sort Key (Hash and Range) composed of two attributes</li>
+<li>Partition Key&rsquo;s value is used as input to an internal hash function which output determines the partition (physical location in which the data is stored)</li>
+<li>2 Items can have the same partition key, but they MUST have a different sort key</li>
+<li>All Items with the same partition key are stored together, in sorted order by the sort key value</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Local Secondary Index (LSI):
+<ul>
+<li>Has the SAME partition key, but different sort key</li>
+<li>Can ONLY be created when creating a table</li>
+<li>Can not be removed or modified after creation</li>
+<li>Can have up to 5 LSI&rsquo;s per table</li>
+</ul>
+</li>
+<li>Global Secondary Index (GSI):
+<ul>
+<li>Has DIFFERENT partition key and different sort key</li>
+<li>Can be created at table creation or added LATER</li>
+<li>Can have up to 5 GSI&rsquo;s per table</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Streams:
+<ul>
+<li>Used to capture any kind of modification of the DynamoDB tables</li>
+<li>If new item is added to the table, the stream captures an image of the entire item, including all of its attributes</li>
+<li>If an item is updated, the stream captures the before and after image of any attributes that were modified in the item</li>
+<li>If an item is deleted from the table, the stream captures an image of the entire item before it was deleted</li>
+<li>Streams are stored for 24 hours and then is lost</li>
+<li>Streams can trigger functions with Lambda that will perform actions based on the instantiation of a stream event</li>
+</ul>
+</li>
+<li>Query&rsquo;s:
+<ul>
+<li>Operation that finds items in a table using only the primary key attribute value</li>
+<li>Must provide a partition attribute name and distinct value to search for</li>
+<li>Optionally can provide a sort key attribute name and value and use comparison operator to refine the search results</li>
+<li>By default a query returns all of the data attributes for items with the specified primary key(s)</li>
+<li>The ProjectionExpression parameter can be used to only return some of the attributes from a query as opposed to the default all</li>
+<li>Results are always sorted by the sort key</li>
+<li>If the data type of the sort key is a number, the results are returned in numeric order</li>
+<li>If the data type of the sort key is a string, the results are returned in order of ASCII character code values</li>
+<li>Sort order is ascending, the ScanIndexForward parameter can be set to false to sort in descending order</li>
+<li>By default queries are eventually consistent but can be changed to strongly consistent</li>
+<li>More efficient then a scan operation</li>
+<li>For quicker response times, design your tables in a way that can use the query, GET, or BatchGetItem API</li>
+</ul>
+</li>
+<li>Scans:
+<ul>
+<li>Examines every item in the table</li>
+<li>By default, a scan returns all of the data attributes for every item</li>
+<li>Can use the ProjectionExpression parameter so that the scan only returns some of the attributes, instead of all</li>
+<li>Always scans the entire table, then filters out values to provide the desired result (added step of removing data from initial dataset)</li>
+<li>Should be avoided on a large table with a filter that removes many results</li>
+<li>As table grows, the scan operation slows</li>
+<li>Examines every item for the requested values, and can use up provisioned throughput for a large table in a single operation</li>
+</ul>
+</li>
+<li>Provisioned Throughput
+<ul>
+<li>400 HTTP status code - ProvisionedThroughputExceededException error will indicate that you exceeded your max allowed provisioned throughput for a table or for one or more GSI&rsquo;s</li>
+<li>Unit of read provisioned throughput:
+<ul>
+<li>All reads are rounded up to increments of 4 KB</li>
+<li>Eventual consistent reads (default) consist of 2 reads per second</li>
+<li>Strongly consistent reads consist of 1 read per second</li>
+<li>Take the (size of the read rounded to the nearest 4 KB chunk / 4 KB) * No. of items = read throughput</li>
+<li>Divide by 2 if eventually consistent</li>
+<li>Example:
+<ul>
+<li>Application requires to read 10 items of 1 KB per second using eventual consistency, whats the read throughput</li>
+<li>Calculate the number of read units per item needed</li>
+<li>1 KB rounded to the nearest 4 KB increment = 4 (KB) or a single chunk</li>
+<li>4 KB / 4 KB = 1 read unit per item</li>
+<li>1 x 10 read items = 10</li>
+<li>Using eventual consistency is 10 /2 = 5</li>
+<li>5 units of read throughput</li>
+</ul>
+</li>
+<li>Example 2:
+<ul>
+<li>Application requires to read 10 items of 6 KB per second using eventual consistency, whats the read throughput</li>
+<li>Calculate the number of read units per item needed</li>
+<li>6 KB rounded to the nearest 4 KB increment = 8 (KB) or 2 chunks of 4 KB</li>
+<li>8 KB / 4 KB = 2 read unit per item</li>
+<li>2 x 10 read items = 20</li>
+<li>Using eventual consistency is 20 /2 = 10</li>
+<li>10 units of read throughput</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unit of write provisioned throughput:
+<ul>
+<li>All writes are 1 KB</li>
+<li>All writes consist of 1 write per second</li>
+<li>Example:
+<ul>
+<li>Application requires to write 5 items with each being 10KB in size per second</li>
+<li>Each write unit consists of 1 KB of data, need to write 5 items per second with each item using 10 KB of data</li>
+<li>5 items * 10 KB = 50 write units</li>
+<li>Write throughput is 50 units</li>
+</ul>
+</li>
+<li>Example 2:
+<ul>
+<li>Application requires to write 12 items with each being 100KB in size per second</li>
+<li>Each write unit consists of 1 KB of data, need to write 12 items per second with each item using 100 KB of data</li>
+<li>12 items * 100 KB = 1200 write units</li>
+<li>Write throughput is 1200 units</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Web Identity Providers:
+<ul>
+<li>Authenticate users using Web Identity Providers such as Facebook, Google, Amazon or any other ID Connect-compatible identity provider</li>
+<li>Accomplished using AssumeRoleWithWebIdentity API</li>
+<li>Need to create a role first</li>
+<li>Process:
+<ul>
+<li>User authentication request sent and received with the identity provider such as Facebook, Google, etc..</li>
+<li>Web Identity token returned from provider</li>
+<li>Token, App ID of provider, and ARN of IAM Role sent to AssumeRoleWithIdentity API endpoint</li>
+<li>AWS issues temporary security credentials back to the user allowing the user to access resources (1 hour default)</li>
+<li>Temporary security credentials response consist of 4 things:
+<ul>
+<li>AccessKeyID, SecretAccessKey, SessionToken</li>
+<li>Expiration (time limit, 1 hour by default)</li>
+<li>AssumeRoleID</li>
+<li>SubjectFromWebIdentityToken</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="aws-lambda">AWS Lambda</h1>
+<h2 id="aws-lambda-language-support">AWS Lambda language support</h2>
+<ul>
+<li>Node.js (JavaScript)</li>
+<li>Python</li>
+<li>Java (Java 8 compatible)</li>
+<li>C# (.NET Core)</li>
+<li>Golang</li>
+<li>C# / Powershell</li>
+<li>Ruby</li>
+<li>Custom Runtime API (community supported, example Rust)</li>
+</ul>
+<h2 id="aws-lambda-pricing-example">AWS Lambda Pricing: example</h2>
+<ul>
+<li>You can find overall pricing information here: <a href="https://aws.amazon.com/lambda/pricing/">https://aws.amazon.com/lambda/pricing/</a></li>
+<li>Pay per calls :
+<ul>
+<li>First 1,000,000 requests are free</li>
+<li>$0.20 per 1 million requests thereafter ($0.0000002 per request)</li>
+</ul>
+</li>
+<li>Pay per duration: (in increment of 100ms)
+<ul>
+<li>400,000 GB-seconds of compute time per month if FREE</li>
+<li>== 400,000 seconds if function is 1GB RAM</li>
+<li>== 3,200,000 seconds if function is 128 MB RAM</li>
+<li>After that $1.00 for 600,000 GB-seconds</li>
+</ul>
+</li>
+</ul>
+<h2 id="lambda--synchronous-invocations">Lambda – Synchronous Invocations</h2>
+<ul>
+<li>Synchronous: CLI, SDK, API Gateway, Application Load Balancer</li>
+<li>Results is returned right away</li>
+<li>Error handling must happen client side (retries, exponential backoff, etc…)</li>
+</ul>
+<h2 id="lambda---synchronous-invocations---services">Lambda - Synchronous Invocations - Services</h2>
+<ul>
+<li>User Invoked:
+<ul>
+<li>Elastic Load Balancing (Application Load Balancer)</li>
+<li>Amazon API Gateway</li>
+<li>Amazon CloudFront (Lambda@Edge)</li>
+<li>Amazon S3 Batch</li>
+</ul>
+</li>
+<li>Service Invoked:
+<ul>
+<li>Amazon Cognito</li>
+<li>AWS Step Functions</li>
+</ul>
+</li>
+<li>Other Services:
+<ul>
+<li>Amazon Lex</li>
+<li>Amazon Alexa</li>
+<li>Amazon Kinesis Data Firehose</li>
+</ul>
+</li>
+</ul>
+<h2 id="lambda--asynchronous-invocations">Lambda – Asynchronous Invocations</h2>
+<ul>
+<li>S3, SNS, CloudWatch Events…</li>
+<li>The events are placed in an Event Queue</li>
+<li>Lambda attempts to retry on errors
+<ul>
+<li>3 tries total</li>
+<li>1 minute wait after 1st , then 2 minutes wait</li>
+</ul>
+</li>
+<li>Make sure the processing is idempotent (in case of retries)</li>
+<li>If the function is retried, you will see duplicate logs entries in CloudWatch Logs</li>
+<li>Can define a DLQ (dead-letter queue) – SNS
+or SQS – for failed processing (need correct IAM permissions)</li>
+<li>Asynchronous invocations allow you to speed
+up the processing if you don’t need to wait for
+the result (ex: you need 1000 files processed)</li>
+</ul>
+<h2 id="lambda---asynchronous-invocations---services">Lambda - Asynchronous Invocations - Services</h2>
+<ul>
+<li>Amazon Simple Storage Service (S3)</li>
+<li>Amazon Simple Notification Service (SNS)</li>
+<li>Amazon CloudWatch Events / EventBridge</li>
+<li>AWS CodeCommit (CodeCommit Trigger: new branch, new tag, new push)</li>
+<li>AWS CodePipeline (invoke a Lambda function during the pipeline, Lambda must callback)
+&mdash;&ndash; other &mdash;&ndash;</li>
+<li>Amazon CloudWatch Logs (log processing)</li>
+<li>Amazon Simple Email Service</li>
+<li>AWS CloudFormation</li>
+<li>AWS Config</li>
+<li>AWS IoT</li>
+<li>AWS IoT Events</li>
+</ul>
+<h2 id="lambdaedge">Lambda@Edge</h2>
+<ul>
+<li>You have deployed a CDN using CloudFront</li>
+<li>What if you wanted to run a global AWS Lambda alongside?</li>
+<li>Or how to implement request filtering before reaching your application?</li>
+<li>For this, you can use Lambda@Edge:
+deploy Lambda functions alongside your CloudFront CDN
+<ul>
+<li>Build more responsive applications</li>
+<li>You don’t manage servers, Lambda is deployed globally</li>
+<li>Customize the CDN content</li>
+<li>Pay only for what you use</li>
+</ul>
+</li>
+</ul>
+<h2 id="lambda-execution-role-iam-role">Lambda Execution Role (IAM Role)</h2>
+<ul>
+<li>Grants the Lambda function permissions to AWS services / resources</li>
+<li>Sample managed policies for Lambda:
+<ul>
+<li>AWSLambdaBasicExecutionRole – Upload logs to CloudWatch.</li>
+<li>AWSLambdaKinesisExecutionRole – Read from Kinesis</li>
+<li>AWSLambdaDynamoDBExecutionRole – Read from DynamoDB Streams</li>
+<li>AWSLambdaSQSQueueExecutionRole – Read from SQS</li>
+<li>AWSLambdaVPCAccessExecutionRole – Deploy Lambda function in VPC</li>
+<li>AWSXRayDaemonWriteAccess – Upload trace data to X-Ray.</li>
+</ul>
+</li>
+<li>When you use an event source mapping to invoke your function, Lambda uses the execution role to read event data.</li>
+<li>Best practice: create one Lambda Execution Role per function</li>
+</ul>
+<h2 id="lambda-resource-based-policies">Lambda Resource Based Policies</h2>
+<ul>
+<li>Use resource-based policies to give other accounts and AWS services permission to use your Lambda resources</li>
+<li>Similar to S3 bucket policies for S3 bucket</li>
+<li>An IAM principal can access Lambda:</li>
+<li>if the IAM policy attached to the principal authorizes it (e.g. user access)</li>
+<li>OR if the resource-based policy authorizes (e.g. service access)</li>
+<li>When an AWS service like Amazon S3 calls your Lambda function, the resource-based policy gives it access.</li>
+</ul>
+<h2 id="lambda-environment-variables">Lambda Environment Variables</h2>
+<ul>
+<li>Environment variable = key / value pair in “String” form</li>
+<li>Adjust the function behavior without updating code</li>
+<li>The environment variables are available to your code</li>
+<li>Lambda Service adds its own system environment variables as well</li>
+<li>Helpful to store secrets (encrypted by KMS)</li>
+<li>Secrets can be encrypted by the Lambda service key, or your own CMK</li>
+</ul>
+<h2 id="lambda-functions-tmp-space">Lambda Functions /tmp space</h2>
+<ul>
+<li>If your Lambda function needs to download a big file to work…</li>
+<li>If your Lambda function needs disk space to perform operations…</li>
+<li>You can use the /tmp directory</li>
+<li>Max size is 512MB</li>
+<li>The directory content remains when the execution context is frozen,
+providing transient cache that can be used for multiple invocations
+(helpful to checkpoint your work)</li>
+<li>For permanent persistence of object (non temporary), use S3</li>
+</ul>
+<h2 id="lambda-function-dependencies">Lambda Function Dependencies</h2>
+<ul>
+<li>If your Lambda function depends on external libraries: for example AWS X-Ray SDK, Database Clients, etc…</li>
+<li>You need to install the packages alongside your code and zip it together</li>
+<li>For Node.js, use npm &amp; “node_modules” directory</li>
+<li>For Python, use pip &ndash;target options</li>
+<li>For Java, include the relevant .jar files</li>
+<li>Upload the zip straight to Lambda if less than 50MB, else to S3 first</li>
+<li>Native libraries work: they need to be compiled on Amazon Linux</li>
+<li>AWS SDK comes by default with every Lambda function</li>
+</ul>
+<h2 id="aws-lambda-limits-to-know---per-region">AWS Lambda Limits to Know - per region</h2>
+<ul>
+<li>Execution:
+<ul>
+<li>Memory allocation: 128 MB – 3008 MB (64 MB increments)</li>
+<li>Maximum execution time: 900 seconds (15 minutes)</li>
+<li>Environment variables (4 KB)</li>
+<li>Disk capacity in the “function container” (in /tmp): 512 MB</li>
+<li>Concurrency executions: 1000 (can be increased)</li>
+</ul>
+</li>
+<li>Deployment:
+<ul>
+<li>Lambda function deployment size (compressed .zip): 50 MB</li>
+<li>Size of uncompressed deployment (code + dependencies): 250 MB</li>
+<li>Can use the /tmp directory to load other files at startup</li>
+<li>Size of environment variables: 4 KB</li>
+</ul>
+</li>
+</ul>
+<h2 id="aws-lambda-best-practices">AWS Lambda Best Practices</h2>
+<ul>
+<li>Perform heavy-duty work outside of your function handler</li>
+<li>Connect to databases outside of your function handler</li>
+<li>Initialize the AWS SDK outside of your function handler</li>
+<li>Pull in dependencies or datasets outside of your function handler</li>
+<li>Use environment variables for:</li>
+<li>Database Connection Strings, S3 bucket, etc… don’t put these values in your code</li>
+<li>Passwords, sensitive values… they can be encrypted using KMS</li>
+<li>Minimize your deployment package size to its runtime necessities.</li>
+<li>Break down the function if need be</li>
+<li>Remember the AWS Lambda limits</li>
+<li>Use Layers where necessary</li>
+<li>Avoid using recursive code, never have a Lambda function call itself</li>
+</ul>
+<hr>
+<h1 id="api-gateway">API Gateway</h1>
+<h2 id="api-gateway--integrations-high-level">API Gateway &ndash; Integrations High Level</h2>
+<ul>
+<li>Lambda Function
+<ul>
+<li>Invoke Lambda function</li>
+<li>Easy way to expose REST API backed by AWS Lambda</li>
+</ul>
+</li>
+<li>HTTP
+<ul>
+<li>Expose HTTP endpoints in the backend</li>
+<li>Example: internal HTTP API on premise, Application Load Balancer&hellip;</li>
+<li>Why? Add rate limiting, caching, user authentications, API keys, etc&hellip;</li>
+</ul>
+</li>
+<li>AWS Service
+<ul>
+<li>Expose any AWS API through the API Gateway?</li>
+<li>Example: start an AWS Step Function workflow, post a message to SQS</li>
+<li>Why? Add authentication, deploy publicly, rate control&hellip;</li>
+</ul>
+</li>
+</ul>
+<h2 id="api-gateway---endpoint-types">API Gateway - Endpoint Types</h2>
+<ul>
+<li>Edge-Optimized (default): For global clients - Requests are routed through the CloudFront Edge locations (improves latency) - The API Gateway still lives in only one region</li>
+<li>Regional: - For clients within the same region - Could manually combine with CloudFront (more control over the caching strategies and the distribution)</li>
+<li>Private: - Can only be accessed from your VPC using an interface VPC endpoint (ENI) - Use a resource policy to define access</li>
+</ul>
+<h2 id="api-gateway--deployment-stages">API Gateway &ndash; Deployment Stages</h2>
+<ul>
+<li>Making changes in the API Gateway does not mean they&rsquo;re effective</li>
+<li>You need to make a &ldquo;deployment&rdquo; for them to be in effect</li>
+<li>It&rsquo;s a common source of confusion</li>
+<li>Changes are deployed to &ldquo;Stages&rdquo; (as many as you want)</li>
+<li>Use the naming you like for stages (dev, test, prod)</li>
+<li>Each stage has its own configuration parameters</li>
+<li>Stages can be rolled back as a history of deployments is kept</li>
+</ul>
+<h2 id="api-gateway--stage-variables">API Gateway &ndash; Stage Variables</h2>
+<ul>
+<li>Stage variables are like environment variables for API Gateway</li>
+<li>Use them to change often changing configuration values</li>
+<li>They can be used in:
+<ul>
+<li>Lambda function ARN</li>
+<li>HTTP Endpoint</li>
+<li>Parameter mapping templates</li>
+</ul>
+</li>
+<li>Use cases:
+<ul>
+<li>Configure HTTP endpoints your stages talk to (dev, test, prod&hellip;)</li>
+<li>Pass configuration parameters to AWS Lambda through mapping templates</li>
+</ul>
+</li>
+<li>Stage variables are passed to the &ldquo;context&rdquo; object in AWS Lambda</li>
+</ul>
+<h2 id="api-gateway---integration-types">API Gateway - Integration Types</h2>
+<ul>
+<li>Integration Type MOCK
+<ul>
+<li>API Gateway returns a response without sending the request to the backend</li>
+</ul>
+</li>
+<li>Integration Type HTTP / AWS (Lambda &amp; AWS Services)
+<ul>
+<li>you must configure both the integration request and integration response</li>
+<li>Setup data mapping using mapping templates for the request &amp; response</li>
+</ul>
+</li>
+<li>Integration Type AWS_PROXY (Lambda Proxy):
+<ul>
+<li>incoming request from the client is the input to Lambda</li>
+<li>The function is responsible for the logic of request / response</li>
+<li>No mapping template, headers, query string parameters&hellip; are passed as arguments</li>
+</ul>
+</li>
+<li>Integration Type HTTP_PROXY
+<ul>
+<li>No mapping template</li>
+<li>The HTTP request is passed to the backend</li>
+<li>The HTTP response from the backend is forwarded by API Gateway</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="amazon-cognito">Amazon Cognito</h1>
+<ul>
+<li>We want to give our users an identity so that they can interact with our application.</li>
+<li>Cognito User Pools:
+<ul>
+<li>Sign in functionality for app users</li>
+<li>Integrate with API Gateway &amp; Application Load Balancer</li>
+</ul>
+</li>
+<li>Cognito Identity Pools (Federated Identity):
+<ul>
+<li>Provide AWS credentials to users so they can access AWS resources directly</li>
+<li>Integrate with Cognito User Pools as an identity provider</li>
+</ul>
+</li>
+<li>Cognito Sync:
+<ul>
+<li>Synchronize data from device to Cognito.</li>
+<li>Is deprecated and replaced by AppSync</li>
+</ul>
+</li>
+<li>Cognito vs IAM: &ldquo;hundreds of users&rdquo;, &ldquo;mobile users&rdquo;, &ldquo;authenticate with SAML&rdquo;</li>
+</ul>
+<h2 id="cognito-user-pools-cup--user-features">Cognito User Pools (CUP) &ndash; User Features</h2>
+<ul>
+<li>Create a serverless database of user for your web &amp; mobile apps</li>
+<li>Simple login: Username (or email) / password combination</li>
+<li>Password reset</li>
+<li>Email &amp; Phone Number Verification</li>
+<li>Multi-factor authentication (MFA)</li>
+<li>Federated Identities: users from Facebook, Google, SAML&hellip;</li>
+<li>Feature: block users if their credentials are compromised elsewhere</li>
+<li>Login sends back a JSON Web Token (JWT)</li>
+</ul>
+<h2 id="cognito-user-pools--hosted-authentication-ui">Cognito User Pools &ndash; Hosted Authentication UI</h2>
+<ul>
+<li>Cognito has a hosted authentication UI that you can add to your app to handle signup and sign-in workflows</li>
+<li>Using the hosted UI, you have a foundation for integration with social logins, OIDC or SAML</li>
+<li>Can customize with a custom logo and custom CSS</li>
+</ul>
+<h2 id="cognito-identity-pools-federated-identities">Cognito Identity Pools (Federated Identities)</h2>
+<ul>
+<li>Get identities for &ldquo;users&rdquo; so they obtain temporary AWS credentials</li>
+<li>Your identity pool (e.g identity source) can include:
+<ul>
+<li>Public Providers (Login with Amazon, Facebook, Google, Apple)</li>
+<li>Users in an Amazon Cognito user pool - OpenID Connect Providers &amp; SAML Identity Providers</li>
+<li>Developer Authenticated Identities (custom login server)</li>
+<li>Cognito Identity Pools allow for unauthenticated (guest) access</li>
+</ul>
+</li>
+<li>Users can then access AWS services directly or through API Gateway
+<ul>
+<li>The IAM policies applied to the credentials are defined in Cognito</li>
+<li>They can be customized based on the user_id for fine grained control</li>
+</ul>
+</li>
+</ul>
+<h2 id="cognito-identity-pools--iam-roles">Cognito Identity Pools &ndash; IAM Roles</h2>
+<ul>
+<li>Default IAM roles for authenticated and guest users</li>
+<li>Define rules to choose the role for each user based on the user&rsquo;s ID</li>
+<li>You can partition your users&rsquo; access using policy variables</li>
+<li>IAM credentials are obtained by Cognito Identity Pools through STS</li>
+<li>The roles must have a &ldquo;trust&rdquo; policy of Cognito Identity Pools</li>
+</ul>
+<h2 id="cognito-user-pools-vs-identity-pools">Cognito User Pools vs Identity Pools</h2>
+<ul>
+<li>Cognito User Pools:
+<ul>
+<li>Database of users for your web and mobile application</li>
+<li>Allows to federate logins through Public Social, OIDC, SAML&hellip;</li>
+<li>Can customize the hosted UI for authentication (including the logo)]</li>
+<li>Has triggers with AWS Lambda during the authentication flow</li>
+</ul>
+</li>
+<li>Cognito Identity Pools:
+<ul>
+<li>
+<p>Obtain AWS credentials for your users</p>
+</li>
+<li>
+<p>Users can login through Public Social, OIDC, SAML &amp; Cognito User Pools</p>
+</li>
+<li>
+<p>Users can be unauthenticated (guests)</p>
+</li>
+<li>
+<p>Users are mapped to IAM roles &amp; policies, can leverage policy variables</p>
+</li>
+<li>
+<p>CUP + CIP = manage user / password + access AWS services</p>
+<hr>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="ecs">ECS</h1>
+<h2 id="docker">Docker</h2>
+<ul>
+<li>Docker is a software development platform to deploy apps</li>
+<li>Apps are packaged in containers that can be run on any OS</li>
+<li>Apps run the same, regardless of where they’re run</li>
+<li>Any machine</li>
+<li>No compatibility issues</li>
+<li>Predictable behavior</li>
+<li>Less work</li>
+<li>Easier to maintain and deploy</li>
+<li>Works with any language, any OS, any technology</li>
+</ul>
+<h2 id="docker-containers-management">Docker Containers Management</h2>
+<ul>
+<li>To manage containers, we need a container management platform</li>
+<li>Three choices:</li>
+<li>ECS: Amazon’s own platform</li>
+<li>Fargate: Amazon’s own Serverless platform</li>
+<li>EKS: Amazon’s managed Kubernetes (open source)</li>
+</ul>
+<h2 id="ecs-clusters">ECS Clusters</h2>
+<ul>
+<li>ECS Clusters are logical grouping of EC2 instances</li>
+<li>EC2 instances run the ECS agent (Docker container)</li>
+<li>The ECS agents registers the instance to the ECS cluster</li>
+<li>The EC2 instances run a special AMI, made specifically for ECS</li>
+</ul>
+<h2 id="ecs-task-definitions">ECS Task Definitions</h2>
+<ul>
+<li>Tasks definitions are metadata in JSON form to tell ECS how to run a Docker Container</li>
+<li>It contains crucial information around:
+<ul>
+<li>Image Name</li>
+<li>Port Binding for Container and Host</li>
+<li>Memory and CPU required</li>
+<li>Environment variables</li>
+<li>Networking information</li>
+<li>IAM Role</li>
+<li>Logging configuration (ex CloudWatch)</li>
+</ul>
+</li>
+</ul>
+<h2 id="ecr">ECR</h2>
+<ul>
+<li>So far we’ve been using Docker images from Docker Hub (public)</li>
+<li>ECR is a private Docker image repository</li>
+<li>Access is controlled through IAM (permission errors =&gt; policy)</li>
+<li>AWS CLI v1 login command (may be asked at the exam)
+<ul>
+<li>$(aws ecr get-login &ndash;no-include-email &ndash;region eu-west-1)</li>
+</ul>
+</li>
+<li>AWS CLI v2 login command (newer, may also be asked at the exam - pipe)
+<ul>
+<li>aws ecr get-login-password &ndash;region eu-west-1 | docker login &ndash;username AWS &ndash; password-stdin 1234567890.dkr.ecr.eu-west-1.amazonaws.com</li>
+</ul>
+</li>
+<li>Docker Push &amp; Pull:
+<ul>
+<li>docker push 1234567890.dkr.ecr.eu-west-1.amazonaws.com/demo:latest</li>
+<li>docker pull 1234567890.dkr.ecr.eu-west-1.amazonaws.com/demo:latest</li>
+</ul>
+</li>
+</ul>
+<h2 id="fargate">Fargate</h2>
+<ul>
+<li>When launching an ECS Cluster, we have to create our EC2 instances</li>
+<li>If we need to scale, we need to add EC2 instances</li>
+<li>So we manage infrastructure…</li>
+<li>With Fargate, it’s all Serverless!</li>
+<li>We don’t provision EC2 instances</li>
+<li>We just create task definitions, and AWS will run our containers for us</li>
+<li>To scale, just increase the task number. Simple! No more EC2</li>
+</ul>
+<h2 id="ecs-task-placement-process">ECS Task Placement Process</h2>
+<ul>
+<li>Task placement strategies are a best effort</li>
+<li>When Amazon ECS places tasks, it uses the following process to select container instances:
+<ol>
+<li>Identify the instances that satisfy the CPU, memory, and port requirements in the task definition.</li>
+<li>Identify the instances that satisfy the task placement constraints.</li>
+<li>Identify the instances that satisfy the task placement strategies.</li>
+<li>Select the instances for task placement.</li>
+</ol>
+</li>
+</ul>
+<h2 id="ecs-task-placement-strategies">ECS Task Placement Strategies</h2>
+<ul>
+<li><strong>Binpack</strong>
+<ul>
+<li>Place tasks based on the least available amount of CPU or memory</li>
+<li>This minimizes the number of instances in use (cost savings)</li>
+</ul>
+</li>
+<li><strong>Random</strong>
+<ul>
+<li>Place the task randomly</li>
+</ul>
+</li>
+<li><strong>Spread</strong>
+<ul>
+<li>Place the task evenly based on the specified value</li>
+<li>Example: instanceId, attribute:ecs.availability-zone</li>
+</ul>
+</li>
+</ul>
+<h2 id="ecs--service-auto-scaling">ECS – Service Auto Scaling</h2>
+<ul>
+<li>CPU and RAM is tracked in CloudWatch at the ECS service level</li>
+<li>Target Tracking: target a specific average CloudWatch metric</li>
+<li>Step Scaling: scale based on CloudWatch alarms</li>
+<li>Scheduled Scaling: based on predictable changes</li>
+<li>ECS Service Scaling (task level) ≠ EC2 Auto Scaling (instance level)</li>
+<li>Fargate Auto Scaling is much easier to setup (because serverless)</li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+
+<div class="share-buttons">
+    <div class="share-buttons">
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS Developer Associate on twitter"
+            href="https://twitter.com/intent/tweet/?text=AWS%20Developer%20Associate&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-certified-developer-associate%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px"
+                fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS Developer Associate on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-certified-developer-associate%2f&amp;title=AWS%20Developer%20Associate&amp;summary=AWS%20Developer%20Associate&amp;source=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-certified-developer-associate%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS Developer Associate on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fnotes%2faws-certified-developer-associate%2f&title=AWS%20Developer%20Associate">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span> built with ♥ rishab |
+    <span class="counter-number">
+        Couldn't read the counter |
+    </span>
+    <div class="quote">
+        <p class="stoic-quote"></p>
+    </div>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+        let response = await fetch(
+            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+        );
+        let data = await response.json();
+        console.log(data);
+        counter.innerHTML = `views: ${data}`;
+    }
+    updateCounter();
+</script>
+
+<script>
+    const quote = document.querySelector(".stoic-quote");
+    async function getQuote() {
+        let response = await fetch(
+            "https://stoic-quotes.com/api/quote"
+        );
+        let quoteData = await response.json();
+        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
+    }
+    getQuote();
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994317684370171"
+     crossorigin="anonymous"></script></body>
+
+</html>

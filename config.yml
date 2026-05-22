@@ -24,6 +24,8 @@ menu:
           url: publicspeaking/
         - name: Podcast
           url: podcast/
+        - name: Resume
+          url: resume/
         - name: Uses
           url: uses/
 

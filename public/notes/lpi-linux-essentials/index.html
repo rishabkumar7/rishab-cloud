@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+
+<script defer data-domain="rishabkumar.com" src="https://plausible.rishab.cloud/js/script.file-downloads.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+<title>Linux Essentials | Rishab Kumar</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Linux essentials
+Index
+
+Package management
+
+RPM based
+Debian based: APT and dpkg
+
+
+Command-line basics
+
+Command-line syntax
+Basic commands
+Command history and completion
+shell configuration files
+Environment / shell variables
+User-defined variables
+Globbing
+Quoting
+Formatting commands
+Working with options
+Locate, find, whereis
+
+
+Getting CLI help
+
+Linux MAN pages
+Info pages
+More local documentation
+
+
+
+Package management
+RPM based
+Yum
+YUM repos are located in /etc/yum.repos.d/. Unlike APT, YUM has several repo files in the folder. Check out the man pages for YUM and the other package management commands.">
+<meta name="author" content="Rishab Kumar">
+<link rel="canonical"
+    href="http://localhost:1313/notes/lpi-linux-essentials/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.924bd3c43408ede397c131465f815d9c722dbe3115ef4e9158eba92f01f59e99.css" integrity="sha256-kkvTxDQI7eOXwTFGX4FdnHItvjEV706RWOupLwH1npk="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<meta name="theme-color" content=" #2e2e33">
+<meta name="msapplication-TileColor" content=" #2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/notes/lpi-linux-essentials/" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"><head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    
+</head>
+
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01c5afa37f7740e490fecb3bcb6ccbbf"}'>
+</script>
+
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rishab Kumar (Alt + H)">Rishab Kumar</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home"><span>Home</span></a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/notes/" title="Notes">
+                    <span>Notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/podcast/" title="Podcast">
+                    <span>Podcast</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publicspeaking/" title="Public Speaking">
+                    <span>Public Speaking</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume/" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/uses/" title="Uses">
+                    <span>Uses</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/notes/">Cloud Notes</a></div>
+    <h1 class="post-title">
+      Linux Essentials
+    </h1>
+    <div class="post-meta">&lt;span title=&#39;2021-11-21 12:12:25.364 &#43;0000 UTC&#39;&gt;November 21, 2021&lt;/span&gt;&amp;nbsp;·&amp;nbsp;24 min&amp;nbsp;·&amp;nbsp;Rishab Kumar</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#linux-essentials" aria-label="Linux essentials">Linux essentials</a><ul>
+                        
+                <li>
+                    <a href="#index" aria-label="Index"><!-- raw HTML omitted --><!-- raw HTML omitted -->Index</a></li>
+                <li>
+                    <a href="#package-management" aria-label="Package management"><!-- raw HTML omitted --><!-- raw HTML omitted -->Package management</a><ul>
+                        
+                <li>
+                    <a href="#rpm-based" aria-label="RPM based"><!-- raw HTML omitted --><!-- raw HTML omitted -->RPM based</a><ul>
+                        
+                <li>
+                    <a href="#yum" aria-label="Yum">Yum</a></li>
+                <li>
+                    <a href="#rpm" aria-label="RPM">RPM</a></li></ul>
+                </li>
+                <li>
+                    <a href="#debian-based-apt-and-dpkg" aria-label="Debian based: APT and dpkg"><!-- raw HTML omitted --><!-- raw HTML omitted -->Debian based: APT and dpkg</a><ul>
+                        
+                <li>
+                    <a href="#apt" aria-label="APT">APT</a></li>
+                <li>
+                    <a href="#dpkg" aria-label="dpkg">dpkg</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#command-line-basics" aria-label="Command-line basics"><!-- raw HTML omitted --><!-- raw HTML omitted -->Command-line basics</a><ul>
+                        
+                <li>
+                    <a href="#command-line-syntax" aria-label="Command-line syntax"><!-- raw HTML omitted --><!-- raw HTML omitted -->Command-line syntax</a></li>
+                <li>
+                    <a href="#basic-commands" aria-label="Basic commands"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic commands</a></li>
+                <li>
+                    <a href="#command-history-and-completion" aria-label="Command history and completion"><!-- raw HTML omitted --><!-- raw HTML omitted -->Command history and completion</a></li>
+                <li>
+                    <a href="#shell-configuration-files" aria-label="shell configuration files"><!-- raw HTML omitted --><!-- raw HTML omitted -->shell configuration files</a></li>
+                <li>
+                    <a href="#environment--shell-variables" aria-label="Environment / shell variables"><!-- raw HTML omitted --><!-- raw HTML omitted -->Environment / shell variables</a><ul>
+                        
+                <li>
+                    <a href="#common-environment-variables" aria-label="Common environment variables">Common environment variables</a></li></ul>
+                </li>
+                <li>
+                    <a href="#user-defined-variables" aria-label="User-defined variables"><!-- raw HTML omitted --><!-- raw HTML omitted -->User-defined variables</a></li>
+                <li>
+                    <a href="#globbing" aria-label="Globbing"><!-- raw HTML omitted --><!-- raw HTML omitted -->Globbing</a></li>
+                <li>
+                    <a href="#quoting" aria-label="Quoting"><!-- raw HTML omitted --><!-- raw HTML omitted -->Quoting</a></li>
+                <li>
+                    <a href="#formatting-commands" aria-label="Formatting commands"><!-- raw HTML omitted --><!-- raw HTML omitted -->Formatting commands</a></li>
+                <li>
+                    <a href="#working-with-options" aria-label="Working with options"><!-- raw HTML omitted --><!-- raw HTML omitted -->Working with options</a></li>
+                <li>
+                    <a href="#locate-find-whereis" aria-label="Locate, find, whereis"><!-- raw HTML omitted --><!-- raw HTML omitted -->Locate, find, whereis</a><ul>
+                        
+                <li>
+                    <a href="#locate" aria-label="Locate">Locate</a></li>
+                <li>
+                    <a href="#find" aria-label="Find">Find</a></li>
+                <li>
+                    <a href="#whereis" aria-label="whereis">whereis</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#getting-cli-help" aria-label="Getting CLI help"><!-- raw HTML omitted --><!-- raw HTML omitted -->Getting CLI help</a><ul>
+                        
+                <li>
+                    <a href="#linux-man-pages" aria-label="Linux MAN pages"><!-- raw HTML omitted --><!-- raw HTML omitted -->Linux MAN pages</a></li>
+                <li>
+                    <a href="#info-pages" aria-label="Info pages"><!-- raw HTML omitted --><!-- raw HTML omitted -->Info pages</a></li>
+                <li>
+                    <a href="#more-local-documentation" aria-label="More local documentation"><!-- raw HTML omitted --><!-- raw HTML omitted -->More local documentation</a><ul>
+                        
+                <li>
+                    <a href="#reading-different-file-formats" aria-label="Reading different file formats">Reading different file formats</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#the-linux-file-system" aria-label="The Linux file system"><!-- raw HTML omitted --><!-- raw HTML omitted -->The Linux file system</a><ul>
+                        
+                <li>
+                    <a href="#disk-file-systems" aria-label="Disk file systems"><!-- raw HTML omitted --><!-- raw HTML omitted -->Disk file systems</a></li></ul>
+                </li>
+                <li>
+                    <a href="#files-and-directories" aria-label="Files and directories"><!-- raw HTML omitted --><!-- raw HTML omitted -->Files and directories</a></li>
+                <li>
+                    <a href="#archives-and-compression" aria-label="Archives and compression"><!-- raw HTML omitted --><!-- raw HTML omitted -->Archives and compression</a><ul>
+                        
+                <li>
+                    <a href="#archives" aria-label="Archives"><!-- raw HTML omitted --><!-- raw HTML omitted -->Archives</a></li>
+                <li>
+                    <a href="#compression" aria-label="Compression"><!-- raw HTML omitted --><!-- raw HTML omitted -->Compression</a></li></ul>
+                </li>
+                <li>
+                    <a href="#searching-for-and-extracting-data-from-files" aria-label="Searching for and extracting data from files"><!-- raw HTML omitted --><!-- raw HTML omitted -->Searching for and extracting data from files</a><ul>
+                        
+                <li>
+                    <a href="#viewing-text" aria-label="Viewing text"><!-- raw HTML omitted --><!-- raw HTML omitted -->Viewing text</a></li>
+                <li>
+                    <a href="#analyzing-text" aria-label="Analyzing text"><!-- raw HTML omitted --><!-- raw HTML omitted -->Analyzing text</a></li>
+                <li>
+                    <a href="#pipes-and-regular-expressions" aria-label="Pipes and regular expressions"><!-- raw HTML omitted --><!-- raw HTML omitted -->Pipes and regular expressions</a><ul>
+                        
+                <li>
+                    <a href="#regular-expressions-for-grep-command" aria-label="Regular expressions for grep command">Regular expressions for <code>grep</code> command</a></li></ul>
+                </li>
+                <li>
+                    <a href="#io-redirection" aria-label="I/O Redirection"><!-- raw HTML omitted --><!-- raw HTML omitted -->I/O Redirection</a><ul>
+                        
+                <li>
+                    <a href="#redirecting-output" aria-label="Redirecting output">Redirecting output</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#turning-commands-into-a-script" aria-label="Turning commands into a script"><!-- raw HTML omitted --><!-- raw HTML omitted -->Turning commands into a script</a><ul>
+                        
+                <li>
+                    <a href="#basic-text-editing" aria-label="Basic text editing"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic text editing</a><ul>
+                        
+                <li>
+                    <a href="#nano" aria-label="nano">nano</a></li>
+                <li>
+                    <a href="#vim" aria-label="vim">vim</a></li></ul>
+                </li>
+                <li>
+                    <a href="#shell-scripting" aria-label="Shell scripting"><!-- raw HTML omitted --><!-- raw HTML omitted -->Shell scripting</a><ul>
+                        
+                <li>
+                    <a href="#basic-if-statement" aria-label="Basic if statement">Basic if statement</a></li>
+                <li>
+                    <a href="#basic-else-statement" aria-label="Basic else statement">Basic else statement</a></li>
+                <li>
+                    <a href="#loops" aria-label="Loops">Loops</a></li>
+                <li>
+                    <a href="#example-bash-script-1" aria-label="Example bash script 1">Example bash script 1</a></li>
+                <li>
+                    <a href="#example-bash-script-2" aria-label="Example bash script 2">Example bash script 2</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#the-linux-operating-system" aria-label="The Linux operating system"><!-- raw HTML omitted --><!-- raw HTML omitted -->The Linux operating system</a><ul>
+                        
+                <li>
+                    <a href="#windows-mac-and-linux-differences" aria-label=" Windows, Mac, and Linux differences"><!-- raw HTML omitted --><!-- raw HTML omitted --> Windows, Mac, and Linux differences</a></li>
+                <li>
+                    <a href="#linux-lifecycle-management" aria-label=" Linux lifecycle management"><!-- raw HTML omitted --><!-- raw HTML omitted --> Linux lifecycle management</a></li></ul>
+                </li>
+                <li>
+                    <a href="#understanding-computer-hardware" aria-label=" Understanding computer hardware"><!-- raw HTML omitted --><!-- raw HTML omitted --> Understanding computer hardware</a></li>
+                <li>
+                    <a href="#where-data-is-stored" aria-label="Where data is stored"><!-- raw HTML omitted --><!-- raw HTML omitted -->Where data is stored</a><ul>
+                        
+                <li>
+                    <a href="#the-kernel" aria-label="The kernel"><!-- raw HTML omitted --><!-- raw HTML omitted -->The kernel</a></li>
+                <li>
+                    <a href="#linux-processes" aria-label="Linux processes"><!-- raw HTML omitted --><!-- raw HTML omitted -->Linux processes</a></li>
+                <li>
+                    <a href="#syslog-klog-dmesg" aria-label="syslog, klog, dmesg"><!-- raw HTML omitted --><!-- raw HTML omitted -->syslog, klog, dmesg</a></li></ul>
+                </li>
+                <li>
+                    <a href="#networking" aria-label="Networking"><!-- raw HTML omitted --><!-- raw HTML omitted -->Networking</a><ul>
+                        
+                <li>
+                    <a href="#basic-networking" aria-label="Basic networking"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic networking</a><ul>
+                        
+                <li>
+                    <a href="#important-network-tools" aria-label="Important network tools">Important network tools</a></li>
+                <li>
+                    <a href="#static-ip-address" aria-label="Static IP address">Static IP address</a></li></ul>
+                </li>
+                <li>
+                    <a href="#routes" aria-label="Routes"><!-- raw HTML omitted --><!-- raw HTML omitted -->Routes</a></li>
+                <li>
+                    <a href="#other-commands" aria-label="Other commands"><!-- raw HTML omitted --><!-- raw HTML omitted -->Other commands</a></li></ul>
+                </li>
+                <li>
+                    <a href="#basic-security-and-user-types" aria-label="Basic security and user types"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic security and user types</a><ul>
+                        
+                <li>
+                    <a href="#root-and-standard-users" aria-label="Root and standard users"><!-- raw HTML omitted --><!-- raw HTML omitted -->Root and standard users</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-users-and-groups" aria-label="Creating users and groups"><!-- raw HTML omitted --><!-- raw HTML omitted -->Creating users and groups</a></li>
+                <li>
+                    <a href="#managing-file-permissions-and-ownership" aria-label=" Managing file permissions and ownership"><!-- raw HTML omitted --><!-- raw HTML omitted --> Managing file permissions and ownership</a><ul>
+                        
+                <li>
+                    <a href="#file-and-directory-permissions" aria-label=" File and directory permissions"><!-- raw HTML omitted --><!-- raw HTML omitted --> File and directory permissions</a></li>
+                <li>
+                    <a href="#modifying-permissions" aria-label=" Modifying permissions"><!-- raw HTML omitted --><!-- raw HTML omitted --> Modifying permissions</a></li></ul>
+                </li>
+                <li>
+                    <a href="#special-directories-and-files" aria-label="Special directories and files"><!-- raw HTML omitted --><!-- raw HTML omitted -->Special directories and files</a><ul>
+                        
+                <li>
+                    <a href="#symbolic-links" aria-label=" Symbolic links"><!-- raw HTML omitted --><!-- raw HTML omitted --> Symbolic links</a></li>
+                <li>
+                    <a href="#special-files-and-directories-and-the-sticky-bit" aria-label=" Special files and directories, and the sticky bit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Special files and directories, and the sticky bit</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content">
+  <h1 id="linux-essentials">Linux essentials</h1>
+<h2 id="index"><!-- raw HTML omitted --><!-- raw HTML omitted -->Index</h2>
+<ul>
+<li><a href="#package">Package management</a>
+<ul>
+<li><a href="#rpm">RPM based</a></li>
+<li><a href="#debian">Debian based: APT and dpkg</a></li>
+</ul>
+</li>
+<li><a href="#cli-basics">Command-line basics</a>
+<ul>
+<li><a href="#cli-syntax">Command-line syntax</a></li>
+<li><a href="#basic-commands">Basic commands</a></li>
+<li><a href="#cmd-history">Command history and completion</a></li>
+<li><a href="#shell-config-files">shell configuration files</a></li>
+<li><a href="#variables">Environment / shell variables</a></li>
+<li><a href="#user-def-vars">User-defined variables</a></li>
+<li><a href="#globbing">Globbing</a></li>
+<li><a href="#quoting">Quoting</a></li>
+<li><a href="#formatting">Formatting commands</a></li>
+<li><a href="#options">Working with options</a></li>
+<li><a href="#locate-find-whereis">Locate, find, whereis</a></li>
+</ul>
+</li>
+<li><a href="#cli-help">Getting CLI help</a>
+<ul>
+<li><a href="#man-pages">Linux MAN pages</a></li>
+<li><a href="#info-pages">Info pages</a></li>
+<li><a href="#more-local-docs">More local documentation</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="package-management"><!-- raw HTML omitted --><!-- raw HTML omitted -->Package management</h2>
+<h3 id="rpm-based"><!-- raw HTML omitted --><!-- raw HTML omitted -->RPM based</h3>
+<h4 id="yum">Yum</h4>
+<p>YUM repos are located in <code>/etc/yum.repos.d/</code>. Unlike APT, YUM has several repo files in the folder. Check out the man pages for YUM and the other package management commands.</p>
+<table>
+  <thead>
+      <tr>
+          <th>command</th>
+          <th>purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>yum update</code></td>
+          <td>updates the repos and gives you the option of updating the packages pending updates</td>
+      </tr>
+      <tr>
+          <td><code>yum search httpd</code></td>
+          <td>searches for that package</td>
+      </tr>
+      <tr>
+          <td><code>yum install $package</code></td>
+          <td>to install it</td>
+      </tr>
+      <tr>
+          <td><code>yum check-update $package</code></td>
+          <td>to see if a package needs any updates</td>
+      </tr>
+      <tr>
+          <td><code>yum upgrade</code></td>
+          <td>upgrade package</td>
+      </tr>
+      <tr>
+          <td><code>yum deplist $package</code></td>
+          <td>check package’s list of dependencies</td>
+      </tr>
+      <tr>
+          <td><code>yum clean packages</code></td>
+          <td>will remove dependencies that were left behind but are no longer needed</td>
+      </tr>
+      <tr>
+          <td><code>yum remove $package</code></td>
+          <td>removes the package</td>
+      </tr>
+      <tr>
+          <td><code>yum list installed</code></td>
+          <td>list all installed packages</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="rpm">RPM</h4>
+<table>
+  <thead>
+      <tr>
+          <th>command</th>
+          <th>purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>rpm -ipv package.rpm</code></td>
+          <td><code>i</code> means install, <code>p</code> means show progress, and <code>v</code> means verbose</td>
+      </tr>
+      <tr>
+          <td><code>rpm -q nano</code></td>
+          <td>query the package for info (true file name)</td>
+      </tr>
+      <tr>
+          <td><code>rpm -qi nano</code></td>
+          <td>query the package for more info</td>
+      </tr>
+      <tr>
+          <td><code>rpm -e nano</code></td>
+          <td>uninstall the package</td>
+      </tr>
+      <tr>
+          <td><code>rpm -qR nano</code></td>
+          <td>uninstall required packages</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="debian-based-apt-and-dpkg"><!-- raw HTML omitted --><!-- raw HTML omitted -->Debian based: APT and dpkg</h3>
+<h4 id="apt">APT</h4>
+<p>Uses a sources list located in <code>etc/apt/sources.list</code></p>
+<table>
+  <thead>
+      <tr>
+          <th>command</th>
+          <th>purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>apt-get update</code></td>
+          <td>searches the online repos and caches the list of packages for when we do a search via&hellip;</td>
+      </tr>
+      <tr>
+          <td><code>apt-cache search $package</code></td>
+          <td>searches for a package in the APT cache</td>
+      </tr>
+      <tr>
+          <td><code>apt-get install nginx</code></td>
+          <td>install package</td>
+      </tr>
+      <tr>
+          <td><code>apt-get remove nginx</code></td>
+          <td>remove package</td>
+      </tr>
+      <tr>
+          <td><code>apt-get remove --purge nginx</code></td>
+          <td>to get rid of config files and such</td>
+      </tr>
+      <tr>
+          <td><code>apt-get autoremove [$package]</code></td>
+          <td>to remove unneeded packages.</td>
+      </tr>
+      <tr>
+          <td><code>apt-get upgrade</code></td>
+          <td>upgrades packages</td>
+      </tr>
+      <tr>
+          <td><code>apt-get -f upgrade</code></td>
+          <td>Imstalls dependencies that we’re flagged while attempting to install a Debian package</td>
+      </tr>
+      <tr>
+          <td><code>apt-get dist-upgrade</code></td>
+          <td>upgrades the kernel and distribution packages</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="dpkg">dpkg</h4>
+<table>
+  <thead>
+      <tr>
+          <th>command</th>
+          <th>purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>dpkg -i name.deb</code></td>
+          <td>Installs Debian package</td>
+      </tr>
+      <tr>
+          <td><code>dpkg --get-selections</code></td>
+          <td>shows all installed packages</td>
+      </tr>
+      <tr>
+          <td><code>dpkg --remove $package_name</code></td>
+          <td>Removes Debian package</td>
+      </tr>
+      <tr>
+          <td><code>dpkg --purge $package_name</code></td>
+          <td>Removes dependencies</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="command-line-basics"><!-- raw HTML omitted --><!-- raw HTML omitted -->Command-line basics</h2>
+<p>Shells are command-line interpreters that accept commands that are then sent to the OS kernel for processing. See list of popular shells I saved as an img on my iPad. You can use any shell installed on the computer by typing its name on the CLI.</p>
+<ul>
+<li>An interactive shell is one in which you issue commands. A non-interactive shell is one that runs in the background.</li>
+<li>You can have several CLI sessions, accessible via <code>Alt + F1</code> through <code>Alt + F6</code>.</li>
+<li>You can <code>echo $SHELL</code></li>
+<li>You can set each user’s shell and see it in /etc/password</li>
+<li>If using bash, You can see your command-line history in .bash_history and complete commands with <code>tab</code>
+<ul>
+<li><code>history</code></li>
+<li><code>history 20</code> show the last 20 commands.</li>
+<li><code>!20</code> execute command # 20</li>
+<li><code>!-2</code> execute the second-to-last command</li>
+<li><code>!!</code> execute the previous command</li>
+<li><code>!ssh</code> execute the last SSH command</li>
+<li><code>!?search?</code> execute the last command with &ldquo;search&rdquo; somewhere in it</li>
+<li><code>^original^replacement^</code> find latest command with <code>original</code> and replace that string with <code>replacement</code> on execution.
+<ul>
+<li>e.g.: <code>cat /etc/hots</code>, then <code>^hots^hosts^</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="command-line-syntax"><!-- raw HTML omitted --><!-- raw HTML omitted -->Command-line syntax</h3>
+<p>Programs only run from inside folders indicated in the $PATH variable and not the working directory.</p>
+<ul>
+<li>The letters after <code>-</code> are called flags.</li>
+<li><code>ls</code>:
+<ul>
+<li><code>-a</code> = all (show hidden files)</li>
+<li><code>-l</code> = long listing (type and permissions, number of links the file has, owner, group, size in bytes, date modified)</li>
+<li><code>-F</code> = Display a slash after a directory, an asterisk after an executable,</li>
+<li><code>-S</code> = sort by file size, descending</li>
+<li><code>-r</code> = reverse the sorting to ascending. E.g., <code>ls -lrS</code>
+an @ after each symbolic link.</li>
+<li><code>-R</code> = recursively display contents of directories.</li>
+<li><code>-t</code> = sort by date modified, desc</li>
+</ul>
+</li>
+</ul>
+<h3 id="basic-commands"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic commands</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>cd</code></td>
+          <td style="text-align: left">change directory. By itself, takes you to your home directory.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>env</code></td>
+          <td style="text-align: left">display current user’s environment variables</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>halt</code> or <code>init 0</code></td>
+          <td style="text-align: left">shutdown. Note that <code>init</code> works but is deprecated</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>ifconfig</code> or <code>ip addr</code></td>
+          <td style="text-align: left">shows NIC configs</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>netstat</code></td>
+          <td style="text-align: left">status of the network</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>reboot</code> or <code>init 1</code></td>
+          <td style="text-align: left">restart. Note that <code>init</code> works but is deprecated</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>route</code></td>
+          <td style="text-align: left">view routing table</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>shutdown</code></td>
+          <td style="text-align: left"><code>-H</code>= halt; <code>-P</code>= poweroff; <code>c</code> = cancel pending shutdown; <code>r</code> = reboot</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>su</code></td>
+          <td style="text-align: left">substitute user or super user. E.g., <code>su josue</code> or <code>su -</code> to become root</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>top</code></td>
+          <td style="text-align: left">list of running apps/processes; <code>top -h</code> gives usage info</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>uname</code></td>
+          <td style="text-align: left">print OS name. <code>-n</code> = hostname; <code>-r</code> = kernel’s release; <code>-v</code> = kernel’s version number; <code>-m</code> 32- or 64-bit; <code>-p</code> = processor info; <code>-o</code> = full official name of the OS; <code>-a</code> = all info above</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>which $program</code></td>
+          <td style="text-align: left">full path of the application</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>whoami</code></td>
+          <td style="text-align: left">current user</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="command-history-and-completion"><!-- raw HTML omitted --><!-- raw HTML omitted -->Command history and completion</h3>
+<ul>
+<li>
+<p>A user&rsquo;s command history is kept in <strong>~/.bash_history</strong></p>
+</li>
+<li>
+<p>The <code>$HISTFILESIZE</code> env variable shows how many lines will be saved in the history file. a value of 0 means save nothing.</p>
+</li>
+<li>
+<p>The <code>$HISTCONTROL</code> env variable shows Bash&rsquo;s history behavior</p>
+</li>
+<li>
+<p><code>history</code> shows a numbered list of the commands. Rerun a command with <code>!&lt;num&gt;</code></p>
+</li>
+<li>
+<p>You can use the <code>tab</code> key to complete a partially-typed command</p>
+</li>
+</ul>
+<h3 id="shell-configuration-files"><!-- raw HTML omitted --><!-- raw HTML omitted -->shell configuration files</h3>
+<p>Different shell use different configuration files. Make sure you know which files your Linux distro uses. A system without a GUI puts you in the login shell. It’s important to know which shell your in so you know which configuration file will be used for it.</p>
+<ul>
+<li>login shell: Shell you&rsquo;re presented with when you log in remotely (e.g., SSH)
+<ul>
+<li>First file executed is <code>/etc/profile</code>. This file sets default variables for all users.</li>
+<li>Then these files are executed in order. Once there&rsquo;s a match the others are ignored even if they exist:
+<ul>
+<li><code>~/.bash_profile</code></li>
+<li><code>~/.bash_login</code></li>
+<li><code>~/.profile</code></li>
+<li><code>~/.bashrc</code></li>
+<li><code>/etc/bashrc</code></li>
+</ul>
+</li>
+<li><code>~/.bash_logout</code> is executed when the user logs out</li>
+</ul>
+</li>
+<li>non-login shell: Shell you&rsquo;re presented with when you use the terminal application or when you run a script
+<ul>
+<li>Executes <code>~/.bashrc</code>, which calls <code>/etc/bashrc</code></li>
+</ul>
+</li>
+<li>bash_profile: Login shell that stores user-specific shell preferences</li>
+<li>bashrc: Non-login shell that stores user-specific functions and aliases</li>
+<li>/etc/profile: (check exact name) affects all users</li>
+</ul>
+<h3 id="environment--shell-variables"><!-- raw HTML omitted --><!-- raw HTML omitted -->Environment / shell variables</h3>
+<ul>
+<li>
+<p>Variables are placeholders for another value. They can be used in scripts.</p>
+</li>
+<li>
+<p>User defined variables: Created by the user</p>
+</li>
+<li>
+<p>Environment variables: Created by the OS to configure the system environment. E.g., <code>echo $HOME</code></p>
+</li>
+<li>
+<p>You can view all environment variables with <code>env</code> (not alphabetized) and <code>set</code> (alphabetized)</p>
+</li>
+<li>
+<p>Change or create a variable (note there is no space on either side of equal sign:</p>
+<ul>
+<li>via <code>VAR=VALUE</code>. Example, <code>PATH=$PATH:/var/opt/</code>.</li>
+<li><code>export $PATH</code> to make that new value available to users in other shells</li>
+<li>Configure your bash config files to make this happen every time you start your system.</li>
+</ul>
+</li>
+</ul>
+<h4 id="common-environment-variables">Common environment variables</h4>
+<table>
+  <thead>
+      <tr>
+          <th>variable</th>
+          <th>description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>LOGNAME</td>
+          <td>username of current user</td>
+      </tr>
+      <tr>
+          <td>OLDPWD</td>
+          <td>previous working directory</td>
+      </tr>
+      <tr>
+          <td>OSTYPE</td>
+          <td>duh</td>
+      </tr>
+      <tr>
+          <td>PATH</td>
+          <td>distro dependent</td>
+      </tr>
+      <tr>
+          <td>USER and USERNAME</td>
+          <td>username of current user</td>
+      </tr>
+      <tr>
+          <td>HOST and HOSTNAME</td>
+          <td>system hostname</td>
+      </tr>
+      <tr>
+          <td>ENV</td>
+          <td>you can type <code>env</code> or <code>set</code></td>
+      </tr>
+      <tr>
+          <td>EUID</td>
+          <td>UID number of current user</td>
+      </tr>
+      <tr>
+          <td>HISTFILE</td>
+          <td>full path of file</td>
+      </tr>
+      <tr>
+          <td>HISTSIZE</td>
+          <td>size history can grow to</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="user-defined-variables"><!-- raw HTML omitted --><!-- raw HTML omitted -->User-defined variables</h3>
+<ul>
+<li>
+<p>Variables cannot start with a number. They can contain <code>-</code> amd <code>_</code></p>
+</li>
+<li>
+<p>Convention is to make variables upper-case.</p>
+</li>
+<li>
+<p>Example: <code>THEDUDE=&quot;Jeff Bridges&quot; ; export THEDUDE</code></p>
+</li>
+</ul>
+<h3 id="globbing"><!-- raw HTML omitted --><!-- raw HTML omitted -->Globbing</h3>
+<p>Globbing is the process of using wildcards to expand a search. Globbing stands for <strong>global command</strong>.</p>
+<ul>
+<li><code>*</code> = match <strong>0+</strong> of any character</li>
+<li><code>?</code> = match <strong>1</strong> of any character</li>
+<li><code>[Aabc]</code> = match any single character in list</li>
+<li><code>[^abc]</code> = exclude characters in list</li>
+<li>Examples:
+<ul>
+<li><code>ls -l ????.txt</code> search for a four-character text file</li>
+<li><code>ls -l [F]*.txt</code> search for all text files beginning with capital F</li>
+<li><code>ls -l f[igh][lfz]e*.txt</code> what you&rsquo;d expect from regex, except that <code>*</code> matches anything 0+ times</li>
+<li><code>ls -l [Rr]eport201[0-9]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="quoting"><!-- raw HTML omitted --><!-- raw HTML omitted -->Quoting</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Character</th>
+          <th style="text-align: left">Description</th>
+          <th style="text-align: left">Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>&quot;</code></td>
+          <td style="text-align: left">allows variable interpolation.</td>
+          <td style="text-align: left"><code>echo &quot;The path is $PATH&quot;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>'</code></td>
+          <td style="text-align: left"><strong>does not</strong> allow variable interpolation</td>
+          <td style="text-align: left"><code>echo 'The path is $PATH'</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\</code></td>
+          <td style="text-align: left">Escapes special chars</td>
+          <td style="text-align: left"><code>echo &quot;You owe \$5.00&quot;</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="formatting-commands"><!-- raw HTML omitted --><!-- raw HTML omitted -->Formatting commands</h3>
+<ul>
+<li>
+<p>Commands tend to be lower-case</p>
+</li>
+<li>
+<p>Spacing doesn&rsquo;t matter (2 spaces or a tab is OK)</p>
+</li>
+<li>
+<p>You can wrap long commands along several lines but will need to escape it. E.g., <code>ls \{enter key} -lah</code></p>
+</li>
+</ul>
+<h3 id="working-with-options"><!-- raw HTML omitted --><!-- raw HTML omitted -->Working with options</h3>
+<ul>
+<li>
+<p>Command = what to do; options = how to do it; arguments = what to do it with.</p>
+</li>
+<li>
+<p>Parameters with a leading <code>-</code> are called <strong>options</strong> and switch certain parts of the command on/off. <code>ls -la</code> = <code>ls -l -a</code></p>
+</li>
+<li>
+<p>Paramters with no leading <code>-</code> are called arguments.</p>
+</li>
+</ul>
+<h3 id="locate-find-whereis"><!-- raw HTML omitted --><!-- raw HTML omitted -->Locate, find, whereis</h3>
+<h4 id="locate">Locate</h4>
+<p>Searches its file database for files or directories the user has access to. Faster than <code>find</code> but doesn&rsquo;t allow you to indicate the directory.</p>
+<pre><code>locate passwd
+</code></pre>
+<h4 id="find">Find</h4>
+<ul>
+<li>
+<p>Syntax is <code>find $dir [$dir2] {-name | -iname | -size | -mtime | -atime | -ctime}</code></p>
+</li>
+<li>
+<p>You can glob using <code>*</code>, <code>?</code>, and <code>[]</code>.</p>
+<ul>
+<li><strong>If you glob, you must use single quotes.</strong></li>
+</ul>
+</li>
+<li>
+<p>This command will search the directory recursively.</p>
+<ul>
+<li>You can exclude a directory with <code>-or -iname &quot;$dir_name&quot; prune</code></li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<pre><code>find . -iname '*keyword*'                   # Match keyword
+find / -size +1024                          # greater than size in bytes
+find . -mtime -1                            # modified time less than 1 day
+find . -atime -1                            # accessed time less than 1 day
+find . -ctime -1                            # created time less than 1 day
+find . -iname '*.txt' -or -iname &quot;implementations&quot; -prune
+</code></pre>
+<h4 id="whereis">whereis</h4>
+<p>Searches for executables and man page files</p>
+<pre><code>whereis cd
+</code></pre>
+<h2 id="getting-cli-help"><!-- raw HTML omitted --><!-- raw HTML omitted -->Getting CLI help</h2>
+<h3 id="linux-man-pages"><!-- raw HTML omitted --><!-- raw HTML omitted -->Linux MAN pages</h3>
+<ul>
+<li>
+<p>Meant as a quick reference for people who already know a command and need to learn certain options. Not meant to be a tutorial.</p>
+</li>
+<li>
+<p>Quality can vary significantly from one page to the next</p>
+</li>
+<li>
+<p>Man pages have 9 sections. You&rsquo;ll mostly use section 1, executable programs and shell commands. To see section 5, for example, type <code>man 5 $command</code></p>
+</li>
+<li>
+<p>Use <code>whatis $command</code> to search for man page entries matching that command. E.g., <code>whatis passwd</code>.</p>
+</li>
+<li>
+<p><code>apropos $keyword</code>  search man pages for entries containing the keyword.</p>
+</li>
+<li>
+<p>You can use <code>/</code> inside a man page to search forward or <code>?</code> to search backwards</p>
+</li>
+<li>
+<p>Man pages are organized like this:</p>
+<ul>
+<li>Name</li>
+<li>Synopsis: Brief description of how the command is used, incl. optional parameters (in brackets) and required paramters (underlined). <code>...</code> means multiple parameters of that type. E.g., <code>ls -la file1 file2</code></li>
+<li>Description</li>
+<li>Options</li>
+<li>Files</li>
+<li>See Also</li>
+<li>Bugs</li>
+<li>History</li>
+<li>Author</li>
+</ul>
+</li>
+</ul>
+<h3 id="info-pages"><!-- raw HTML omitted --><!-- raw HTML omitted -->Info pages</h3>
+<ul>
+<li>
+<p>Similar to man pages, but has hyperlinks (denoted by asterisk.</p>
+</li>
+<li>
+<p>Programs from the Free Software Foundation use info pages instead of man pages.</p>
+</li>
+<li>
+<p><code>info $topic</code></p>
+</li>
+</ul>
+<h3 id="more-local-documentation"><!-- raw HTML omitted --><!-- raw HTML omitted -->More local documentation</h3>
+<ul>
+<li>
+<p>other ways to get help include an application&rsquo;s readme file.</p>
+</li>
+<li>
+<p>Locations for readme files include:</p>
+<ul>
+<li><code>/usr/doc/packagename</code></li>
+<li><code>/usr/share/doc/packagename</code></li>
+<li><code>/usr/share/doc/packages/packagename</code></li>
+</ul>
+</li>
+<li>
+<p>Many programs have help files in PostScript, PDF, or HTML format.</p>
+</li>
+<li>
+<p>Configuration files are typically in the <code>/etc</code> directory.</p>
+</li>
+<li>
+<p>For RPM packages, try <code>rpm -ql passwd | grep doc</code> or <code>rpm -ql yum | grep README</code></p>
+</li>
+</ul>
+<h4 id="reading-different-file-formats">Reading different file formats</h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">file ext</th>
+          <th style="text-align: left">program used to read them</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>.1</code> - <code>.9</code></td>
+          <td style="text-align: left">man, info, less</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.gz</code> or <code>.bz2</code></td>
+          <td style="text-align: left">gunzip or bunzip2 to decompress, then less to read</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.txt</code></td>
+          <td style="text-align: left">any text editor</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.htm</code>, <code>.html</code></td>
+          <td style="text-align: left">any web browser, often less</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.odt</code></td>
+          <td style="text-align: left">LibreOffice, OpenOffice.org, any word processor</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.pdf</code></td>
+          <td style="text-align: left"><code>.xpdf</code>, Adobe Reader</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.tif</code>, <code>.png</code>., <code>.jpg</code></td>
+          <td style="text-align: left">Gimp</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="the-linux-file-system"><!-- raw HTML omitted --><!-- raw HTML omitted -->The Linux file system</h2>
+<p>The Linux file system and the file system hierarchy standard (FHS)</p>
+<ul>
+<li>The Linux file system uses a hierarchy structure to organize data.</li>
+<li>Linux systems have a standard set of subdirectories at the root.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">directory</th>
+          <th style="text-align: left">description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">bin</td>
+          <td style="text-align: left">executables necessary to run the OS</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">boot</td>
+          <td style="text-align: left">bootloader files to boot Linux</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">dev</td>
+          <td style="text-align: left">devices that send/receive data sequentially (printers/mice); devices that are block-oriented (HDs, flash drives)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">etc</td>
+          <td style="text-align: left">text-based config files used by the system</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">home</td>
+          <td style="text-align: left">home folders for users</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">lib -&gt; usr/lib</td>
+          <td style="text-align: left">code libraries for programs in the bin or sbin directories</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">lib64</td>
+          <td style="text-align: left">64-bit libraries</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">media</td>
+          <td style="text-align: left">used by some distros to mount external devices</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">mnt</td>
+          <td style="text-align: left">used by some distros to mount other external devices</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">opt</td>
+          <td style="text-align: left">contains files for programs you can install manually</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">proc</td>
+          <td style="text-align: left">pseudo file system for processes</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">root</td>
+          <td style="text-align: left">root user&rsquo;s home directory</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">sbin</td>
+          <td style="text-align: left">mgmt and config files</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">srv</td>
+          <td style="text-align: left">where services save their files (e.g., httpd)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">sys</td>
+          <td style="text-align: left">hardware within system</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">tmp</td>
+          <td style="text-align: left">temporary files created by file system</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">usr</td>
+          <td style="text-align: left">application files</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">var</td>
+          <td style="text-align: left">Linux variable data and log files</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="disk-file-systems"><!-- raw HTML omitted --><!-- raw HTML omitted -->Disk file systems</h3>
+<ul>
+<li>
+<p><strong>ext2:</strong> second extended file system. Data is stored in hiearchical fashion (dirs/files). 2 TB is max file size.</p>
+</li>
+<li>
+<p><strong>ext3:</strong> updated version of ext2. Adds journaling, which records transactions. If the system restarts uncleanly, the entire file system doesn&rsquo;t need to be checked entirely as with ext2.</p>
+</li>
+<li>
+<p><strong>Reiser:</strong> similar to ext3 in that journaling makes recovery much quicker.</p>
+</li>
+<li>
+<p><strong>ext4:</strong> updated version of ext3.</p>
+</li>
+</ul>
+<h2 id="files-and-directories"><!-- raw HTML omitted --><!-- raw HTML omitted -->Files and directories</h2>
+<ul>
+<li>
+<p><code>touch -d &quot;February 1 2017&quot; file.txt</code>: Allows you to specify the modification timestamp.</p>
+</li>
+<li>
+<p><code>mkdir -p newdir/newsubdir/newsubdir2</code>: Create a directory and its parents if they don&rsquo;t exist.</p>
+</li>
+<li>
+<p><code>rmdir $dir</code>: Can only delete empty directories</p>
+</li>
+<li>
+<p><code>cp -puR srcfile dstfile</code>:</p>
+<ul>
+<li><strong><code>p</code></strong> = preserve original ownership</li>
+<li><strong><code>u</code></strong> = update (only if src is newer or dst doesn&rsquo;t exist)</li>
+<li><strong><code>R</code></strong> = recursive</li>
+</ul>
+</li>
+<li>
+<p><code>mv srcfile directory/</code>: Move/rename file to indicate directory</p>
+</li>
+</ul>
+<h2 id="archives-and-compression"><!-- raw HTML omitted --><!-- raw HTML omitted -->Archives and compression</h2>
+<h3 id="archives"><!-- raw HTML omitted --><!-- raw HTML omitted -->Archives</h3>
+<ul>
+<li><strong>tar:</strong> Stands for “tape archive.” Combines files but doesn’t compress them. You can pass flags to both archive and compress, since Gzip and Bzip2 are for compressing only. <strong>Note that the order of the flags matters for <code>tar</code> command.</strong>
+<ul>
+<li><code>-c</code> = create archive</li>
+<li><code>-f</code> = read the archive from or write the archive to the specified file</li>
+<li><code>-t</code> = list archive&rsquo;s content w/o extracting it</li>
+<li><code>-x</code> = extract tarball</li>
+<li><code>-v</code> = verbose output (lists files extracted)</li>
+<li><code>-z</code> = compress using gzip</li>
+<li><code>-j</code> = compress using bzip2 (like gzip but more resources intensive)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Archive (no compression)</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>tar -cf tarball.tar dir-to-tar</code></td>
+          <td style="text-align: left">creates the tarball from dir-to-tar directory</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>tar -cf tarball.tar file1 file2</code></td>
+          <td style="text-align: left">creates the tarball from files indicated</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Unarchive (no compression)</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>tar -tf tarball.tar</code></td>
+          <td style="text-align: left">show contents of tarball w/o unarchiving</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>tar -xf tarball.tar</code></td>
+          <td style="text-align: left">extract tarball</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>tar -xvf tarball.tar</code></td>
+          <td style="text-align: left">extract tarball, verbose</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Archiving with compression</strong></p>
+<p>While not required, it&rsquo;s best practice to indicate the compression used as part of the file name.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>tar -czf tarball.tar.gz dir-to-tar</code></td>
+          <td style="text-align: left">use gzip to compress</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>tar -cjf tarball.tar.bz2 dir-to-tar</code></td>
+          <td style="text-align: left">use bzip2 to compress</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Unarchiving compressed tarballs</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>tar -xzf tarball.tar.gz</code></td>
+          <td style="text-align: left">extract compressed gzipped archive</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>tar -xjvf tarball.tar.bz2</code></td>
+          <td style="text-align: left">extract compressed bzip2 archive, verbose</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="compression"><!-- raw HTML omitted --><!-- raw HTML omitted -->Compression</h3>
+<ul>
+<li>
+<p><strong>zip:</strong> Like in Windows. It&rsquo;s the only command that both compresses and archives. It&rsquo;s also the simplest b/c it has few options.</p>
+<ul>
+<li>Examples: Compress with <code>zip</code> and extract with <code>unzip</code>
+<ul>
+<li><code>zip file.zip file1 [file2]</code> = create a zipped archive of the specified files</li>
+<li><code>zip -r file.zip dir-to-zip</code>
+<ul>
+<li><code>-r</code> is required to go into directories and zip their contents, or else you&rsquo;ll zip an empty directory</li>
+</ul>
+</li>
+<li><code>unzip file.zip</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>gzip:</strong> Compressed file format. Not for archiving, but for compressing.</p>
+<ul>
+<li>Compress with <code>gzip</code> and extract with <code>gunzip</code>.</li>
+<li>File extension is <strong>.gz</strong>.</li>
+<li><strong>Note:</strong> Gzip deletes the original unless you pass the <code>-c</code> flag, or the <code>-k</code> flag for &ldquo;keep.&rdquo;</li>
+<li>Examples:
+<ul>
+<li><code>gzip file.tar</code> = will replace original file</li>
+<li><code>gzip -c file.tar &gt; file.tar.gz</code> = will keep original file and create file.tar.gz</li>
+<li><code>gzip -k file.tar</code> = same as above</li>
+<li><code>gunzip file.tar.gz</code> = uncompress file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>bzip2:</strong> Better than Gzip, especially for bigger files. Not for archiving, but for compressing.</p>
+<ul>
+<li>Compress with <code>bzip2</code> and extract with <code>bunzip</code>. File extension is <strong>.bz2</strong></li>
+<li>Examples:
+<ul>
+<li><code>bzip2 file.tar</code></li>
+<li><code>bunzip2 file.tar.bz2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="searching-for-and-extracting-data-from-files"><!-- raw HTML omitted --><!-- raw HTML omitted -->Searching for and extracting data from files</h2>
+<h3 id="viewing-text"><!-- raw HTML omitted --><!-- raw HTML omitted -->Viewing text</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>cat</code></td>
+          <td style="text-align: left">display contents of a file</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>less -M</code></td>
+          <td style="text-align: left">reads file with pagination. <!-- raw HTML omitted --><!-- raw HTML omitted -->use <code>/</code> to search fwd and <code>?</code> to search backwards<!-- raw HTML omitted --><!-- raw HTML omitted --> <code>-M</code> shows lines you&rsquo;re reading and total, plus percentage <!-- raw HTML omitted --><!-- raw HTML omitted --><code>-N</code> shows line numbers on the left <!-- raw HTML omitted --><!-- raw HTML omitted --> <code>G</code> goes to beginning and <code>shift</code> + <code>G</code> goes to end</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>head</code></td>
+          <td style="text-align: left">read first 10 lines of a file. <code>-n $num_lines</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>tail</code></td>
+          <td style="text-align: left">read last 10 lines of a file; <code>-f</code> = follow</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>find</code></td>
+          <td style="text-align: left">locates file on system<!-- raw HTML omitted --><!-- raw HTML omitted --><code>find . -type d</code> find directories<!-- raw HTML omitted --><code>find . -type f</code> find files<!-- raw HTML omitted --><code>find . -iname &quot;file*.</code> allows globbing</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="analyzing-text"><!-- raw HTML omitted --><!-- raw HTML omitted -->Analyzing text</h3>
+<ul>
+<li>
+<p><code>grep</code>: searches for a string; allows globbing<!-- raw HTML omitted --></p>
+<ul>
+<li><code>-r</code> = recursive</li>
+<li><code>-i</code> = case insensitive</li>
+<li><code>-n</code> = show line numbers</li>
+<li><code>-w</code> = expression is searched for as word</li>
+<li>Examples:
+<ul>
+<li><code>grep ^Sirloin file1.txt</code></li>
+<li><code>grep -i dhcp /var/log/messages</code></li>
+<li><code>grep -n dhcp /var/log/messages</code></li>
+<li><code>grep -rnw '.' -e 'domo'</code> searches all files in the current folder for the expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>sort</code>: sorts text alphabetically</p>
+<ul>
+<li><code>-r</code> = reverse alphabetically</li>
+</ul>
+</li>
+<li>
+<p><code>cut</code>: Remove text from file and print specified fields to stdout</p>
+<ul>
+<li><code>-d</code> = delimiter. E.g., <code>-d&quot; &quot;</code> = space character as the delimiter</li>
+<li><code>-f</code> = which field to print (based on the delimiter)</li>
+<li>Examples:
+<ul>
+<li><code>cut -d&quot; &quot; -f 6-</code> = start from field 6 through EOL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>wc</code>: word count. Note that you can specify multiple files.</p>
+<ul>
+<li><code>-w</code> = words</li>
+<li><code>-l</code> = lines</li>
+<li><code>-c</code> = chars</li>
+</ul>
+</li>
+</ul>
+<h3 id="pipes-and-regular-expressions"><!-- raw HTML omitted --><!-- raw HTML omitted -->Pipes and regular expressions</h3>
+<p>You can pipe the output of one command as the input for another command:</p>
+<pre><code>grep -i republic plato_republic.txt | less
+grep -i republic plato_republic.txt | wc -w
+</code></pre>
+<h4 id="regular-expressions-for-grep-command">Regular expressions for <code>grep</code> command</h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Expression</th>
+          <th style="text-align: left">Description</th>
+          <th style="text-align: left">Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">*</td>
+          <td style="text-align: left">0+ repeats of preceding character string or regex</td>
+          <td style="text-align: left"><code>file*</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">.</td>
+          <td style="text-align: left">any single char (grep)</td>
+          <td style="text-align: left"><code>.cc</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">?</td>
+          <td style="text-align: left">0+ of proceeding chars</td>
+          <td style="text-align: left"><code>f?le</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">^</td>
+          <td style="text-align: left">appears at beginning</td>
+          <td style="text-align: left"><code>^.b</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$</td>
+          <td style="text-align: left">appears at end</td>
+          <td style="text-align: left"><code>^...$</code> 3 chars</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\b&lt;needle&gt;\b</code></td>
+          <td style="text-align: left">word boundary (must match exactly)</td>
+          <td style="text-align: left"><code>\bwww\b</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">[nnn]</td>
+          <td style="text-align: left">one char btw braces</td>
+          <td style="text-align: left"><code>[abc]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">[^nnn]</td>
+          <td style="text-align: left">no chars btw braces</td>
+          <td style="text-align: left"><code>[^abc]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">[a-z]</td>
+          <td style="text-align: left">any single char in range</td>
+          <td style="text-align: left"><code>[a-x]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">[1-90]</td>
+          <td style="text-align: left">any digit between 1-9, and 0</td>
+          <td style="text-align: left">``</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="io-redirection"><!-- raw HTML omitted --><!-- raw HTML omitted -->I/O Redirection</h3>
+<h4 id="redirecting-output">Redirecting output</h4>
+<p>Output is normally displayed on the screen but can be redirected to files or to other commands as input.</p>
+<pre><code>tail /var/log/messages &gt; logtemp.txt    # redirect stdout
+tail /var/log/messages 1&gt; logtemp.txt   # same as above
+tail /var/log/messages &gt;&gt; logtemp.txt   # append
+
+cat bogusfile.txt 2&gt; errors.txt         # redirect stderr
+cat bogusfile.txt 2&gt;&gt; errors.txt        # append
+
+command 1&gt; outfile.txt 2&gt; errfile.txt   # redirect to separate files
+</code></pre>
+<h2 id="turning-commands-into-a-script"><!-- raw HTML omitted --><!-- raw HTML omitted -->Turning commands into a script</h2>
+<h3 id="basic-text-editing"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic text editing</h3>
+<h4 id="nano">nano</h4>
+<ul>
+<li>
+<p><code>ctrl</code> + <code>k</code>: cut line</p>
+</li>
+<li>
+<p><code>ctrl</code> + <code>u</code>: paste line</p>
+</li>
+<li>
+<p><code>ctrl</code> + <code>w</code>: search for text</p>
+</li>
+<li>
+<p><code>ctrl</code> + <code>t</code>: spell check</p>
+</li>
+<li>
+<p><code>ctrl</code> + <code>\</code>: find and replace</p>
+</li>
+<li>
+<p><code>ctrl</code> + <code>g</code>: view help</p>
+</li>
+<li>
+<p><code>ctrl</code> + <code>x</code>: exit</p>
+</li>
+</ul>
+<h4 id="vim">vim</h4>
+<ul>
+<li>
+<p><code>vimtutor</code> = built in tutorial from beginner to advanced</p>
+</li>
+<li>
+<p>Insert mode via <code>i</code>, <code>INSERT</code>, <code>s</code>, <code>o</code>, <code>a</code></p>
+</li>
+<li>
+<p>There are command mode adn command line mode. Enter command line mode from command mode via <code>:</code></p>
+<ul>
+<li><code>v</code> = enter visual mode. <code>V</code> = highlights the line; <code>ctrl</code> + <code>V</code> = visual block
+<ul>
+<li><code>y</code> = &ldquo;yank&rdquo; or copy highlighted text</li>
+</ul>
+</li>
+<li><code>p</code> = &ldquo;put&rdquo; or paste text</li>
+<li><code>shift</code> + <code>a</code> = append text at end of line</li>
+<li><code>u</code> = undo last change</li>
+<li><code>h</code> = move left</li>
+<li><code>j</code> = move down</li>
+<li><code>k</code> = move up</li>
+<li><code>l</code> = move right</li>
+<li><code>dw</code> = delete word under cursor</li>
+<li><code>dd</code> = deline line under cursor (5dd = delete 5 lines)</li>
+<li><code>shift</code> + <code>g</code> = go to bottom of file</li>
+<li><code>gg</code> = go to top of file</li>
+<li><code>:w</code> = write to disk</li>
+<li><code>:wq</code> or <code>x</code> = write to file and quit</li>
+<li><code>q!</code> = quit without saving</li>
+</ul>
+</li>
+</ul>
+<h3 id="shell-scripting"><!-- raw HTML omitted --><!-- raw HTML omitted -->Shell scripting</h3>
+<ul>
+<li>
+<p><code>#!/bin/bash</code> = specify an interpreter, (called the shebang)</p>
+</li>
+<li>
+<p><strong>Arguments:</strong> $1 -&gt; first arg, $2 -&gt; second arg, $? -&gt; exit code/status</p>
+</li>
+<li>
+<p><strong><code>&amp;&amp;</code>:</strong> execute command 2 only if command 1 exits normally</p>
+</li>
+<li>
+<p><strong><code>||</code>:</strong> execute command 2 only if command 1 exits abnormally</p>
+</li>
+<li>
+<p>You can combine <code>&amp;&amp;</code> and <code>||</code> as such:<!-- raw HTML omitted --><code>rm file1.txt &amp;&amp; echo &quot;file deleted&quot; || echo &quot;file not deleted&quot;</code></p>
+</li>
+<li>
+<p>When scripts are first created, they are not executable. Fix this with <code>chmod +x &lt;file name&gt;</code></p>
+</li>
+</ul>
+<h4 id="basic-if-statement">Basic if statement</h4>
+<pre><code>if [ condition ]
+then
+    command
+fi
+
+
+# example
+
+if [&quot;1&quot; == &quot;1&quot;]
+then
+    echo &quot;They are the same&quot;
+fi
+</code></pre>
+<h4 id="basic-else-statement">Basic else statement</h4>
+<pre><code>if [ condition ]
+then
+    command
+else
+    command
+fi
+
+
+# example
+
+if [ &quot;$PWD&quot; == &quot;$HOME&quot; ]
+then
+    echo &quot;You are home.&quot;
+else
+    echo &quot;You are in $PWD.&quot;
+</code></pre>
+<h4 id="loops">Loops</h4>
+<pre><code>for i in {1..10}
+do
+    echo &quot;$i&quot;
+done
+</code></pre>
+<h4 id="example-bash-script-1">Example bash script 1</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># My daily routine script</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># If user enters &#34;day&#34;, show calendar and date</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SHOWDAY</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;day&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Display the calendar</span>
+</span></span><span class="line"><span class="cl">    cal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Display the date/time in UTC</span>
+</span></span><span class="line"><span class="cl">    date -u
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Daily greeting</span>
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;\nHello there, </span><span class="nv">$LOGNAME</span><span class="s2">.\n\n&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;You are home.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">printf</span> <span class="s2">&#34;You are in </span><span class="nv">$PWD</span><span class="s2">.\n\n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Show us what we have to work on today</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DOCUMENTS</span><span class="o">=</span><span class="s2">&#34;/Users/rkumar/Downloads/linux-essentials-practice/text-analysis&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> doc in <span class="s2">&#34;</span><span class="nv">$DOCUMENTS</span><span class="s2">&#34;</span>/*.txt
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$doc</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><h4 id="example-bash-script-2">Example bash script 2</h4>
+<p>Create the script to set variable values based on args</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#! /bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="c1"># list contents of a dir and write the output to a file</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># usage: ./findlist.sh $LOCATION $FILENAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">LOCATION</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FILENAME</span><span class="o">=</span><span class="nv">$2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$LOCATION</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Please provide location argument&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$FILENAME</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Please provide a filename&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ls -lh  <span class="nv">$LOCATION</span> &gt; <span class="nv">$FILENAME</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Script is complete and indexed </span><span class="nv">$LOCATION</span><span class="s2">.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;###########################&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Displaying contents of </span><span class="nv">$FILENAME</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;###########################&#34;</span>
+</span></span><span class="line"><span class="cl">cat <span class="nv">$FILENAME</span>
+</span></span></code></pre></div><h2 id="the-linux-operating-system"><!-- raw HTML omitted --><!-- raw HTML omitted -->The Linux operating system</h2>
+<h3 id="windows-mac-and-linux-differences"><!-- raw HTML omitted --><!-- raw HTML omitted --> Windows, Mac, and Linux differences</h3>
+<ul>
+<li>
+<p>Windows has a lot of proprietary software and active directory.</p>
+</li>
+<li>
+<p>Apple uses proprietary hardware and software</p>
+</li>
+<li>
+<p>It&rsquo;s now easier to switch to Linux b/c many applications are web based.</p>
+</li>
+<li>
+<p>CLI: Windows has PowerShell and macOS doesn&rsquo;t have a CLI-only mode</p>
+</li>
+</ul>
+<h3 id="linux-lifecycle-management"><!-- raw HTML omitted --><!-- raw HTML omitted --> Linux lifecycle management</h3>
+<ul>
+<li>
+<p>Design</p>
+</li>
+<li>
+<p>Develop</p>
+</li>
+<li>
+<p>Deploy</p>
+</li>
+<li>
+<p>Manage</p>
+</li>
+<li>
+<p>Retire</p>
+</li>
+</ul>
+<h2 id="understanding-computer-hardware"><!-- raw HTML omitted --><!-- raw HTML omitted --> Understanding computer hardware</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Command</th>
+          <th style="text-align: left">Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>cat /proc/cpuinfo</code></td>
+          <td style="text-align: left">view processor details</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>free</code></td>
+          <td style="text-align: left">view RAM stats in bytes<!-- raw HTML omitted --><!-- raw HTML omitted --><code>-m</code> = show in MB<!-- raw HTML omitted --> <code>-g</code> = show in GB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>dmidecode</code></td>
+          <td style="text-align: left">show details about motherboard, BIOS, processor, and RAM</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>lsblk</code></td>
+          <td style="text-align: left">view all block devices (e.g., HDD) attached to system</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>df</code></td>
+          <td style="text-align: left">view free disk space on HDD<!-- raw HTML omitted --><!-- raw HTML omitted --> <code>-h</code> = human readable format</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>du -h $path</code></td>
+          <td style="text-align: left">disk usage; human redable, directories only <!-- raw HTML omitted --><!-- raw HTML omitted --><code>-a</code> = show files</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>top</code></td>
+          <td style="text-align: left">show stats on processor, RAM, and running processes</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>Hard drives tend to be named sequentially, such as <code>/dev/sda</code>, <code>/dev/sdb</code>, etc.</li>
+<li>Partitions are named sequentially, so partitions on sda will be called <code>sda1</code>, <code>sda2</code>, etc.</li>
+</ul>
+<h2 id="where-data-is-stored"><!-- raw HTML omitted --><!-- raw HTML omitted -->Where data is stored</h2>
+<h3 id="the-kernel"><!-- raw HTML omitted --><!-- raw HTML omitted -->The kernel</h3>
+<ul>
+<li>
+<p>Core of any Linux installation.</p>
+</li>
+<li>
+<p>Responsible for managing every piece of softare on a Linux computer, interfacing with the hardware.</p>
+</li>
+<li>
+<p>The kernel launches <strong>/sbin/init</strong>, and init in turn launches child processes.</p>
+</li>
+<li>
+<p>Linux manages these processes in the processes table, which we can access via <strong>ps</strong> and <strong>top</strong>.</p>
+</li>
+</ul>
+<h3 id="linux-processes"><!-- raw HTML omitted --><!-- raw HTML omitted -->Linux processes</h3>
+<ul>
+<li>
+<p>Every process has a <strong>PID</strong>.</p>
+</li>
+<li>
+<p>Every parent process has  parent ID (<strong>PPID</strong>)</p>
+<ul>
+<li>The two parent processes are 1) systemd and 2) kthreadd</li>
+</ul>
+</li>
+<li>
+<p>The kernel supplies process information to the <strong><code>/proc</code></strong> directory so it can be available to the <code>ps</code>, <code>top</code>, and <code>free</code> commands.</p>
+</li>
+<li>
+<p>We can use <code>ps</code> to identify running processes. Note that this command provides a static snapshot.</p>
+<ul>
+<li><code>-u $username</code> shows processes for that username</li>
+<li><code>-e</code> shows every process running from all users</li>
+<li><code>-H</code> show hierarchy of processes via indented output. E.g., <code>ps -eH</code></li>
+<li><code>--forest</code> also shows process hierarchy. E.g., <code>ps -e --forest</code></li>
+<li><code>-f</code> shows full format listing (all arguments a command is using while running). E.g., <code>ps -ef --forest</code></li>
+<li><code>ps -u josue --forest</code> shows parent/child relationships for processes.</li>
+<li><code>ps u U josue</code> gives CPU and memory %.</li>
+<li><code>ps aux</code> the <code>u</code> adds the username column. There&rsquo;s so much output it&rsquo;s typically more practical to grep.</li>
+<li><code>kill -9 $PID</code> will kill a process</li>
+</ul>
+</li>
+<li>
+<p><code>top</code> is dynamic, as opposed to <code>ps</code>, which provides a static snapshot.</p>
+<ul>
+<li><code>-h</code> or <code>?</code> will display CLI usage info and exit</li>
+<li>After running <code>top</code>&hellip;
+<ul>
+<li><code>k</code> will prompt for the PID of the process to kill.</li>
+<li><code>M</code> sort by memory usage</li>
+<li><code>P</code> sort by CPU usage (default)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>free</code> generates a report on the system&rsquo;s memory status using <strong>KB</strong></p>
+<ul>
+<li>The <strong>Mem:</strong> line shows total RAM stats</li>
+<li>The <strong>-/+ buffers</strong> line shows the total memory used by the programs</li>
+<li><strong>Swap:</strong> is hard disk space used as a adjunct to RAM.</li>
+<li>The <code>-h</code> flag shows the information in human-readable measurements (MB, GB)</li>
+</ul>
+</li>
+</ul>
+<h3 id="syslog-klog-dmesg"><!-- raw HTML omitted --><!-- raw HTML omitted -->syslog, klog, dmesg</h3>
+<ul>
+<li>
+<p>Most system logs are stored in <strong>/var/log/</strong></p>
+</li>
+<li>
+<p>Logs are closed daily and retained for several days</p>
+</li>
+<li>
+<p>Reading most system log files requires root privileges</p>
+</li>
+<li>
+<p><strong>boot.log</strong> records events from when the system boots</p>
+</li>
+<li>
+<p><strong>messages</strong> is the main log file</p>
+</li>
+<li>
+<p><strong>secure</strong> is the file that logs when users elevate their privileges or attempt/fail to log in</p>
+</li>
+<li>
+<p><code>grep sshd /var/log/*</code></p>
+</li>
+<li>
+<p><strong>klogd</strong> manages messages from the kernel separate from other programs.</p>
+</li>
+<li>
+<p><code>dmesg</code> will display messages from the kernel. This helps with tshoot of hardware or driver issues.</p>
+</li>
+</ul>
+<h2 id="networking"><!-- raw HTML omitted --><!-- raw HTML omitted -->Networking</h2>
+<h3 id="basic-networking"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic networking</h3>
+<h4 id="important-network-tools">Important network tools</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Tool</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ping -c $num</code></td>
+          <td>testing connectivity</td>
+      </tr>
+      <tr>
+          <td><code>dig</code></td>
+          <td><code>dig www.pluralsight.com -t A</code></td>
+      </tr>
+      <tr>
+          <td><code>nslookup</code></td>
+          <td><code>nslookup -query=A www.pluralsight.com</code></td>
+      </tr>
+      <tr>
+          <td><code>netstat</code></td>
+          <td>list network connections</td>
+      </tr>
+      <tr>
+          <td><code>route</code></td>
+          <td>current route/netwk settings</td>
+      </tr>
+      <tr>
+          <td><code>host $fqdn</code></td>
+          <td>test DNS resolution</td>
+      </tr>
+      <tr>
+          <td><code>traceroute</code></td>
+          <td>trace packet route</td>
+      </tr>
+      <tr>
+          <td><code>ifconfig</code></td>
+          <td>current network settings</td>
+      </tr>
+      <tr>
+          <td><code>ip addr [show]</code></td>
+          <td>current IP addr and network settings</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>You set up DNS information in <strong>/etc/resolv.conf</strong>, but in some distros you&rsquo;re not supposed to edit this file.</li>
+<li>You can see CentOS network config in <strong>/etc/sysconfig/network-scripts/ifcfg-ens33</strong> or some other <strong>ifcfg&hellip;</strong> file.</li>
+</ul>
+<h4 id="static-ip-address">Static IP address</h4>
+<ul>
+<li>Edit <strong>/etc/sysconfig/network-scripts/ifcfg-ens33</strong>
+<ul>
+<li>BOOTPROTO=&ldquo;static&rdquo;</li>
+<li>`IPADDR=&quot;$addr&quot;``</li>
+<li>`NETMASK=&quot;$mask&quot;``</li>
+<li>`NETWORK=&quot;$subnet_id&quot;``</li>
+<li>You can use CIDR notation on the IP address and omit the <code>NETMASK</code></li>
+<li>Remember to set DNS information in <strong>/etc/resolv.conf</strong></li>
+<li>You add routes another way</li>
+</ul>
+</li>
+</ul>
+<h3 id="routes"><!-- raw HTML omitted --><!-- raw HTML omitted -->Routes</h3>
+<ul>
+<li>
+<p><code>ip route show</code> shows the routes</p>
+</li>
+<li>
+<p><code>route</code> older method of showing routes</p>
+</li>
+<li>
+<p><code>netstat -r</code> same output as the <code>route</code> command, including routes to leave the LAN</p>
+</li>
+<li>
+<p>Always set your destination gateways as IP addresses, not FQDNs.</p>
+</li>
+<li>
+<p>Add routes via <code>route add -net $ntwk_id netmask $mask gw $rtr_addr</code></p>
+</li>
+<li>
+<p>Remove routes via <code>route del -net $ntwk_id netmask $mask gw $rtr_addr</code></p>
+</li>
+<li>
+<p><code>Route add default gw $ip_addr</code></p>
+</li>
+<li>
+<p>The DNS server used is indicated in <strong>/etc/resolv.conf</strong></p>
+</li>
+</ul>
+<h3 id="other-commands"><!-- raw HTML omitted --><!-- raw HTML omitted -->Other commands</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>netstat -a</code></td>
+          <td>Lists listening &amp; non-listening sockets</td>
+      </tr>
+      <tr>
+          <td><code>netstat -i</code></td>
+          <td>Stats about the network interfaces</td>
+      </tr>
+      <tr>
+          <td><code>netstat -l</code></td>
+          <td>Lists listening sockets</td>
+      </tr>
+      <tr>
+          <td><code>netstat -s</code></td>
+          <td>Summary for each protocol</td>
+      </tr>
+      <tr>
+          <td><code>netstat -r</code></td>
+          <td>Equivalent to <code>route</code></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="basic-security-and-user-types"><!-- raw HTML omitted --><!-- raw HTML omitted -->Basic security and user types</h2>
+<h3 id="root-and-standard-users"><!-- raw HTML omitted --><!-- raw HTML omitted -->Root and standard users</h3>
+<ul>
+<li>
+<p>Only the user and root can access the user&rsquo;s files.</p>
+</li>
+<li>
+<p><code>finger $username</code> gives info on a user (login, directory, name, and shell)</p>
+</li>
+<li>
+<p><code>id $username</code> gives user ID, group ID, group memberships</p>
+</li>
+<li>
+<p><strong>/etc/passwd</strong> has list of users who can authenticate locally. Each line indicates the user, the user&rsquo;s pw (legacy field), UID, GID for default group, full name or comment, home dir, and default shell</p>
+</li>
+<li>
+<p><strong>/etc/shadow</strong> has list of user passwords. Each line has the username, hashed pw, last modified field in Unix epoch, max days before a password must be changed, days ahead of max when the user will be prompted to change the password, the days to wait to disable the account if the password remains expired, and the expired field.</p>
+</li>
+<li>
+<p><strong>/etc/sudoers</strong> has a list of sudoers</p>
+</li>
+<li>
+<p><strong>/etc/group</strong> shows the group, password for the group, GID, and list of users who are members</p>
+</li>
+<li>
+<p><code>pwck</code> checks whether passwd and shadow are in sync.</p>
+</li>
+<li>
+<p><code>pwconv</code> adds any missing users from etc to shadow.</p>
+</li>
+<li>
+<p>Root exists to perform administrative tasks and can therefore access all files.</p>
+</li>
+<li>
+<p><code>su</code> or <code>su -</code> let’s you become Root. <code>su - username</code> gives us a shell as that user, with their PATH var.</p>
+</li>
+<li>
+<p><code>sudo $cmd</code> is a per-command way to elevate privileges.</p>
+</li>
+<li>
+<p><code>who</code> = who is logged in</p>
+</li>
+<li>
+<p><code>W</code> shows logged in users and their processes.</p>
+</li>
+<li>
+<p><code>who -b</code> last boot time</p>
+</li>
+<li>
+<p><code>who -m</code> whostname and user associated with it</p>
+</li>
+<li>
+<p><code>who -r</code> our current run level</p>
+</li>
+<li>
+<p><code>who -q</code> number of users logged in</p>
+</li>
+<li>
+<p><code>who -a</code> all of the above</p>
+</li>
+<li>
+<p><code>last [$username]</code> who logged in, when, and how, in reverse chronological order</p>
+</li>
+</ul>
+<h2 id="creating-users-and-groups"><!-- raw HTML omitted --><!-- raw HTML omitted -->Creating users and groups</h2>
+<ul>
+<li>
+<p>Every user acct has a UID and a textual username.</p>
+</li>
+<li>
+<p>Different users could have the same UID and therefore identical rights to the same files. You should never do this.</p>
+</li>
+<li>
+<p><code>id</code> will show the current user’s UID and GID. You can also type <code>id $username</code></p>
+</li>
+<li>
+<p><code>groups $username</code> shows the group memberships.</p>
+</li>
+<li>
+<p><code>groupadd &lt;grp-name&gt;</code> = add a new group</p>
+</li>
+<li>
+<p><code>useradd [-G $GID] -m -c &quot;John Doe&quot; jdoe</code> = add a new user. This command pulls defaults from <strong>/etc/default/useradd</strong></p>
+<ul>
+<li><code>-m</code> = create home dir</li>
+<li><code>-c</code> = comment; usually the user&rsquo;s full name</li>
+</ul>
+</li>
+<li>
+<p><code>userdel -r jdoe</code> = delete user and home folder</p>
+</li>
+<li>
+<p><code>sudo passwd $username</code> = change user&rsquo;s password.</p>
+</li>
+</ul>
+<h2 id="managing-file-permissions-and-ownership"><!-- raw HTML omitted --><!-- raw HTML omitted --> Managing file permissions and ownership</h2>
+<h3 id="file-and-directory-permissions"><!-- raw HTML omitted --><!-- raw HTML omitted --> File and directory permissions</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">☁  shell-scripting  ll
+</span></span><span class="line"><span class="cl">total <span class="m">24</span>
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">5</span> rkumar  staff   160B May <span class="m">21</span> 16:22 ./
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">5</span> rkumar  staff   160B May <span class="m">21</span> 08:48 ../
+</span></span><span class="line"><span class="cl">-rwxr-xr-x  <span class="m">1</span> rkumar  staff   546B May <span class="m">21</span> 16:17 daily.sh*
+</span></span><span class="line"><span class="cl">-rwxr-xr-x  <span class="m">1</span> rkumar  staff   516B May <span class="m">21</span> 16:22 indexer.sh*
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> rkumar  staff   1.8K May <span class="m">21</span> 16:22 test1.txt
+</span></span></code></pre></div><ul>
+<li>In the output above, the columns on the left indicate the user, group, and global permissions.</li>
+<li>Permissions can be shown via symbolic (the letters above) or octal notation.
+<ul>
+<li><code>r</code> = 4</li>
+<li><code>w</code> = 2</li>
+<li><code>x</code> = 1</li>
+<li>e.g., daily.sh has octal values 755</li>
+</ul>
+</li>
+</ul>
+<h3 id="modifying-permissions"><!-- raw HTML omitted --><!-- raw HTML omitted --> Modifying permissions</h3>
+<ul>
+<li>
+<p><code>chmod</code> = change mode of a file or directory, affecting permissions</p>
+<ul>
+<li><code>chmod u=rwx,g=rw,o=r $file_name</code></li>
+<li><code>chmod o-rx daily.sh</code> = remove read and execute permissions from others</li>
+<li><code>chmod -R o-rx shell-scripting/*</code> = recursively alter permissions for files in a directory, but not the directory itself
+<ul>
+<li>Applying the command to the directory instead of including <code>/*</code> also alters the directory.</li>
+</ul>
+</li>
+<li><code>chmod 600 test1.txt</code> = modify permissions on the file with rw permissions for the user and no permissions for the group or others</li>
+</ul>
+</li>
+<li>
+<p><code>chown $file_or_dir</code> = change ownership of a file/directory</p>
+<ul>
+<li><code>chown $username:$group $file</code>
+<ul>
+<li>You can omit the colon and the group if you&rsquo;re only changing the user. <code>chown $username $file</code></li>
+<li>You can omit the user if you&rsquo;re changing the group membership: <code>chown :$group $file</code></li>
+<li>Only root can change the user who owns a file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>chgrp</code> = change group ownership of a file/directory</p>
+</li>
+</ul>
+<h2 id="special-directories-and-files"><!-- raw HTML omitted --><!-- raw HTML omitted -->Special directories and files</h2>
+<h3 id="symbolic-links"><!-- raw HTML omitted --><!-- raw HTML omitted --> Symbolic links</h3>
+<ul>
+<li>
+<p>Symlinks are similar to windows shortcuts. They reference the path to a file, not the file itself.</p>
+</li>
+<li>
+<p>If the original file/dir is moved, the symlink breaks.</p>
+</li>
+<li>
+<p><code>ln -s $src_name $link_name</code> one convention is to append <code>.lnk</code> to the end of the symlink name</p>
+</li>
+<li>
+<p><code>unlink $link_name</code> removes the symlink</p>
+</li>
+<li>
+<p>Symlinks display an <strong>l</strong> in the file descriptor column of the <code>ls -l</code> output.</p>
+</li>
+<li>
+<p>Hard links are another pointer to the exact data on the hard disk. Deleting only one doesn&rsquo;t delete the file.</p>
+<ul>
+<li><code>ln $src_file $link_name</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="special-files-and-directories-and-the-sticky-bit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Special files and directories, and the sticky bit</h3>
+<ul>
+<li>
+<p><strong>/var/tmp:</strong> Has temp files that do <strong>not</strong> get deleted on reboot</p>
+</li>
+<li>
+<p><strong>/tmp:</strong> Has files that get deleted upon reboot</p>
+<ul>
+<li>Files in this directory have the sticky bit set, meaning that only users who created a file can delete that file even if everything has rwx permissions for this directory. This cam be seen via <code>ls -ld /tmp</code>, which gives <code>drwxrwxrwt. 8 root root 211 May 23 18:22 /tmp</code></li>
+</ul>
+</li>
+<li>
+<p>There are two ways to apply the sticky bit to a directory:</p>
+<ul>
+<li><code>chmod o+t $dir_name</code></li>
+<li><code>chmod 1777 $dir_name</code> the <code>1</code> denotes the sticky bit. To remove it, use <code>chmod 777 $dir_name</code>, where the absence of the <code>1</code> implies a zero (<code>chmod 0777 $dir_name</code>)</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+
+<div class="share-buttons">
+    <div class="share-buttons">
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linux Essentials on twitter"
+            href="https://twitter.com/intent/tweet/?text=Linux%20Essentials&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2flpi-linux-essentials%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px"
+                fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linux Essentials on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2flpi-linux-essentials%2f&amp;title=Linux%20Essentials&amp;summary=Linux%20Essentials&amp;source=http%3a%2f%2flocalhost%3a1313%2fnotes%2flpi-linux-essentials%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linux Essentials on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fnotes%2flpi-linux-essentials%2f&title=Linux%20Essentials">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span> built with ♥ rishab |
+    <span class="counter-number">
+        Couldn't read the counter |
+    </span>
+    <div class="quote">
+        <p class="stoic-quote"></p>
+    </div>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+        let response = await fetch(
+            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+        );
+        let data = await response.json();
+        console.log(data);
+        counter.innerHTML = `views: ${data}`;
+    }
+    updateCounter();
+</script>
+
+<script>
+    const quote = document.querySelector(".stoic-quote");
+    async function getQuote() {
+        let response = await fetch(
+            "https://stoic-quotes.com/api/quote"
+        );
+        let quoteData = await response.json();
+        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
+    }
+    getQuote();
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994317684370171"
+     crossorigin="anonymous"></script></body>
+
+</html>

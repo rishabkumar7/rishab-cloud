@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+
+<script defer data-domain="rishabkumar.com" src="https://plausible.rishab.cloud/js/script.file-downloads.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+<title>What is WSL and how to use it with VSCode | Rishab Kumar</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Click on me to see the content.">
+<meta name="author" content="Rishab Kumar">
+<link rel="canonical"
+    href="http://localhost:1313/_blog/what-is-wsl-and-how-to-use-in-vscode/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.924bd3c43408ede397c131465f815d9c722dbe3115ef4e9158eba92f01f59e99.css" integrity="sha256-kkvTxDQI7eOXwTFGX4FdnHItvjEV706RWOupLwH1npk="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<meta name="theme-color" content=" #2e2e33">
+<meta name="msapplication-TileColor" content=" #2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/_blog/what-is-wsl-and-how-to-use-in-vscode/" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"><head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    
+</head>
+
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01c5afa37f7740e490fecb3bcb6ccbbf"}'>
+</script>
+
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rishab Kumar (Alt + H)">Rishab Kumar</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home"><span>Home</span></a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/notes/" title="Notes">
+                    <span>Notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/podcast/" title="Podcast">
+                    <span>Podcast</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publicspeaking/" title="Public Speaking">
+                    <span>Public Speaking</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume/" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/uses/" title="Uses">
+                    <span>Uses</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/_blog/">_Blogs</a></div>
+    <h1 class="post-title">
+      What is WSL and how to use it with VSCode
+    </h1>
+    <div class="post-description">
+      Click on me to see the content.
+    </div>
+    <div class="post-meta">&lt;span title=&#39;2021-04-06 00:00:00 &#43;0000 UTC&#39;&gt;April 6, 2021&lt;/span&gt;&amp;nbsp;·&amp;nbsp;3 min&amp;nbsp;·&amp;nbsp;Rishab Kumar</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-is-wsl" aria-label="What is WSL?">What is WSL?</a></li>
+                <li>
+                    <a href="#instructions---install-wsl" aria-label="Instructions - Install WSL">Instructions - Install WSL</a><ul>
+                        
+                <li>
+                    <a href="#step-1---enable-the-windows-subsystem-for-linux" aria-label="Step 1 - Enable the Windows Subsystem for Linux">Step 1 - Enable the Windows Subsystem for Linux</a></li>
+                <li>
+                    <a href="#step-2---check-requirements-for-running-wsl-2" aria-label="Step 2 - Check requirements for running WSL 2">Step 2 - Check requirements for running WSL 2</a></li>
+                <li>
+                    <a href="#step-3---enable-virtual-machine-feature" aria-label="Step 3 - Enable Virtual Machine feature">Step 3 - Enable Virtual Machine feature</a></li>
+                <li>
+                    <a href="#step-4---download-the-linux-kernel-update-package" aria-label="Step 4 - Download the Linux kernel update package">Step 4 - Download the Linux kernel update package</a></li>
+                <li>
+                    <a href="#step-5---set-wsl-2-as-your-default-version" aria-label="Step 5 - Set WSL 2 as your default version">Step 5 - Set WSL 2 as your default version</a></li>
+                <li>
+                    <a href="#step-6---install-your-linux-distribution-of-choice" aria-label="Step 6 - Install your Linux distribution of choice">Step 6 - Install your Linux distribution of choice</a></li></ul>
+                </li>
+                <li>
+                    <a href="#remote-wsl-in-visual-studio-code" aria-label="Remote WSL in Visual Studio Code">Remote WSL in Visual Studio Code</a><ul>
+                        
+                <li>
+                    <a href="#getting-started" aria-label="Getting Started">Getting Started</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content">
+  <p>Hello amazing people 👋</p>
+<p>Hope you guys had great weekend, I surely did 👇</p>
+<p>%[https://twitter.com/rishabk7/status/1378857237356163079?s=20]</p>
+<p>So for quite a while now, I have been using WSL - Windows Subsystem for Linux. It was really impressive to see this from Microsoft and I ever since then, I have loved it for development. So in today&rsquo;s blog I will be sharing how I utilize it with VSCode.</p>
+<h2 id="what-is-wsl">What is WSL?</h2>
+<p>The Windows Subsystem for Linux lets developers run a GNU/Linux environment &ndash; including most command-line tools, utilities, and applications &ndash; directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup.</p>
+<p>You can:</p>
+<ul>
+<li>
+<p>Choose your favorite GNU/Linux distributions <a href="https://aka.ms/wslstore" title="https://aka.ms/wslstore">from the Microsoft Store</a>.</p>
+</li>
+<li>
+<p>Run common command-line tools such as grep, sed, awk, or other ELF-64 binaries.</p>
+</li>
+<li>
+<p>Run Bash shell scripts and GNU/Linux command-line applications including:</p>
+<ul>
+<li>
+<p>Tools: vim, emacs, tmux</p>
+</li>
+<li>
+<p>Languages: <a href="https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2" title="https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2">NodeJS</a>, Javascript, <a href="https://docs.microsoft.com/en-us/windows/python/web-frameworks" title="https://docs.microsoft.com/en-us/windows/python/web-frameworks">Python</a>, Ruby, C/C++, C# &amp; F#, Rust, Go, etc.</p>
+</li>
+<li>
+<p>Services: SSHD, <a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database" title="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database">MySQL</a>, Apache, lighttpd, <a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database" title="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database">MongoDB</a>, <a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database" title="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database">PostgreSQL</a>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Install additional software using your own GNU/Linux distribution package manager.</p>
+</li>
+<li>
+<p>Invoke Windows applications using a Unix-like command-line shell.</p>
+</li>
+<li>
+<p>Invoke GNU/Linux applications on Windows.</p>
+</li>
+</ul>
+<h2 id="instructions---install-wsl">Instructions - Install WSL</h2>
+<h3 id="step-1---enable-the-windows-subsystem-for-linux">Step 1 - Enable the Windows Subsystem for Linux</h3>
+<p>Enable the &ldquo;Windows Subsystem for Linux&rdquo; optional feature before installing any Linux distributions on Windows. Open PowerShell as Administrator and run:</p>
+<p><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</code></p>
+<h3 id="step-2---check-requirements-for-running-wsl-2">Step 2 - Check requirements for running WSL 2</h3>
+<p>This step is optional, if you want to run WSL 1, please proceed to step 6.</p>
+<p>To update to WSL 2, you must be running Windows 10.</p>
+<ul>
+<li>
+<p>For x64 systems: <strong>Version 1903</strong> or higher, with <strong>Build 18362</strong> or higher.</p>
+</li>
+<li>
+<p>For ARM64 systems: <strong>Version 2004</strong> or higher, with <strong>Build 19041</strong> or higher.</p>
+</li>
+<li>
+<p>Builds lower than 18362 do not support WSL 2.</p>
+</li>
+</ul>
+<h3 id="step-3---enable-virtual-machine-feature">Step 3 - Enable Virtual Machine feature</h3>
+<p>Before installing WSL 2, you must enable the <strong>Virtual Machine Platform</strong> optional feature. Your machine will require <a href="https://docs.microsoft.com/en-us/windows/wsl/troubleshooting#error-0x80370102-the-virtual-machine-could-not-be-started-because-a-required-feature-is-not-installed" title="https://docs.microsoft.com/en-us/windows/wsl/troubleshooting#error-0x80370102-the-virtual-machine-could-not-be-started-because-a-required-feature-is-not-installed">virtualization capabilities</a> to use this feature.</p>
+<p>Open PowerShell as Administrator and run:</p>
+<p><code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code></p>
+<p>Restart the machine.</p>
+<h3 id="step-4---download-the-linux-kernel-update-package">Step 4 - Download the Linux kernel update package</h3>
+<ol>
+<li>
+<p>Download the latest package:</p>
+<ul>
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" title="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">WSL2 Linux kernel update package for x64 machines</a></li>
+</ul>
+</li>
+<li>
+<p>Run the update package downloaded in the previous step. (Double-click to run - you will be prompted for elevated permissions, select &lsquo;yes&rsquo; to approve this installation.)</p>
+</li>
+</ol>
+<h3 id="step-5---set-wsl-2-as-your-default-version">Step 5 - Set WSL 2 as your default version</h3>
+<p>Open PowerShell and run this command to set WSL 2 as the default version when installing a new Linux distribution:</p>
+<p><code>wsl --set-default-version 2</code></p>
+<h3 id="step-6---install-your-linux-distribution-of-choice">Step 6 - Install your Linux distribution of choice</h3>
+<ol>
+<li>
+<p>Open the <a href="https://aka.ms/wslstore" title="https://aka.ms/wslstore">Microsoft Store</a> and select your favorite Linux distribution.</p>
+</li>
+<li>
+<p>From the distribution&rsquo;s page, select &ldquo;Get&rdquo;.</p>
+</li>
+<li>
+<p>The first time you launch a newly installed Linux distribution, a console window will open and you&rsquo;ll be asked to wait for a minute or two for files to de-compress and be stored on your PC. All future launches should take less than a second.
+You will then need to create a user account.</p>
+</li>
+</ol>
+<h2 id="remote-wsl-in-visual-studio-code">Remote WSL in Visual Studio Code</h2>
+<p>The Remote - WSL extension lets you use VS Code on Windows to build Linux applications that run on the Windows Subsystem for Linux(WSL). You get all the productivity of Windows while developing with Linux-based tools, runtimes, and utilities.</p>
+<p>Remote - WSL lets you use VS Code in WSL just as you would from Windows.</p>
+<p>Download the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" title="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">extension</a>.</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>You can launch a new instance of VS Code connected to WSL by opening a WSL terminal, navigating to the folder of your choice, and typing <code>code .</code>:</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1617759598839/6DzX-h_Me.gif" alt="WSLCode.gif"  />
+</p>
+
+  </div>
+
+  <footer class="post-footer">
+
+<div class="share-buttons">
+    <div class="share-buttons">
+        <a target="_blank" rel="noopener noreferrer" aria-label="share What is WSL and how to use it with VSCode on twitter"
+            href="https://twitter.com/intent/tweet/?text=What%20is%20WSL%20and%20how%20to%20use%20it%20with%20VSCode&amp;url=http%3a%2f%2flocalhost%3a1313%2f_blog%2fwhat-is-wsl-and-how-to-use-in-vscode%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px"
+                fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share What is WSL and how to use it with VSCode on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2f_blog%2fwhat-is-wsl-and-how-to-use-in-vscode%2f&amp;title=What%20is%20WSL%20and%20how%20to%20use%20it%20with%20VSCode&amp;summary=What%20is%20WSL%20and%20how%20to%20use%20it%20with%20VSCode&amp;source=http%3a%2f%2flocalhost%3a1313%2f_blog%2fwhat-is-wsl-and-how-to-use-in-vscode%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share What is WSL and how to use it with VSCode on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2f_blog%2fwhat-is-wsl-and-how-to-use-in-vscode%2f&title=What%20is%20WSL%20and%20how%20to%20use%20it%20with%20VSCode">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span> built with ♥ rishab |
+    <span class="counter-number">
+        Couldn't read the counter |
+    </span>
+    <div class="quote">
+        <p class="stoic-quote"></p>
+    </div>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+        let response = await fetch(
+            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+        );
+        let data = await response.json();
+        console.log(data);
+        counter.innerHTML = `views: ${data}`;
+    }
+    updateCounter();
+</script>
+
+<script>
+    const quote = document.querySelector(".stoic-quote");
+    async function getQuote() {
+        let response = await fetch(
+            "https://stoic-quotes.com/api/quote"
+        );
+        let quoteData = await response.json();
+        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
+    }
+    getQuote();
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994317684370171"
+     crossorigin="anonymous"></script></body>
+
+</html>

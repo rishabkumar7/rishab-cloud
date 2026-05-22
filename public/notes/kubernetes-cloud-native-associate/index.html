@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+
+<script defer data-domain="rishabkumar.com" src="https://plausible.rishab.cloud/js/script.file-downloads.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+<title>Kubernetes and Cloud Native Associate (KCNA) Study Notes | Rishab Kumar</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Overview
+The Kubernetes and Cloud Native Associate (KCNA) certification is designed for beginners to demonstrate their knowledge of Kubernetes and the cloud native ecosystem. The exam tests basic concepts, principles, and terminology rather than hands-on implementation skills.
+
+KCNA Official Page
+
+Domain 1: Kubernetes Fundamentals (46%)
+1.1 Kubernetes Resources
+
+Pods:
+
+Smallest deployable units in Kubernetes
+Can contain one or more containers
+Share network namespace and storage
+Ephemeral by nature (not persistent)
+
+
+Deployments:
+
+Manage ReplicaSets
+Provide declarative updates for Pods
+Support rolling updates and rollbacks
+Define desired state for application deployments
+
+
+Services:
+
+Abstract way to expose applications running on Pods
+Types: ClusterIP, NodePort, LoadBalancer, ExternalName
+Provide stable network endpoint for Pods
+
+
+ConfigMaps and Secrets:
+
+ConfigMaps: Store non-confidential configuration data
+Secrets: Store sensitive information (passwords, tokens, keys)
+Both can be used as environment variables or volume mounts
+
+
+Namespaces:
+
+Virtual clusters within a Kubernetes cluster
+Provide scope for resource names
+Allow resource isolation and quota management
+
+
+Other Resources:
+
+StatefulSets: For stateful applications
+DaemonSets: Run a Pod on all (or some) nodes
+Jobs and CronJobs: For batch and scheduled tasks
+Ingress: Manage external access to services
+PersistentVolumes and PersistentVolumeClaims: For storage
+
+
+
+Helpful links:">
+<meta name="author" content="Rishab Kumar">
+<link rel="canonical"
+    href="http://localhost:1313/notes/kubernetes-cloud-native-associate/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.924bd3c43408ede397c131465f815d9c722dbe3115ef4e9158eba92f01f59e99.css" integrity="sha256-kkvTxDQI7eOXwTFGX4FdnHItvjEV706RWOupLwH1npk="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/images/apple-touch-icon.png">
+<meta name="theme-color" content=" #2e2e33">
+<meta name="msapplication-TileColor" content=" #2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/notes/kubernetes-cloud-native-associate/" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"><head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    
+</head>
+
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01c5afa37f7740e490fecb3bcb6ccbbf"}'>
+</script>
+
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rishab Kumar (Alt + H)">Rishab Kumar</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home"><span>Home</span></a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/notes/" title="Notes">
+                    <span>Notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/podcast/" title="Podcast">
+                    <span>Podcast</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publicspeaking/" title="Public Speaking">
+                    <span>Public Speaking</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume/" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/uses/" title="Uses">
+                    <span>Uses</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/notes/">Cloud Notes</a></div>
+    <h1 class="post-title">
+      Kubernetes and Cloud Native Associate (KCNA) Study Notes
+    </h1>
+    <div class="post-meta">&lt;span title=&#39;2025-04-29 12:12:25.364 &#43;0000 UTC&#39;&gt;April 29, 2025&lt;/span&gt;&amp;nbsp;·&amp;nbsp;6 min&amp;nbsp;·&amp;nbsp;Rishab Kumar</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#overview" aria-label="Overview">Overview</a></li>
+                <li>
+                    <a href="#domain-1-kubernetes-fundamentals-46" aria-label="Domain 1: Kubernetes Fundamentals (46%)">Domain 1: Kubernetes Fundamentals (46%)</a><ul>
+                        
+                <li>
+                    <a href="#11-kubernetes-resources" aria-label="1.1 Kubernetes Resources">1.1 Kubernetes Resources</a></li>
+                <li>
+                    <a href="#12-kubernetes-architecture" aria-label="1.2 Kubernetes Architecture">1.2 Kubernetes Architecture</a></li>
+                <li>
+                    <a href="#13-kubernetes-configuration-and-deployment" aria-label="1.3 Kubernetes Configuration and Deployment">1.3 Kubernetes Configuration and Deployment</a></li></ul>
+                </li>
+                <li>
+                    <a href="#domain-2-container-orchestration-22" aria-label="Domain 2: Container Orchestration (22%)">Domain 2: Container Orchestration (22%)</a><ul>
+                        
+                <li>
+                    <a href="#21-container-basics" aria-label="2.1 Container Basics">2.1 Container Basics</a></li>
+                <li>
+                    <a href="#22-orchestration-concepts" aria-label="2.2 Orchestration Concepts">2.2 Orchestration Concepts</a></li></ul>
+                </li>
+                <li>
+                    <a href="#domain-3-cloud-native-architecture-16" aria-label="Domain 3: Cloud Native Architecture (16%)">Domain 3: Cloud Native Architecture (16%)</a><ul>
+                        
+                <li>
+                    <a href="#31-cloud-native-concepts" aria-label="3.1 Cloud Native Concepts">3.1 Cloud Native Concepts</a></li>
+                <li>
+                    <a href="#32-cloud-native-patterns" aria-label="3.2 Cloud Native Patterns">3.2 Cloud Native Patterns</a></li></ul>
+                </li>
+                <li>
+                    <a href="#domain-4-cloud-native-observability-8" aria-label="Domain 4: Cloud Native Observability (8%)">Domain 4: Cloud Native Observability (8%)</a><ul>
+                        
+                <li>
+                    <a href="#41-telemetry-and-observability" aria-label="4.1 Telemetry and Observability">4.1 Telemetry and Observability</a></li>
+                <li>
+                    <a href="#42-prometheus-and-openmetrics" aria-label="4.2 Prometheus and OpenMetrics">4.2 Prometheus and OpenMetrics</a></li></ul>
+                </li>
+                <li>
+                    <a href="#domain-5-cloud-native-security-8" aria-label="Domain 5: Cloud Native Security (8%)">Domain 5: Cloud Native Security (8%)</a><ul>
+                        
+                <li>
+                    <a href="#51-cloud-native-security-concepts" aria-label="5.1 Cloud Native Security Concepts">5.1 Cloud Native Security Concepts</a></li>
+                <li>
+                    <a href="#52-authentication-authorization-and-admission-control" aria-label="5.2 Authentication, Authorization, and Admission Control">5.2 Authentication, Authorization, and Admission Control</a></li></ul>
+                </li>
+                <li>
+                    <a href="#kcna-preparation-tips" aria-label="KCNA Preparation Tips">KCNA Preparation Tips</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content">
+  <h2 id="overview">Overview</h2>
+<p>The Kubernetes and Cloud Native Associate (KCNA) certification is designed for beginners to demonstrate their knowledge of Kubernetes and the cloud native ecosystem. The exam tests basic concepts, principles, and terminology rather than hands-on implementation skills.</p>
+<ul>
+<li><a href="https://training.linuxfoundation.org/certification/kubernetes-cloud-native-associate/">KCNA Official Page</a></li>
+</ul>
+<h2 id="domain-1-kubernetes-fundamentals-46">Domain 1: Kubernetes Fundamentals (46%)</h2>
+<h3 id="11-kubernetes-resources">1.1 Kubernetes Resources</h3>
+<ul>
+<li><strong>Pods</strong>:
+<ul>
+<li>Smallest deployable units in Kubernetes</li>
+<li>Can contain one or more containers</li>
+<li>Share network namespace and storage</li>
+<li>Ephemeral by nature (not persistent)</li>
+</ul>
+</li>
+<li><strong>Deployments</strong>:
+<ul>
+<li>Manage ReplicaSets</li>
+<li>Provide declarative updates for Pods</li>
+<li>Support rolling updates and rollbacks</li>
+<li>Define desired state for application deployments</li>
+</ul>
+</li>
+<li><strong>Services</strong>:
+<ul>
+<li>Abstract way to expose applications running on Pods</li>
+<li>Types: ClusterIP, NodePort, LoadBalancer, ExternalName</li>
+<li>Provide stable network endpoint for Pods</li>
+</ul>
+</li>
+<li><strong>ConfigMaps and Secrets</strong>:
+<ul>
+<li>ConfigMaps: Store non-confidential configuration data</li>
+<li>Secrets: Store sensitive information (passwords, tokens, keys)</li>
+<li>Both can be used as environment variables or volume mounts</li>
+</ul>
+</li>
+<li><strong>Namespaces</strong>:
+<ul>
+<li>Virtual clusters within a Kubernetes cluster</li>
+<li>Provide scope for resource names</li>
+<li>Allow resource isolation and quota management</li>
+</ul>
+</li>
+<li><strong>Other Resources</strong>:
+<ul>
+<li>StatefulSets: For stateful applications</li>
+<li>DaemonSets: Run a Pod on all (or some) nodes</li>
+<li>Jobs and CronJobs: For batch and scheduled tasks</li>
+<li>Ingress: Manage external access to services</li>
+<li>PersistentVolumes and PersistentVolumeClaims: For storage</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/">Kubernetes Concepts</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/">Pod Overview</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployments</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Services</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/configmap/">ConfigMaps</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secrets</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a></li>
+</ul>
+<h3 id="12-kubernetes-architecture">1.2 Kubernetes Architecture</h3>
+<ul>
+<li><strong>Control Plane Components</strong>:
+<ul>
+<li>kube-apiserver: REST API front-end for Kubernetes control plane</li>
+<li>etcd: Consistent and highly-available key-value store for cluster data</li>
+<li>kube-scheduler: Assigns Pods to Nodes</li>
+<li>kube-controller-manager: Runs controller processes</li>
+<li>cloud-controller-manager: Interfaces with cloud providers</li>
+</ul>
+</li>
+<li><strong>Node Components</strong>:
+<ul>
+<li>kubelet: Agent that ensures containers are running in a Pod</li>
+<li>kube-proxy: Maintains network rules on nodes</li>
+<li>Container runtime: Software responsible for running containers (Docker, containerd, CRI-O)</li>
+</ul>
+</li>
+<li><strong>Kubernetes API</strong>:
+<ul>
+<li>Core of Kubernetes control plane</li>
+<li>RESTful interface for cluster state</li>
+<li>Enables declarative configuration</li>
+<li>Uses JSON and YAML</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="https://kubernetes.io/images/docs/components-of-kubernetes.svg" alt="Kubernetes Components"  />
+</p>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/overview/components/">Kubernetes Components</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/architecture/nodes/">Nodes</a></li>
+</ul>
+<h3 id="13-kubernetes-configuration-and-deployment">1.3 Kubernetes Configuration and Deployment</h3>
+<ul>
+<li><strong>kubectl CLI</strong>:
+<ul>
+<li>Primary command-line tool for interacting with Kubernetes clusters</li>
+<li>Configure, create, manage, inspect resources</li>
+<li>Key commands: apply, get, describe, delete, logs, exec</li>
+</ul>
+</li>
+<li><strong>YAML Manifests</strong>:
+<ul>
+<li>Declarative approach to define Kubernetes resources</li>
+<li>Structure: apiVersion, kind, metadata, spec</li>
+<li>Can be applied, updated, and versioned</li>
+</ul>
+</li>
+<li><strong>Basic Deployment Strategies</strong>:
+<ul>
+<li>Rolling updates: Gradual replacement of instances</li>
+<li>Blue/Green: Maintain two production environments</li>
+<li>Canary: Release to a small subset of users</li>
+</ul>
+</li>
+<li><strong>Helm</strong>:
+<ul>
+<li>Package manager for Kubernetes</li>
+<li>Helm charts: Package format (templates + values)</li>
+<li>Simplifies deployment and management of applications</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/">kubectl Overview</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl Cheat Sheet</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/">Declarative Management</a></li>
+<li><a href="https://helm.sh/docs/">Helm Documentation</a></li>
+</ul>
+<h2 id="domain-2-container-orchestration-22">Domain 2: Container Orchestration (22%)</h2>
+<h3 id="21-container-basics">2.1 Container Basics</h3>
+<ul>
+<li><strong>Container Concepts</strong>:
+<ul>
+<li>Lightweight, standalone, executable software packages</li>
+<li>Include everything needed to run: code, runtime, libraries, settings</li>
+<li>Share the host OS kernel but are isolated</li>
+</ul>
+</li>
+<li><strong>Container Images</strong>:
+<ul>
+<li>Templates used to create containers</li>
+<li>Layered file system (each instruction creates a layer)</li>
+<li>Stored in registries (Docker Hub, GCR, ECR, ACR)</li>
+</ul>
+</li>
+<li><strong>Container Runtime Interface (CRI)</strong>:
+<ul>
+<li>API between kubelet and container runtime</li>
+<li>Allows for different container runtimes: Docker, containerd, CRI-O</li>
+</ul>
+</li>
+<li><strong>OCI (Open Container Initiative)</strong>:
+<ul>
+<li>Standards for container formats and runtimes</li>
+<li>Runtime Specification and Image Specification</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/containers/">What are Containers?</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/architecture/cri/">Container Runtime Interface (CRI)</a></li>
+<li><a href="https://opencontainers.org/">Open Container Initiative</a></li>
+<li><a href="https://docs.docker.com/get-started/overview/">Docker Overview</a></li>
+</ul>
+<h3 id="22-orchestration-concepts">2.2 Orchestration Concepts</h3>
+<ul>
+<li><strong>Scheduling</strong>:
+<ul>
+<li>Process of assigning Pods to Nodes</li>
+<li>Based on resource requirements, constraints, taints/tolerations</li>
+<li>Handled by kube-scheduler</li>
+</ul>
+</li>
+<li><strong>Scaling</strong>:
+<ul>
+<li>Manual scaling: Change replicas in Deployment/StatefulSet</li>
+<li>Horizontal Pod Autoscaler (HPA): Automatically scale based on metrics</li>
+<li>Vertical Pod Autoscaler (VPA): Adjust CPU/memory requests and limits</li>
+<li>Cluster Autoscaler: Add/remove nodes based on resource requirements</li>
+</ul>
+</li>
+<li><strong>Self-healing</strong>:
+<ul>
+<li>Automatic replacement of failed containers</li>
+<li>Rescheduling evicted Pods</li>
+<li>Health checks: liveness, readiness, and startup probes</li>
+</ul>
+</li>
+<li><strong>Load Balancing</strong>:
+<ul>
+<li>Distributes traffic across Pods</li>
+<li>Implemented through Services</li>
+<li>External load balancing via LoadBalancer type or Ingress</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/">Scheduling</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">Horizontal Pod Autoscaling</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Configure Liveness, Readiness and Startup Probes</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">Service Load Balancing</a></li>
+</ul>
+<h2 id="domain-3-cloud-native-architecture-16">Domain 3: Cloud Native Architecture (16%)</h2>
+<h3 id="31-cloud-native-concepts">3.1 Cloud Native Concepts</h3>
+<ul>
+<li><strong>Microservices</strong>:
+<ul>
+<li>Breaking applications into smaller, independent services</li>
+<li>Each service focuses on specific business function</li>
+<li>Independently deployable and scalable</li>
+<li>Loosely coupled with other services</li>
+</ul>
+</li>
+<li><strong>Twelve-Factor App Methodology</strong>:
+<ul>
+<li>Set of best practices for building cloud-native applications</li>
+<li>Key principles: codebase, dependencies, config, backing services, build-release-run, processes, port binding, concurrency, disposability, dev/prod parity, logs, admin processes</li>
+</ul>
+</li>
+<li><strong>Serverless</strong>:
+<ul>
+<li>Run code without managing infrastructure</li>
+<li>Event-driven execution model</li>
+<li>Pay-for-use pricing</li>
+<li>Examples: AWS Lambda, Google Cloud Functions, Azure Functions, Knative</li>
+</ul>
+</li>
+<li><strong>Service Mesh</strong>:
+<ul>
+<li>Infrastructure layer for service-to-service communication</li>
+<li>Features: traffic management, security, observability</li>
+<li>Examples: Istio, Linkerd, Consul</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://github.com/cncf/toc/blob/main/DEFINITION.md">CNCF Cloud Native Definition</a></li>
+<li><a href="https://12factor.net/">Twelve-Factor App</a></li>
+<li><a href="https://microservices.io/">Microservices Architecture</a></li>
+<li><a href="https://knative.dev/docs/">Knative</a></li>
+<li><a href="https://smi-spec.io/">Service Mesh Interface</a></li>
+</ul>
+<h3 id="32-cloud-native-patterns">3.2 Cloud Native Patterns</h3>
+<ul>
+<li><strong>DevOps Principles</strong>:
+<ul>
+<li>Collaboration between development and operations</li>
+<li>Automation of processes</li>
+<li>Continuous integration/continuous delivery (CI/CD)</li>
+<li>Feedback loops and continuous improvement</li>
+</ul>
+</li>
+<li><strong>GitOps</strong>:
+<ul>
+<li>Git as single source of truth for declarative infrastructure</li>
+<li>Pull-based deployment model</li>
+<li>Infrastructure as Code (IaC)</li>
+<li>Examples: Flux, ArgoCD</li>
+</ul>
+</li>
+<li><strong>Stateless and Stateful Applications</strong>:
+<ul>
+<li>Stateless: No client session data stored</li>
+<li>Stateful: Maintains state/session information</li>
+<li>Different deployment approaches in Kubernetes</li>
+</ul>
+</li>
+<li><strong>Resiliency Patterns</strong>:
+<ul>
+<li>Circuit breaker: Prevent cascading failures</li>
+<li>Retry: Automatically retry failed operations</li>
+<li>Timeout: Abandon operations that take too long</li>
+<li>Bulkhead: Isolate components to contain failures</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://www.manning.com/books/cloud-native-patterns">Cloud Native Patterns</a></li>
+<li><a href="https://www.gitops.tech/">GitOps</a></li>
+<li><a href="https://fluxcd.io/docs/">Flux Documentation</a></li>
+<li><a href="https://argo-cd.readthedocs.io/en/stable/">Argo CD</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">Kubernetes StatefulSets</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/resiliency">Resilience Patterns</a></li>
+</ul>
+<h2 id="domain-4-cloud-native-observability-8">Domain 4: Cloud Native Observability (8%)</h2>
+<h3 id="41-telemetry-and-observability">4.1 Telemetry and Observability</h3>
+<ul>
+<li><strong>Monitoring vs. Observability</strong>:
+<ul>
+<li>Monitoring: Tracking predefined metrics and alerts</li>
+<li>Observability: Ability to understand system state from external outputs</li>
+<li>Three pillars: metrics, logs, traces</li>
+</ul>
+</li>
+<li><strong>Metrics</strong>:
+<ul>
+<li>Numerical data about system performance</li>
+<li>Time-series data</li>
+<li>Examples: CPU usage, memory usage, request count, error rate</li>
+<li>Tools: Prometheus, Grafana</li>
+</ul>
+</li>
+<li><strong>Logging</strong>:
+<ul>
+<li>Recording events with contextual information</li>
+<li>Centralized log collection and analysis</li>
+<li>Tools: Elasticsearch, Fluentd, Loki</li>
+</ul>
+</li>
+<li><strong>Tracing</strong>:
+<ul>
+<li>Tracking request flow through distributed systems</li>
+<li>Identify performance bottlenecks</li>
+<li>Tools: Jaeger, Zipkin, OpenTelemetry</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://github.com/cncf/tag-observability/blob/main/whitepaper.md">CNCF Observability White Paper</a></li>
+<li><a href="https://prometheus.io/docs/introduction/overview/">Prometheus</a></li>
+<li><a href="https://grafana.com/docs/">Grafana</a></li>
+<li><a href="https://www.fluentd.org/guides">Fluentd</a></li>
+<li><a href="https://opentelemetry.io/docs/">OpenTelemetry</a></li>
+</ul>
+<h3 id="42-prometheus-and-openmetrics">4.2 Prometheus and OpenMetrics</h3>
+<ul>
+<li><strong>Prometheus Architecture</strong>:
+<ul>
+<li>Pull-based monitoring system</li>
+<li>Time-series database</li>
+<li>Powerful query language (PromQL)</li>
+<li>Alert manager for notifications</li>
+</ul>
+</li>
+<li><strong>Instrumentation and Exporters</strong>:
+<ul>
+<li>Application instrumentation using client libraries</li>
+<li>Exporters for third-party systems</li>
+<li>Service discovery for dynamic environments</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://prometheus.io/docs/prometheus/latest/getting_started/">Prometheus Getting Started</a></li>
+<li><a href="https://prometheus.io/docs/prometheus/latest/querying/basics/">PromQL</a></li>
+<li><a href="https://prometheus.io/docs/instrumenting/exporters/">Prometheus Exporters</a></li>
+</ul>
+<h2 id="domain-5-cloud-native-security-8">Domain 5: Cloud Native Security (8%)</h2>
+<h3 id="51-cloud-native-security-concepts">5.1 Cloud Native Security Concepts</h3>
+<ul>
+<li><strong>Defense in Depth</strong>:
+<ul>
+<li>Multiple layers of security controls</li>
+<li>Includes: cloud infrastructure, cluster, container, code</li>
+<li>Principle of least privilege</li>
+</ul>
+</li>
+<li><strong>Kubernetes Security</strong>:
+<ul>
+<li>API authorization (RBAC)</li>
+<li>Authentication methods</li>
+<li>Pod security policies/standards</li>
+<li>Network policies</li>
+<li>Secrets management</li>
+</ul>
+</li>
+<li><strong>Supply Chain Security</strong>:
+<ul>
+<li>Image scanning for vulnerabilities</li>
+<li>Signed images and verification</li>
+<li>Software Bill of Materials (SBOM)</li>
+<li>Secure build processes</li>
+</ul>
+</li>
+<li><strong>Runtime Security</strong>:
+<ul>
+<li>Container sandboxing</li>
+<li>Intrusion detection/prevention</li>
+<li>Audit logging</li>
+<li>Tools: Falco, Sysdig, Open Policy Agent (OPA)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/security/">Kubernetes Security</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">RBAC Authorization</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/">Pod Security Standards</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Network Policies</a></li>
+<li><a href="https://www.openpolicyagent.org/docs/latest/">Open Policy Agent</a></li>
+<li><a href="https://falco.org/docs/">Falco</a></li>
+</ul>
+<h3 id="52-authentication-authorization-and-admission-control">5.2 Authentication, Authorization, and Admission Control</h3>
+<ul>
+<li><strong>Authentication</strong>:
+<ul>
+<li>Verifying identity in Kubernetes</li>
+<li>Methods: client certificates, bearer tokens, OpenID Connect, service accounts</li>
+</ul>
+</li>
+<li><strong>Authorization (RBAC)</strong>:
+<ul>
+<li>Role-Based Access Control</li>
+<li>Roles and ClusterRoles (permissions)</li>
+<li>RoleBindings and ClusterRoleBindings (assignments)</li>
+<li>Namespace scoped vs. cluster-wide</li>
+</ul>
+</li>
+<li><strong>Admission Control</strong>:
+<ul>
+<li>Intercepts requests to Kubernetes API server</li>
+<li>Validation and Mutation webhooks</li>
+<li>Built-in controllers (e.g., ResourceQuota, LimitRanger)</li>
+<li>Tools: Gatekeeper, Kyverno</li>
+</ul>
+</li>
+</ul>
+<p><strong>Helpful links:</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/">Authenticating in Kubernetes</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-examples">RBAC Examples</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">Admission Controllers</a></li>
+<li><a href="https://open-policy-agent.github.io/gatekeeper/website/docs/">Gatekeeper</a></li>
+</ul>
+<h2 id="kcna-preparation-tips">KCNA Preparation Tips</h2>
+<ul>
+<li>Understand Kubernetes core concepts and terminology</li>
+<li>Familiarize yourself with the Cloud Native ecosystem and CNCF projects</li>
+<li>Focus on high-level concepts rather than detailed implementation</li>
+<li>Use free online resources, including Kubernetes documentation and CNCF resources</li>
+<li>Try hands-on practice with minikube or kind for local Kubernetes clusters</li>
+<li>Take advantage of free courses like Introduction to Kubernetes on edX</li>
+</ul>
+<p><strong>Additional Helpful Resources:</strong></p>
+<ul>
+<li><a href="https://landscape.cncf.io/">CNCF Landscape</a> - Overview of cloud native technologies</li>
+<li><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/">Kubernetes Learning Path</a> - Official beginner tutorials</li>
+<li><a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes the Hard Way</a> - Advanced understanding of components</li>
+<li><a href="https://www.youtube.com/c/cloudnativefdn">CNCF YouTube Channel</a> - Webinars and conference presentations</li>
+<li><a href="https://kube.academy/">KubeAcademy</a> - Free Kubernetes courses from VMware</li>
+<li><a href="https://www.youtube.com/playlist?list=PLK_LRl1CH4L-kIl0-5FK6KszocD_1__YZ">DevOps Capstone Project Playlist</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+
+<div class="share-buttons">
+    <div class="share-buttons">
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Kubernetes and Cloud Native Associate (KCNA) Study Notes on twitter"
+            href="https://twitter.com/intent/tweet/?text=Kubernetes%20and%20Cloud%20Native%20Associate%20%28KCNA%29%20Study%20Notes&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2fkubernetes-cloud-native-associate%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px"
+                fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Kubernetes and Cloud Native Associate (KCNA) Study Notes on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fnotes%2fkubernetes-cloud-native-associate%2f&amp;title=Kubernetes%20and%20Cloud%20Native%20Associate%20%28KCNA%29%20Study%20Notes&amp;summary=Kubernetes%20and%20Cloud%20Native%20Associate%20%28KCNA%29%20Study%20Notes&amp;source=http%3a%2f%2flocalhost%3a1313%2fnotes%2fkubernetes-cloud-native-associate%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Kubernetes and Cloud Native Associate (KCNA) Study Notes on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fnotes%2fkubernetes-cloud-native-associate%2f&title=Kubernetes%20and%20Cloud%20Native%20Associate%20%28KCNA%29%20Study%20Notes">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span> built with ♥ rishab |
+    <span class="counter-number">
+        Couldn't read the counter |
+    </span>
+    <div class="quote">
+        <p class="stoic-quote"></p>
+    </div>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+        let response = await fetch(
+            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+        );
+        let data = await response.json();
+        console.log(data);
+        counter.innerHTML = `views: ${data}`;
+    }
+    updateCounter();
+</script>
+
+<script>
+    const quote = document.querySelector(".stoic-quote");
+    async function getQuote() {
+        let response = await fetch(
+            "https://stoic-quotes.com/api/quote"
+        );
+        let quoteData = await response.json();
+        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
+    }
+    getQuote();
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994317684370171"
+     crossorigin="anonymous"></script></body>
+
+</html>
