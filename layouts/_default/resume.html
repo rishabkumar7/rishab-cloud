@@ -11,7 +11,10 @@
       <div class="resume-contact-panel" aria-label="Contact links">
         <span>{{ .location }}</span>
         {{- range $.Params.contacts }}
-        <a href="{{ .url }}">{{ .label }}</a>
+        {{- $contactURL := urls.Parse .url }}
+        {{- if in (slice "https" "http" "mailto") $contactURL.Scheme }}
+        <a href="{{ .url | safeURL }}">{{ .label }}</a>
+        {{- end }}
         {{- end }}
       </div>
     </div>
@@ -71,10 +74,13 @@
       </div>
       <div class="resume-link-list">
         {{- range .Params.projects }}
-        <a class="resume-link-item" href="{{ .url }}">
+        {{- $projectURL := urls.Parse .url }}
+        {{- if in (slice "https" "http") $projectURL.Scheme }}
+        <a class="resume-link-item" href="{{ .url | safeURL }}">
           <span>{{ .name }}</span>
           <p>{{ .summary }}</p>
         </a>
+        {{- end }}
         {{- end }}
       </div>
     </section>

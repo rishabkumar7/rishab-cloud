@@ -3,8 +3,12 @@
     --resume-accent-soft: rgba(198, 94, 235, 0.12);
     --resume-accent-border: rgba(198, 94, 235, 0.32);
     --resume-ink: var(--primary);
+    position: relative;
+    left: 50%;
+    width: calc(100vw - var(--gap) * 2);
     max-width: 980px;
-    margin: 0 auto;
+    margin: 0;
+    transform: translateX(-50%);
     word-break: normal;
 }
 
@@ -12,12 +16,8 @@
     word-break: normal;
 }
 
-body:has(.resume-page) .main {
-    max-width: calc(980px + var(--gap) * 2);
-}
-
-body:has(.resume-page) #menu a:hover,
-body:has(.resume-page) #menu .active {
+#menu a:hover,
+#menu .active {
     color: #C65EEB;
 }
 
