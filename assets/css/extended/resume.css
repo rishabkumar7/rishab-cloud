@@ -1,0 +1,317 @@
+.resume-page {
+    --resume-accent: #C65EEB;
+    --resume-accent-soft: rgba(198, 94, 235, 0.12);
+    --resume-accent-border: rgba(198, 94, 235, 0.32);
+    --resume-ink: var(--primary);
+    position: relative;
+    left: 50%;
+    width: calc(100vw - var(--gap) * 2);
+    max-width: 980px;
+    margin: 0;
+    transform: translateX(-50%);
+    word-break: normal;
+}
+
+.resume-page * {
+    word-break: normal;
+}
+
+#menu a:hover,
+#menu .active {
+    color: #C65EEB;
+}
+
+.resume-page .resume-hero {
+    margin: 28px 0 30px;
+    padding: 40px 34px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, var(--resume-accent-soft), transparent 42%),
+        var(--entry);
+}
+
+.resume-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 30px;
+    align-items: end;
+}
+
+.resume-kicker,
+.resume-section-heading p,
+.resume-period {
+    margin: 0 0 8px;
+    color: var(--resume-accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.resume-page h1 {
+    margin: 0;
+    color: var(--resume-ink);
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.resume-role {
+    margin: 12px 0 0;
+    color: var(--resume-accent);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.resume-summary {
+    max-width: 680px;
+    margin: 18px 0 0;
+    color: var(--content);
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.resume-contact-panel {
+    display: grid;
+    gap: 10px;
+}
+
+.resume-contact-panel span,
+.resume-contact-panel a {
+    min-height: 38px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.52);
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dark .resume-contact-panel span,
+.dark .resume-contact-panel a {
+    background: rgba(29, 30, 32, 0.5);
+}
+
+.resume-contact-panel a {
+    box-shadow: none;
+}
+
+.resume-contact-panel a:hover {
+    border-color: var(--resume-accent);
+    color: var(--resume-accent);
+}
+
+.resume-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0 0 42px;
+}
+
+.resume-stat {
+    min-height: 190px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--entry);
+}
+
+.resume-stat strong {
+    display: block;
+    color: var(--resume-accent);
+    font-size: 38px;
+    line-height: 1;
+}
+
+.resume-stat span {
+    display: block;
+    min-height: 48px;
+    margin-top: 10px;
+    color: var(--primary);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.resume-stat p,
+.resume-link-item p,
+.resume-role-card p {
+    margin: 10px 0 0;
+    color: var(--secondary);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.resume-section {
+    margin: 0 0 42px;
+}
+
+.resume-section-heading {
+    margin-bottom: 18px;
+}
+
+.resume-section-heading h2 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 28px;
+    line-height: 1.15;
+}
+
+.resume-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.resume-focus-item {
+    min-height: 82px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--resume-accent);
+    border-radius: 8px;
+    background: var(--entry);
+    color: var(--content);
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.resume-timeline {
+    display: grid;
+    gap: 16px;
+}
+
+.resume-role-card {
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 26px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--entry);
+}
+
+.resume-role-card h3 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 21px;
+    line-height: 1.2;
+}
+
+.resume-role-card ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.resume-role-card li {
+    margin: 0 0 10px;
+    color: var(--content);
+    line-height: 1.55;
+}
+
+.resume-role-card li:last-child {
+    margin-bottom: 0;
+}
+
+.resume-two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    gap: 28px;
+}
+
+.resume-link-list,
+.resume-pill-list {
+    display: grid;
+    gap: 12px;
+}
+
+.resume-link-item {
+    display: block;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--entry);
+    box-shadow: none;
+}
+
+.resume-link-item:hover {
+    border-color: var(--resume-accent);
+}
+
+.resume-link-item span {
+    color: var(--primary);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.resume-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.resume-pill-list span {
+    padding: 9px 12px;
+    border: 1px solid var(--resume-accent-border);
+    border-radius: 999px;
+    background: var(--resume-accent-soft);
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.resume-pill-list-muted span {
+    border-color: var(--border);
+    background: var(--code-bg);
+    color: var(--content);
+}
+
+.resume-credentials-heading {
+    margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+    .resume-page .resume-hero {
+        padding: 28px;
+    }
+
+    .resume-hero-grid,
+    .resume-role-card,
+    .resume-two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .resume-page .resume-hero {
+        margin-top: 12px;
+        padding: 22px;
+    }
+
+    .resume-page h1 {
+        font-size: 40px;
+    }
+
+    .resume-role,
+    .resume-summary {
+        font-size: 16px;
+    }
+
+    .resume-stats,
+    .resume-focus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-stat {
+        min-height: auto;
+    }
+
+    .resume-stat span {
+        min-height: auto;
+    }
+}

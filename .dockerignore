@@ -1,6 +1,13 @@
 .git
 .gitpod.yml
 .hugo_build.lock
+.DS_Store
+.env
+.env.*
+Dockerfile
 README.md
 LICENSE
 images
+node_modules
+public
+resources/_gen
