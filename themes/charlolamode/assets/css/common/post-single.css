@@ -35,6 +35,8 @@
 
 .post-content {
     color: var(--content);
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .post-content h3,
@@ -92,7 +94,8 @@
 .post-content figure,
 .post-content ul {
     margin-bottom: var(--content-gap);
-    text-align: justify;
+    word-break: normal;
+    text-align: start;
 }
 
 .post-content ol,

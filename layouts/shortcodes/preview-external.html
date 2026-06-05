@@ -1,4 +1,6 @@
 
+{{ $blogPages := where site.RegularPages "Section" "blog" }}
+{{ if eq (len $blogPages) 0 }}
 {{ range .Site.Data.blog_data }}
 <article class="post-entry">
   <header class="entry-header"> 
@@ -13,6 +15,7 @@
     </span> Rishab Kumar</footer>
   <a href="https://blog.rishabkumar.com/{{ .slug }}" class="entry-link"></a>
 </article>
+{{ end }}
 {{ end }}
 
 <!--

@@ -60,7 +60,7 @@
     outline: 0;
 }
 
-p {
+.footer p {
     word-break: break-all;
     white-space: normal;
 }

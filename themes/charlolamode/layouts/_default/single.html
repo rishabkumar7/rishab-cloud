@@ -7,7 +7,7 @@
       {{ .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h1>
-    {{- if .Description }}
+    {{- if and .Description (ne .Section "blog") }}
     <div class="post-description">
       {{ .Description }}
     </div>

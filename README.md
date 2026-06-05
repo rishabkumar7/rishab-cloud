@@ -43,6 +43,55 @@ hugo server
 
 Once the local server starts, you can see your site. If your web-browser does not automatically pop up, open your browser and enter <http://localhost:1313>. Now you can start to modify this page in the directory. If you save new changes, this site will automatically refresh and render the modification.
 
+## Export and import Hashnode posts
+
+Export Hashnode posts into local JSON, Markdown, and image files:
+
+```console
+HASHNODE_TOKEN=your_api_key npm run export:hashnode -- --publication=blog.rishabkumar.com
+```
+
+The exporter defaults to Hashnode's Pro GraphQL endpoint, `https://gql-beta.hashnode.com`.
+Override it with `HASHNODE_API_URL` if Hashnode shows a different endpoint in your dashboard.
+It also writes post-level analytics counters to `hashnode-export/blog.rishabkumar.com/analytics/posts.json`
+and `hashnode-export/blog.rishabkumar.com/analytics/posts.csv`.
+
+To export drafts too:
+
+```console
+HASHNODE_TOKEN=your_api_key npm run export:hashnode -- --publication=blog.rishabkumar.com --include-drafts
+```
+
+To export only drafts:
+
+```console
+HASHNODE_TOKEN=your_api_key npm run export:hashnode -- --publication=blog.rishabkumar.com --drafts-only
+```
+
+Then import the exported JSON into Hugo Markdown:
+
+```console
+npm run import:hashnode -- hashnode-export/blog.rishabkumar.com/posts/json
+```
+
+The importer writes posts to `content/blog/*.md` and local images to `static/images/blog/`.
+Preview the import without writing files:
+
+```console
+npm run import:hashnode -- hashnode-export/blog.rishabkumar.com/posts/json --dry-run
+```
+
+If you need to re-run the import over existing files:
+
+```console
+npm run import:hashnode -- hashnode-export/blog.rishabkumar.com/posts/json --overwrite
+```
+
+Drafts are exported under `hashnode-export/blog.rishabkumar.com/drafts/json`. Import them with
+`--include-drafts`; they stay marked as Hugo drafts.
+
+After import, review embeds, images, redirects, and post metadata before publishing.
+
 ## Open Visual Studio Code to edit your Blog
 
 3. Open your favorite Editor like [Visual Studio Code](https://code.visualstudio.com/download)

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "export:hashnode": "node scripts/export-hashnode.mjs",
+    "import:hashnode": "node scripts/import-hashnode-export.mjs",
+    "build": "hugo --minify",
+    "dev": "hugo server"
+  }
+}
