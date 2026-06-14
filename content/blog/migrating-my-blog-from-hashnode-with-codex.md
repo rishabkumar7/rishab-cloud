@@ -5,7 +5,7 @@ lastmod: "2026-06-05T11:45:00-05:00"
 description: "I wanted to migrate my blog from Hashnode last year, but kept procrastinating. This time, with Codex helping me build the export/import workflow, I finally got it done."
 slug: "migrating-my-blog-from-hashnode-with-codex"
 url: "/blog/migrating-my-blog-from-hashnode-with-codex/"
-draft: true
+draft: false
 tags:
   - "openai"
   - "codex"
