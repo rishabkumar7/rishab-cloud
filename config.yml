@@ -34,6 +34,12 @@ params:
     author: Rishab Kumar
     description: Hi, I am Rishab Kumar, a Developer Evangelist at Twilio and Cloud & DevOps enthusiast.
 
+    terminalBriefing:
+        enabled: true
+        host: rishabkumar.com
+        role: Staff Developer Evangelist · Cloud & DevOps
+        status: Writing about cloud, DevOps, and developer tools
+
 
     defaultTheme: auto
     # disableThemeToggle: true
@@ -94,4 +100,3 @@ pygmentsUseClasses: true
 
 minify:
     disableXML: true
-

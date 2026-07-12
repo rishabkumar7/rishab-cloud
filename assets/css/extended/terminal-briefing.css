@@ -1,0 +1,249 @@
+.terminal-briefing[hidden] {
+    display: none;
+}
+
+.terminal-briefing {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(9, 7, 15, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+.terminal-briefing.is-visible {
+    opacity: 1;
+}
+
+.terminal-briefing.is-leaving {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.terminal-window {
+    width: min(720px, 100%);
+    overflow: hidden;
+    color: #e8e3ef;
+    background: #121016;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.5), 0 0 45px rgba(151, 51, 238, 0.12);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    transform: translateY(8px) scale(0.985);
+    transition: transform 220ms ease;
+}
+
+.terminal-briefing.is-visible .terminal-window {
+    transform: translateY(0) scale(1);
+}
+
+.terminal-titlebar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 15px;
+    background: #1c1920;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.terminal-dot--red { background: #ff5f57; }
+.terminal-dot--yellow { background: #febc2e; }
+.terminal-dot--green { background: #28c840; }
+
+.terminal-title {
+    position: absolute;
+    left: 50%;
+    color: #918b98;
+    font-size: 12px;
+    transform: translateX(-50%);
+}
+
+.terminal-body {
+    min-height: 300px;
+    padding: clamp(24px, 5vw, 40px);
+    font-size: clamp(13px, 2.1vw, 16px);
+    line-height: 1.65;
+}
+
+.terminal-body p {
+    margin: 0;
+}
+
+.terminal-command {
+    margin-bottom: 22px !important;
+    color: #f7f4f8;
+}
+
+.terminal-prompt {
+    margin-right: 10px;
+    color: #c66bff;
+}
+
+.terminal-output {
+    display: grid;
+    gap: 7px;
+}
+
+.terminal-output p {
+    display: grid;
+    grid-template-columns: 18px 78px minmax(0, 1fr);
+    align-items: baseline;
+}
+
+.terminal-ok {
+    color: #6ee7a8;
+}
+
+.terminal-label {
+    color: #9a92a1;
+}
+
+.terminal-value {
+    min-width: 0;
+    overflow: hidden;
+    color: #e8e3ef;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.terminal-link {
+    text-decoration: none;
+    text-underline-offset: 4px;
+}
+
+.terminal-link:hover,
+.terminal-link:focus-visible {
+    color: #d892ff;
+    text-decoration: underline;
+}
+
+.terminal-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 24px;
+    padding: 0;
+    color: #f7f4f8;
+    background: transparent;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+.terminal-enter:hover,
+.terminal-enter:focus-visible {
+    color: #d892ff;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.15em;
+    background: #c66bff;
+    animation: terminal-blink 800ms steps(1) infinite;
+}
+
+.terminal-help {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 0 16px;
+    color: #6f6974;
+    background: #0e0c10;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 11px;
+}
+
+.terminal-help button {
+    padding: 4px;
+    color: #8e8795;
+    background: transparent;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+.terminal-help button:hover,
+.terminal-help button:focus-visible {
+    color: #d892ff;
+}
+
+[data-terminal-line] {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 150ms ease, transform 150ms ease;
+}
+
+[data-terminal-line].is-typed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html.terminal-is-open,
+body.terminal-is-open {
+    overflow: hidden;
+}
+
+@keyframes terminal-blink {
+    0%, 48% { opacity: 1; }
+    49%, 100% { opacity: 0; }
+}
+
+@media (max-width: 560px) {
+    .terminal-briefing {
+        padding: 14px;
+    }
+
+    .terminal-body {
+        min-height: 330px;
+        padding: 26px 20px;
+    }
+
+    .terminal-output {
+        gap: 13px;
+    }
+
+    .terminal-output p {
+        grid-template-columns: 18px 1fr;
+    }
+
+    .terminal-label {
+        grid-column: 2;
+    }
+
+    .terminal-value {
+        grid-column: 2;
+        white-space: normal;
+    }
+
+    .terminal-help span {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .terminal-briefing,
+    .terminal-window,
+    [data-terminal-line] {
+        transition: none;
+    }
+
+    .terminal-cursor {
+        animation: none;
+    }
+}

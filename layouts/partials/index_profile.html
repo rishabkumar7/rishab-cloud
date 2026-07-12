@@ -1,0 +1,84 @@
+{{- $blogPages := where site.RegularPages "Section" "blog" -}}
+{{- $latestTitle := "Browse the latest writing" -}}
+{{- $latestURL := "/blog/" | relURL -}}
+{{- if gt (len $blogPages) 0 -}}
+  {{- $latest := index ($blogPages.ByDate.Reverse) 0 -}}
+  {{- $latestTitle = $latest.Title -}}
+  {{- $latestURL = $latest.RelPermalink -}}
+{{- end -}}
+
+{{- with .Site.Params.profileMode }}
+<div class="profile">
+    <div class="profile_inner">
+        {{- if .imageUrl }}
+        <img src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default "profile image" }}"
+            height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+        {{- end }}
+        <h1>{{ .title | default $.Site.Title | markdownify }}</h1>
+        <span>{{ .subtitle | markdownify }}</span>
+        {{- partial "social_icons.html" $.Site.Params.socialIcons }}
+
+        {{- with .buttons }}
+        <div class="buttons">
+            {{- range . }}
+            <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name | title }}">
+                <span class="button-inner">{{ .name | title }}</span>
+            </a>
+            {{- end }}
+        </div>
+        {{- end }}
+    </div>
+</div>
+{{- end }}
+
+{{- if ne .Site.Params.terminalBriefing.enabled false }}
+<section class="terminal-briefing" id="terminal-briefing" aria-label="Welcome briefing" aria-modal="true"
+    role="dialog" hidden>
+    <div class="terminal-window" role="document">
+        <div class="terminal-titlebar" aria-hidden="true">
+            <span class="terminal-dot terminal-dot--red"></span>
+            <span class="terminal-dot terminal-dot--yellow"></span>
+            <span class="terminal-dot terminal-dot--green"></span>
+            <span class="terminal-title">rishab@cloud: ~</span>
+        </div>
+
+        <div class="terminal-body">
+            <p class="terminal-command" data-terminal-line><span class="terminal-prompt">rishab@cloud:~$</span> ./welcome.sh</p>
+
+            <div class="terminal-output" aria-live="polite">
+                <p data-terminal-line><span class="terminal-ok">✓</span><span class="terminal-label">profile</span><span class="terminal-value">{{ .Site.Params.terminalBriefing.role | default "Developer Evangelist · Cloud & DevOps" }}</span></p>
+                <p data-terminal-line><span class="terminal-ok">✓</span><span class="terminal-label">latest</span><a class="terminal-value terminal-link" href="{{ $latestURL }}">{{ $latestTitle }}</a></p>
+                <p data-terminal-line><span class="terminal-ok">✓</span><span class="terminal-label">library</span><span class="terminal-value">{{ len $blogPages }} articles · notes · talks · podcast</span></p>
+                <p data-terminal-line><span class="terminal-ok">✓</span><span class="terminal-label">status</span><span class="terminal-value">{{ .Site.Params.terminalBriefing.status | default "Writing about cloud, DevOps, and developer tools" }}</span></p>
+            </div>
+
+            <button class="terminal-enter" type="button" data-terminal-dismiss data-terminal-line>
+                <span aria-hidden="true">→</span> Entering {{ .Site.Params.terminalBriefing.host | default "rishabkumar.com" }}<span class="terminal-cursor" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div class="terminal-help">
+            <button type="button" data-terminal-dismiss>Enter <span>continue</span></button>
+            <span aria-hidden="true">·</span>
+            <button type="button" data-terminal-disable>Esc <span>don’t show again</span></button>
+        </div>
+    </div>
+</section>
+
+{{- $terminalScript := resources.Get "js/home-terminal.js" | minify | fingerprint }}
+<script defer src="{{ $terminalScript.RelPermalink }}" integrity="{{ $terminalScript.Data.Integrity }}"></script>
+{{- end }}
+
+<style>
+.button {
+    display: block;
+}
+
+.button:hover {
+    background-image: linear-gradient(to right, #DA22FF 0%, #9733EE 51%, #DA22FF 100%);
+    background-size: 400% 400%;
+    background-repeat: no-repeat;
+    color: #fff;
+    text-decoration: none;
+}
+</style>
