@@ -24,7 +24,7 @@
 
 
 <script>
-    let menu = document.getElementById('menu')
+    const menu = document.getElementById('menu')
     if (menu) {
         menu.scrollLeft = localStorage.getItem("menu-scroll-position");
         menu.onscroll = function () {
@@ -36,12 +36,16 @@
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
             var id = this.getAttribute("href").substr(1);
+            var target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!target) {
+                return;
+            }
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                target.scrollIntoView({
                     behavior: "smooth"
                 });
             } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+                target.scrollIntoView();
             }
             if (id === "top") {
                 history.replaceState(null, null, " ");
@@ -54,28 +58,45 @@
 </script>
 
 <script>
-    const counter = document.querySelector(".counter-number");
-    async function updateCounter() {
-        let response = await fetch(
-            "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
-        );
-        let data = await response.json();
-        console.log(data);
-        counter.innerHTML = `views: ${data}`;
-    }
-    updateCounter();
+    const runWhenIdle = window.requestIdleCallback || function (callback) {
+        window.setTimeout(callback, 1200);
+    };
+
+    runWhenIdle(async function () {
+        const counter = document.querySelector(".counter-number");
+        if (!counter) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
+            );
+            const data = await response.json();
+            counter.textContent = `views: ${data}`;
+        } catch (error) {
+            counter.textContent = "views unavailable";
+        }
+    });
 </script>
 
 <script>
-    const quote = document.querySelector(".stoic-quote");
-    async function getQuote() {
-        let response = await fetch(
-            "https://stoic-quotes.com/api/quote"
-        );
-        let quoteData = await response.json();
-        quote.innerHTML = `${quoteData.text} - ${quoteData.author}`;
-    }
-    getQuote();
+    runWhenIdle(async function () {
+        const quote = document.querySelector(".stoic-quote");
+        if (!quote) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                "https://stoic-quotes.com/api/quote"
+            );
+            const quoteData = await response.json();
+            quote.textContent = `${quoteData.text} - ${quoteData.author}`;
+        } catch (error) {
+            quote.textContent = "";
+        }
+    });
 </script>
 
 {{- if (not .Site.Params.disableScrollToTop) }}
