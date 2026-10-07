@@ -6,7 +6,7 @@ topic: linux
 ---
 # Linux essentials
 
-## <span id="index"></span>Index
+## Index {#index}
 
 * [Package management](#package)
   * [RPM based](#rpm)
@@ -28,9 +28,9 @@ topic: linux
   * [Info pages](#info-pages)
   * [More local documentation](#more-local-docs)
 
-## <span id="package"></span>Package management
+## Package management {#package}
 
-### <span id="rpm"></span>RPM based
+### RPM based {#rpm}
 
 #### Yum
 
@@ -58,7 +58,7 @@ YUM repos are located in `/etc/yum.repos.d/`. Unlike APT, YUM has several repo f
 | `rpm -e nano` | uninstall the package |
 | `rpm -qR nano` | uninstall required packages |
 
-### <span id="debian"></span>Debian based: APT and dpkg
+### Debian based: APT and dpkg {#debian}
 
 #### APT
 
@@ -85,7 +85,7 @@ Uses a sources list located in `etc/apt/sources.list`
 | `dpkg --remove $package_name` | Removes Debian package |
 | `dpkg --purge $package_name` | Removes dependencies |
 
-## <span id="cli-basics"></span>Command-line basics
+## Command-line basics {#cli-basics}
 
 Shells are command-line interpreters that accept commands that are then sent to the OS kernel for processing. See list of popular shells I saved as an img on my iPad. You can use any shell installed on the computer by typing its name on the CLI.
 
@@ -104,7 +104,7 @@ Shells are command-line interpreters that accept commands that are then sent to 
   * `^original^replacement^` find latest command with `original` and replace that string with `replacement` on execution.
     * e.g.: `cat /etc/hots`, then `^hots^hosts^`
 
-### <span id="cli-syntax"></span>Command-line syntax
+### Command-line syntax {#cli-syntax}
 
 Programs only run from inside folders indicated in the $PATH variable and not the working directory.
 
@@ -119,7 +119,7 @@ an @ after each symbolic link.
   * `-R` = recursively display contents of directories.
   * `-t` = sort by date modified, desc
 
-### <span id="basic-commands"></span>Basic commands
+### Basic commands {#basic-commands}
 
 | Command | Purpose |
 | :--- | :--- |
@@ -137,7 +137,7 @@ an @ after each symbolic link.
 | `which $program` | full path of the application |
 | `whoami` | current user |
 
-### <span id="cmd-history"></span>Command history and completion
+### Command history and completion {#cmd-history}
 
 * A user's command history is kept in **~/.bash_history**
 
@@ -146,7 +146,7 @@ an @ after each symbolic link.
 * `history` shows a numbered list of the commands. Rerun a command with `!<num>`
 * You can use the `tab` key to complete a partially-typed command
 
-### <span id="shell-config-files"></span>shell configuration files
+### shell configuration files {#shell-config-files}
 
 Different shell use different configuration files. Make sure you know which files your Linux distro uses. A system without a GUI puts you in the login shell. It’s important to know which shell your in so you know which configuration file will be used for it.
 
@@ -165,7 +165,7 @@ Different shell use different configuration files. Make sure you know which file
 * bashrc: Non-login shell that stores user-specific functions and aliases
 * /etc/profile: (check exact name) affects all users
 
-### <span id="variables"></span>Environment / shell variables
+### Environment / shell variables {#variables}
 
 * Variables are placeholders for another value. They can be used in scripts.
 
@@ -192,14 +192,14 @@ Different shell use different configuration files. Make sure you know which file
 | HISTFILE | full path of file  |
 | HISTSIZE | size history can grow to |
 
-### <span id="user-def-vars"></span>User-defined variables
+### User-defined variables {#user-def-vars}
 
 * Variables cannot start with a number. They can contain `-` amd `_`
 
 * Convention is to make variables upper-case.
 * Example: `THEDUDE="Jeff Bridges" ; export THEDUDE`
 
-### <span id="globbing"></span>Globbing
+### Globbing {#globbing}
 
 Globbing is the process of using wildcards to expand a search. Globbing stands for **global command**.
 
@@ -213,7 +213,7 @@ Globbing is the process of using wildcards to expand a search. Globbing stands f
   * `ls -l f[igh][lfz]e*.txt` what you'd expect from regex, except that `*` matches anything 0+ times
   * `ls -l [Rr]eport201[0-9]`
 
-### <span id="quoting"></span>Quoting
+### Quoting {#quoting}
 
 | Character | Description                               | Example                    |
 | :---      | :---                                      | :---                       |
@@ -221,21 +221,21 @@ Globbing is the process of using wildcards to expand a search. Globbing stands f
 | `'`       | **does not** allow variable interpolation | `echo 'The path is $PATH'` |
 | `\`       | Escapes special chars                     | `echo "You owe \$5.00"`    |
 
-### <span id="formatting"></span>Formatting commands
+### Formatting commands {#formatting}
 
 * Commands tend to be lower-case
 
 * Spacing doesn't matter (2 spaces or a tab is OK)
 * You can wrap long commands along several lines but will need to escape it. E.g., `ls \{enter key} -lah`
 
-### <span id="options"></span>Working with options
+### Working with options {#options}
 
 * Command = what to do; options = how to do it; arguments = what to do it with.
 
 * Parameters with a leading `-` are called **options** and switch certain parts of the command on/off. `ls -la` = `ls -l -a`
 * Paramters with no leading `-` are called arguments.
 
-### <span id="locate-find-whereis"></span>Locate, find, whereis
+### Locate, find, whereis {#locate-find-whereis}
 
 #### Locate
 
@@ -267,9 +267,9 @@ Searches for executables and man page files
 
     whereis cd
 
-## <span id="cli-help"></span>Getting CLI help
+## Getting CLI help {#cli-help}
 
-### <span id="man-pages"></span>Linux MAN pages
+### Linux MAN pages {#man-pages}
 
 * Meant as a quick reference for people who already know a command and need to learn certain options. Not meant to be a tutorial.
 
@@ -289,14 +289,14 @@ Searches for executables and man page files
   * History
   * Author
 
-### <span id="info-pages"></span>Info pages
+### Info pages {#info-pages}
 
 * Similar to man pages, but has hyperlinks (denoted by asterisk.
 
 * Programs from the Free Software Foundation use info pages instead of man pages.
 * `info $topic`
 
-### <span id="more-local-docs"></span>More local documentation
+### More local documentation {#more-local-docs}
 
 * other ways to get help include an application's readme file.
 
@@ -320,7 +320,7 @@ Searches for executables and man page files
 | `.pdf`                  | `.xpdf`, Adobe Reader                              |
 | `.tif`, `.png`., `.jpg` | Gimp  
 
-## <span id="linux-file-system"></span>The Linux file system
+## The Linux file system {#linux-file-system}
 
 The Linux file system and the file system hierarchy standard (FHS)
 
@@ -348,7 +348,7 @@ The Linux file system and the file system hierarchy standard (FHS)
 | usr                | application files                                           |
 | var                | Linux variable data and log files                           |
 
-### <span id="file-system"></span>Disk file systems
+### Disk file systems {#file-system}
 
 * **ext2:** second extended file system. Data is stored in hiearchical fashion (dirs/files). 2 TB is max file size.
 
@@ -356,7 +356,7 @@ The Linux file system and the file system hierarchy standard (FHS)
 * **Reiser:** similar to ext3 in that journaling makes recovery much quicker.
 * **ext4:** updated version of ext3.
 
-## <span id="files"></span>Files and directories
+## Files and directories {#files}
 
 * `touch -d "February 1 2017" file.txt`: Allows you to specify the modification timestamp.
 
@@ -368,9 +368,9 @@ The Linux file system and the file system hierarchy standard (FHS)
   * __`R`__ = recursive
 * `mv srcfile directory/`: Move/rename file to indicate directory
 
-## <span id="archives-compression"></span>Archives and compression
+## Archives and compression {#archives-compression}
 
-### <span id="archives"></span>Archives
+### Archives {#archives}
 
 * **tar:** Stands for “tape archive.” Combines files but doesn’t compress them. You can pass flags to both archive and compress, since Gzip and Bzip2 are for compressing only. **Note that the order of the flags matters for `tar` command.**
   * `-c` = create archive
@@ -412,7 +412,7 @@ While not required, it's best practice to indicate the compression used as part 
 | `tar -xzf tarball.tar.gz`   | extract compressed gzipped archive |
 | `tar -xjvf tarball.tar.bz2`   | extract compressed bzip2 archive, verbose |
 
-### <span id="compression"></span>Compression
+### Compression {#compression}
 
 * **zip:** Like in Windows. It's the only command that both compresses and archives. It's also the simplest b/c it has few options.
   * Examples: Compress with `zip` and extract with `unzip`
@@ -436,9 +436,9 @@ While not required, it's best practice to indicate the compression used as part 
     * `bzip2 file.tar`
     * `bunzip2 file.tar.bz2`
 
-## <span id="searching"></span>Searching for and extracting data from files
+## Searching for and extracting data from files {#searching}
 
-### <span id="viewing-text"></span>Viewing text
+### Viewing text {#viewing-text}
 
 | Command    | Purpose |
 | :---       | :---     |
@@ -448,7 +448,7 @@ While not required, it's best practice to indicate the compression used as part 
 | `tail`     | read last 10 lines of a file; `-f` = follow |
 | `find`     | locates file on system<br><br>`find . -type d` find directories<br>`find . -type f` find files<br>`find . -iname "file*.` allows globbing |
 
-### <span id="analyzing-text"></span>Analyzing text
+### Analyzing text {#analyzing-text}
 
 * `grep`: searches for a string; allows globbing<br>
   * `-r` = recursive
@@ -473,7 +473,7 @@ While not required, it's best practice to indicate the compression used as part 
   * `-l` = lines
   * `-c` = chars
 
-### <span id="pipes"></span>Pipes and regular expressions
+### Pipes and regular expressions {#pipes}
 
 You can pipe the output of one command as the input for another command:
 
@@ -495,7 +495,7 @@ You can pipe the output of one command as the input for another command:
 | [a-z]          | any single char in range                          | `[a-x]`            |
 | [1-90]         | any digit between 1-9, and 0                      | ``                 |
 
-### <span id="redirection"></span>I/O Redirection
+### I/O Redirection {#redirection}
 
 #### Redirecting output
 
@@ -510,9 +510,9 @@ Output is normally displayed on the screen but can be redirected to files or to 
 
     command 1> outfile.txt 2> errfile.txt   # redirect to separate files
 
-## <span id="scripting"></span>Turning commands into a script
+## Turning commands into a script {#scripting}
 
-### <span id="text-editing"></span>Basic text editing
+### Basic text editing {#text-editing}
 
 #### nano
 
@@ -548,7 +548,7 @@ Output is normally displayed on the screen but can be redirected to files or to 
   * `:wq` or `x` = write to file and quit
   * `q!` = quit without saving
 
-### <span id="shell-scripting"></span>Shell scripting
+### Shell scripting {#shell-scripting}
 
 * `#!/bin/bash` = specify an interpreter, (called the shebang)
 
@@ -670,9 +670,9 @@ echo "###########################"
 cat $FILENAME
 ```
 
-## <span id="linux-os"></span>The Linux operating system
+## The Linux operating system {#linux-os}
 
-### <span id="linux-diffs"></span> Windows, Mac, and Linux differences
+### Windows, Mac, and Linux differences {#linux-diffs}
 
 * Windows has a lot of proprietary software and active directory.
 
@@ -680,7 +680,7 @@ cat $FILENAME
 * It's now easier to switch to Linux b/c many applications are web based.
 * CLI: Windows has PowerShell and macOS doesn't have a CLI-only mode
 
-### <span id="linux-lifecycle"></span> Linux lifecycle management
+### Linux lifecycle management {#linux-lifecycle}
 
 * Design
 
@@ -689,7 +689,7 @@ cat $FILENAME
 * Manage
 * Retire
 
-## <span id="hardware"></span> Understanding computer hardware
+## Understanding computer hardware {#hardware}
 
 | Command             | Purpose                                                                |
 | :---                | :---                                                                   |
@@ -704,9 +704,9 @@ cat $FILENAME
 * Hard drives tend to be named sequentially, such as `/dev/sda`, `/dev/sdb`, etc.
 * Partitions are named sequentially, so partitions on sda will be called `sda1`, `sda2`, etc.
 
-## <span id="data"></span>Where data is stored
+## Where data is stored {#data}
 
-### <span id="kernel"></span>The kernel
+### The kernel {#kernel}
 
 * Core of any Linux installation.
 
@@ -714,7 +714,7 @@ cat $FILENAME
 * The kernel launches **/sbin/init**, and init in turn launches child processes.
 * Linux manages these processes in the processes table, which we can access via **ps** and **top**.
 
-### <span id="processes"></span>Linux processes
+### Linux processes {#processes}
 
 * Every process has a **PID**.
 
@@ -743,7 +743,7 @@ cat $FILENAME
   * **Swap:** is hard disk space used as a adjunct to RAM.
   * The `-h` flag shows the information in human-readable measurements (MB, GB)
 
-### <span id="syslog"></span>syslog, klog, dmesg
+### syslog, klog, dmesg {#syslog}
 
 * Most system logs are stored in **/var/log/**
 
@@ -756,9 +756,9 @@ cat $FILENAME
 * **klogd** manages messages from the kernel separate from other programs.
 * `dmesg` will display messages from the kernel. This helps with tshoot of hardware or driver issues.
 
-## <span id="networking"></span>Networking
+## Networking {#networking}
 
-### <span id="basic-networking"></span>Basic networking
+### Basic networking {#basic-networking}
 
 #### Important network tools
 
@@ -788,7 +788,7 @@ cat $FILENAME
   * Remember to set DNS information in **/etc/resolv.conf**
   * You add routes another way
 
-### <span id="routes"></span>Routes
+### Routes {#routes}
 
 * `ip route show` shows the routes
 
@@ -800,7 +800,7 @@ cat $FILENAME
 * `Route add default gw $ip_addr`
 * The DNS server used is indicated in **/etc/resolv.conf**
 
-### <span id="other"></span>Other commands
+### Other commands {#other}
 
 | Command | Description |
 | --- | --- |
@@ -810,9 +810,9 @@ cat $FILENAME
 | `netstat -s` | Summary for each protocol |
 | `netstat -r` | Equivalent to `route` |
 
-## <span id="security"></span>Basic security and user types
+## Basic security and user types {#security}
 
-### <span id="root-std-users"></span>Root and standard users
+### Root and standard users {#root-std-users}
 
 * Only the user and root can access the user's files.
 
@@ -836,7 +836,7 @@ cat $FILENAME
 * `who -a` all of the above
 * `last [$username]` who logged in, when, and how, in reverse chronological order
 
-## <span id="users-groups"></span>Creating users and groups
+## Creating users and groups {#users-groups}
 
 * Every user acct has a UID and a textual username.
 
@@ -850,9 +850,9 @@ cat $FILENAME
 * `userdel -r jdoe` = delete user and home folder
 * `sudo passwd $username` = change user's password.
 
-## <span id="permissions-ownership"></span> Managing file permissions and ownership
+## Managing file permissions and ownership {#permissions-ownership}
 
-### <span id="permissions"></span> File and directory permissions
+### File and directory permissions {#permissions}
 
 ```bash
 ☁  shell-scripting  ll
@@ -871,7 +871,7 @@ drwxr-xr-x  5 rkumar  staff   160B May 21 08:48 ../
   * `x` = 1
   * e.g., daily.sh has octal values 755
 
-### <span id="modifying-permissions"></span> Modifying permissions
+### Modifying permissions {#modifying-permissions}
 
 * `chmod` = change mode of a file or directory, affecting permissions
   * `chmod u=rwx,g=rw,o=r $file_name`
@@ -887,9 +887,9 @@ drwxr-xr-x  5 rkumar  staff   160B May 21 08:48 ../
     * Only root can change the user who owns a file
 * `chgrp` = change group ownership of a file/directory
 
-## <span id="special"></span>Special directories and files
+## Special directories and files {#special}
 
-### <span id="symlinks"></span> Symbolic links
+### Symbolic links {#symlinks}
 
 * Symlinks are similar to windows shortcuts. They reference the path to a file, not the file itself.
 
@@ -900,7 +900,7 @@ drwxr-xr-x  5 rkumar  staff   160B May 21 08:48 ../
 * Hard links are another pointer to the exact data on the hard disk. Deleting only one doesn't delete the file.
   * `ln $src_file $link_name`
 
-### <span id="special-files-dirs"></span> Special files and directories, and the sticky bit
+### Special files and directories, and the sticky bit {#special-files-dirs}
 
 * **/var/tmp:** Has temp files that do **not** get deleted on reboot
 
