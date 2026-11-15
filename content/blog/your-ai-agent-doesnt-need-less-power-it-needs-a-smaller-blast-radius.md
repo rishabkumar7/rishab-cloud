@@ -3,8 +3,8 @@ title: "Your AI Agent Doesn't Need Less Power. It Needs a Smaller Blast Radius."
 date: "2026-11-02T14:50:25-06:00"
 lastmod: "2026-11-02T14:50:25-06:00"
 description: "What happened when I gave an AI coding agent root access, a private Docker Engine, and permission to destroy everything it could reach."
-slug: "your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius"
-url: "/blog/your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius/"
+slug: "ai-agent-blast-radius"
+url: "/blog/ai-agent-blast-radius/"
 draft: true
 tags:
   - "ai"
