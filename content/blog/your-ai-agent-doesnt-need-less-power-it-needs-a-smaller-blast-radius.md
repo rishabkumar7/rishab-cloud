@@ -17,7 +17,7 @@ cover:
 video: "https://www.wearedevelopers.com/videos/100446-rm-rf-horror-stories-from-unsandboxed-ai-agents-and-how-docker-fixes-this"
 ---
 
-Imagine giving an AI coding agent root access, Docker, and permission to run privileged containers—then telling it to destroy everything it can reach.
+Imagine giving an AI coding agent root access, Docker, and permission to run privileged containers, then telling it to destroy everything it can reach.
 
 That is exactly what I did live on stage at WeAreDevelopers World Congress North America.
 
@@ -25,7 +25,7 @@ The agent succeeded. It deleted every container, image, volume, network, and bui
 
 My host machine was fine.
 
-That result captures the main idea behind my talk, [*rm -rf: Horror Stories From Unsandboxed AI Agents (and How Docker Fixes This)*](https://www.wearedevelopers.com/videos/100446-rm-rf-horror-stories-from-unsandboxed-ai-agents-and-how-docker-fixes-this): **the command did not become safe—the boundary held.**
+That result captures the main idea behind my talk, [*rm -rf: Horror Stories From Unsandboxed AI Agents (and How Docker Fixes This)*](https://www.wearedevelopers.com/videos/100446-rm-rf-horror-stories-from-unsandboxed-ai-agents-and-how-docker-fixes-this): **the command did not become safe. The boundary held.**
 
 In this post, you'll see why agent safety is less about making models timid and more about deciding what their authority can reach. You'll also learn how Docker Sandboxes can give an agent the tools it needs without handing it your entire machine.
 
@@ -43,7 +43,7 @@ I opened the talk with several AI agents apologizing after things went wrong:
 
 Those lines are dramatic, but the apology is not the lesson.
 
-Across incidents involving [Replit Agent](https://x.com/jasonlk/status/1946069562723897802), [Gemini CLI](https://mashable.com/article/google-gemini-deletes-users-code), [Antigravity](https://www.theregister.com/2025/12/01/google_antigravity_wipes_d_drive/), and [Claude Code](https://aishippinglabs.com/blog/how-i-dropped-our-production-database-and-now-pay-10-more-for-aws), the tools and circumstances were different. A production database was deleted—though ultimately [recovered through rollback](https://x.com/jasonlk/status/1946240914386809028). Project files disappeared. A drive was wiped. Cloud infrastructure and its automated database snapshots were destroyed.
+Across incidents involving [Replit Agent](https://x.com/jasonlk/status/1946069562723897802), [Gemini CLI](https://mashable.com/article/google-gemini-deletes-users-code), [Antigravity](https://www.theregister.com/2025/12/01/google_antigravity_wipes_d_drive/), and [Claude Code](https://aishippinglabs.com/blog/how-i-dropped-our-production-database-and-now-pay-10-more-for-aws), the tools and circumstances were different. A production database was deleted, though ultimately [recovered through rollback](https://x.com/jasonlk/status/1946240914386809028). Project files disappeared. A drive was wiped. Cloud infrastructure and its automated database snapshots were destroyed.
 
 The common failure was **authority**.
 
@@ -87,7 +87,7 @@ The [Nx supply-chain attack](https://www.wiz.io/blog/s1ngularitys-aftermath) sho
 
 This is why prompt instructions and path-based deny lists are useful steering, but weak security boundaries. An agent can find another executable path, rewrite configuration it is allowed to edit, or encounter a parser and policy edge case.
 
-If the agent can reason about the control—and modify the environment enforcing it—that control is part of the agent's problem-solving space.
+If the agent can reason about the control and modify the environment enforcing it, that control is part of the agent's problem-solving space.
 
 ## Give the agent root. Keep the host.
 
@@ -98,13 +98,21 @@ I created two Docker environments:
 - On the **host**, I ran a container named `rmrf-host-crown-jewel` with a fake ledger containing `CUSTOMER_LEDGER_OK`.
 - Inside a **Docker Sandbox**, I ran `fake-prod-api` and `fake-prod-db` on the sandbox's private Docker Engine.
 
+{{< clip src="/images/blog/your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius/01-two-docker-engines.mp4" caption="Two Docker Engines: the host's crown-jewel container and the sandbox's fake production workloads." >}}
+
 Then I attached Claude Code to the sandbox with permission checks bypassed. I asked it to verify privileged access and destroy every Docker resource it could reach.
 
 The agent inventoried its environment and got to work.
 
+{{< clip src="/images/blog/your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius/02-agent-root-and-inventory.mp4" caption="Claude Code runs with permission checks bypassed and inventories the sandbox." >}}
+
 The fake API disappeared. The fake database disappeared. So did the images, volumes, networks, and build cache. When it finished, the sandbox Docker inventory was empty.
 
+{{< clip src="/images/blog/your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius/03-docker-demolition.mp4" caption="A privileged workload runs, then every disposable Docker resource is gone." >}}
+
 Next, I asked the agent to send a fake canary value to `example.com`. I had already denied that destination through a host-side network policy. The request was blocked, and the decision appeared in the policy log.
+
+{{< clip src="/images/blog/your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius/04-egress-policy-denial.mp4" caption="The canary request to example.com is denied with an HTTP 403." >}}
 
 Finally, I returned to the host terminal.
 
@@ -113,6 +121,8 @@ The crown-jewel container was still running. The ledger still returned:
 ```text
 CUSTOMER_LEDGER_OK
 ```
+
+{{< clip src="/images/blog/your-ai-agent-doesnt-need-less-power-it-needs-a-smaller-blast-radius/05-host-survival-proof.mp4" caption="Back on the host: the container is still running and the ledger is intact." >}}
 
 The agent had root. It had Docker. It ran privileged containers. It destroyed everything it could reach.
 
@@ -173,7 +183,7 @@ sbx run \
 
 Replace `claude` with another supported agent such as `codex`, `gemini`, or `copilot`.
 
-Inside the sandbox, the agent can install packages, run tests, build images, and start containers. Its Docker commands target the private Docker Engine—not the daemon running your host workloads. [Docker documents this Engine boundary explicitly](https://docs.docker.com/ai/sandboxes/security/isolation/#docker-engine-isolation).
+Inside the sandbox, the agent can install packages, run tests, build images, and start containers. Its Docker commands target the private Docker Engine, not the daemon running your host workloads. [Docker documents this Engine boundary explicitly](https://docs.docker.com/ai/sandboxes/security/isolation/#docker-engine-isolation).
 
 When you are finished, inspect your sandboxes and remove the disposable environment:
 
@@ -194,7 +204,7 @@ Give the agent the compiler. Give it the package manager. Give it Docker. If the
 
 But do not confuse capability with reach.
 
-The model will make mistakes. Untrusted instructions will find their way into normal workflows. A permission prompt will eventually be approved without being read—I admitted on stage that I have done it too.
+The model will make mistakes. Untrusted instructions will find their way into normal workflows. A permission prompt will eventually be approved without being read. I admitted on stage that I have done it too.
 
 Design the environment so that one wrong decision becomes a disposable sandbox, not a production incident.
 
@@ -202,8 +212,4 @@ The command did not become safe. The boundary held.
 
 If you want to see the complete demo and every horror story that led to it, [watch the 25-minute talk](https://www.wearedevelopers.com/videos/100446-rm-rf-horror-stories-from-unsandboxed-ai-agents-and-how-docker-fixes-this). Then try one of your real agent workflows inside a sandbox.
 
-I can't wait to see what you build—and what you successfully contain!
-
----
-
-*Rishab Kumar is a Developer Evangelist at Twilio and a cloud enthusiast. Get in touch with Rishab on Twitter [@rishabincloud](https://x.com/rishabincloud) and follow his cloud, DevOps, and DevRel adventures at [youtube.com/@rishabincloud](https://youtube.com/@rishabincloud).*
+I can't wait to see what you build, and what you successfully contain!
