@@ -1,0 +1,9 @@
+<!--
+Parameters:
+    src - (Required) video path
+    caption - (Optional) caption
+-->
+<figure>
+  <video src="{{ .Get "src" }}" controls muted playsinline preload="metadata" style="width:100%;height:auto"></video>
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
