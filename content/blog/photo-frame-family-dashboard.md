@@ -3,8 +3,8 @@ title: "I Turned a Cheap Photo Frame Into a Family Dashboard"
 date: "2026-11-15T10:00:00-06:00"
 lastmod: "2026-11-15T10:00:00-06:00"
 description: "How I unlocked an Allwinner A33 photo frame, got root without flashing anything, and made it boot straight into a dashboard running on Cloudflare Workers."
-slug: "i-turned-a-cheap-photo-frame-into-a-family-dashboard"
-url: "/blog/i-turned-a-cheap-photo-frame-into-a-family-dashboard/"
+slug: "photo-frame-family-dashboard"
+url: "/blog/photo-frame-family-dashboard/"
 draft: true
 tags:
   - "android"
@@ -13,7 +13,7 @@ tags:
   - "ai"
 # TODO: add a photo of the frame on the wall and uncomment.
 # cover:
-#   image: "/images/blog/i-turned-a-cheap-photo-frame-into-a-family-dashboard/frame-on-wall.jpg"
+#   image: "/images/blog/photo-frame-family-dashboard/frame-on-wall.jpg"
 #   alt: "The family dashboard running on a 10.1 inch photo frame"
 ---
 
