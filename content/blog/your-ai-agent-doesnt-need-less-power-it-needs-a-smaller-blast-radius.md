@@ -5,7 +5,7 @@ lastmod: "2026-11-02T14:50:25-06:00"
 description: "What happened when I gave an AI coding agent root access, a private Docker Engine, and permission to destroy everything it could reach."
 slug: "ai-agent-blast-radius"
 url: "/blog/ai-agent-blast-radius/"
-draft: true
+draft: false
 tags:
   - "ai"
   - "docker"
